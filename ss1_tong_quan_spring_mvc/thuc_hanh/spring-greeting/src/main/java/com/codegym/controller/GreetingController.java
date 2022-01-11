@@ -12,4 +12,8 @@ public class GreetingController {
         model.addAttribute("name", name);
         return "index";
     }
+//    public String greeting() {
+//        model.addAttribute("name", name);
+//        return "index";
+//    }
 }
