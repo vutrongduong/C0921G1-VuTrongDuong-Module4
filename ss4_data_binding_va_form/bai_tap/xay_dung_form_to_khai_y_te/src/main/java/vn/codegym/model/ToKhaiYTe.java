@@ -1,5 +1,7 @@
 package vn.codegym.model;
 
+import java.util.Arrays;
+
 public class ToKhaiYTe {
     String ten;
     int namSinh;
@@ -96,5 +98,20 @@ public class ToKhaiYTe {
 
     public void setPhoiNhiem(String[] phoiNhiem) {
         this.phoiNhiem = phoiNhiem;
+    }
+
+    @Override
+    public String toString() {
+        return "ToKhaiYTe{" +
+                "ten='" + ten + '\'' +
+                ", namSinh=" + namSinh +
+                ", gioiTinh='" + gioiTinh + '\'' +
+                ", quocTich='" + quocTich + '\'' +
+                ", cmnd='" + cmnd + '\'' +
+                ", thongTinDiLai=" + thongTinDiLai +
+                ", lienLac=" + lienLac +
+                ", trieuChung=" + Arrays.toString(trieuChung) +
+                ", phoiNhiem=" + Arrays.toString(phoiNhiem) +
+                '}';
     }
 }

@@ -2,8 +2,9 @@ package vn.codegym.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import vn.codegym.model.ToKhaiYTe;
 
 import java.util.ArrayList;
@@ -11,47 +12,88 @@ import java.util.List;
 
 @Controller
 public class ToKhaiYTeController {
-    @ModelAttribute("toKhaiYTe")
-    public ToKhaiYTe toKhaiYTe() {
-        return new ToKhaiYTe();
-    }
 
-    @RequestMapping("/")
-    public String create(@ModelAttribute("toKhaiYTe") ToKhaiYTe toKhaiYTe, Model model) {
+    @GetMapping("/")
+    public String createForm(Model model) {
+        ToKhaiYTe toKhaiYTe = new ToKhaiYTe();
         model.addAttribute("toKhaiYTe", toKhaiYTe);
-        List<Integer>namSinhList=new ArrayList<>();
-        for (int i = 1900; i <=2004 ; i++) {
+        List<Integer> namSinhList = new ArrayList<>();
+        for (int i = 2004; i >= 1900; i--) {
             namSinhList.add(i);
         }
         model.addAttribute("namSinhList", namSinhList);
-        List<String>gioiTinhList=new ArrayList<>();
+        List<String> gioiTinhList = new ArrayList<>();
         gioiTinhList.add("Nam");
         gioiTinhList.add("Nữ");
         model.addAttribute("gioiTinhList", gioiTinhList);
-        List<String>quocTichList=new ArrayList<>();
+
+        List<String> quocTichList = new ArrayList<>();
         quocTichList.add("Việt Nam");
+        quocTichList.add("Japan");
         model.addAttribute("quocTichList", quocTichList);
-        List<String>phuongTienList=new ArrayList<>();
-        quocTichList.add("Tàu bay");
-        quocTichList.add("Tàu thuyền");
-        quocTichList.add("Ô tô");
-        quocTichList.add("Khác");
+
+        List<String> phuongTienList = new ArrayList<>();
+        phuongTienList.add("Tàu bay");
+        phuongTienList.add("Tàu thuyền");
+        phuongTienList.add("Ô tô");
+        phuongTienList.add("Khác");
         model.addAttribute("phuongTienList", phuongTienList);
-        List<String>thanhPhoList=new ArrayList<>();
-        quocTichList.add("Đà nẵng");
+
+        List<String> thanhPhoList = new ArrayList<>();
+        thanhPhoList.add("Đà nẵng");
         model.addAttribute("thanhPhoList", thanhPhoList);
-        List<String>huyenList=new ArrayList<>();
-        quocTichList.add("Hòa Vang");
+
+        List<String> huyenList = new ArrayList<>();
+        huyenList.add("Hòa Vang");
         model.addAttribute("huyenList", huyenList);
-        List<String>xaList=new ArrayList<>();
-        quocTichList.add("Hòa Tiến");
+
+        List<String> xaList = new ArrayList<>();
+        xaList.add("Hòa Tiến");
         model.addAttribute("xaList", xaList);
-        List<String>trieuChungList=new ArrayList<>();
-        quocTichList.add("Sốt");
-        quocTichList.add("Ho");
-        quocTichList.add("Khó thở");
-        quocTichList.add("Đau họng");
-        model.addAttribute("trieuChungList", trieuChungList);
+
+        return "index";
+    }
+
+    @PostMapping("/")
+    public String create(@ModelAttribute("toKhaiYTe") ToKhaiYTe toKhaiYTe, Model model) {
+        model.addAttribute("toKhaiYTe", toKhaiYTe);
+        List<Integer> namSinhList = new ArrayList<>();
+        for (int i = 2004; i >= 1900; i--) {
+            namSinhList.add(i);
+        }
+        model.addAttribute("namSinhList", namSinhList);
+
+        List<String> gioiTinhList = new ArrayList<>();
+        gioiTinhList.add("Nam");
+        gioiTinhList.add("Nữ");
+        model.addAttribute("gioiTinhList", gioiTinhList);
+
+        List<String> quocTichList = new ArrayList<>();
+        quocTichList.add("Việt Nam");
+        quocTichList.add("Japan");
+        model.addAttribute("quocTichList", quocTichList);
+
+        List<String> phuongTienList = new ArrayList<>();
+        phuongTienList.add("Tàu bay");
+        phuongTienList.add("Tàu thuyền");
+        phuongTienList.add("Ô tô");
+        phuongTienList.add("Khác");
+        model.addAttribute("phuongTienList", phuongTienList);
+
+        List<String> thanhPhoList = new ArrayList<>();
+        thanhPhoList.add("Đà nẵng");
+        model.addAttribute("thanhPhoList", thanhPhoList);
+
+        List<String> huyenList = new ArrayList<>();
+        huyenList.add("Hòa Vang");
+        model.addAttribute("huyenList", huyenList);
+
+        List<String> xaList = new ArrayList<>();
+        xaList.add("Hòa Tiến");
+        model.addAttribute("xaList", xaList);
+
+        model.addAttribute("mess", " Thông tin của bạn đã được lưu vào hệ thống !!! ");
+        model.addAttribute("mess2", " Bạn có thể cập nhập bằng cách thay đổi thông tin bên dưới và ấn gửi tờ khai ");
         return "index";
     }
 }

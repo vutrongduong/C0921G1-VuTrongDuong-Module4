@@ -6,6 +6,7 @@
 </head>
 <body>
 <h1>Settings</h1>
+<h3 style="color: green">${mess}</h3>
 <th:form modelAttribute="mail" action="/" method="post"> <br>
     <table>
         <tr>
@@ -32,8 +33,6 @@
                 <button>Cancel</button>
             </td>
         </tr>
-
-
     </table>
 </th:form>
 </body>
