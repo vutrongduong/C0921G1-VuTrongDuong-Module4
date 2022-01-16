@@ -3,15 +3,15 @@ package vn.codegym.model;
 import java.util.Arrays;
 
 public class ToKhaiYTe {
-    String ten;
-    int namSinh;
-    String gioiTinh;
-    String quocTich;
-    String cmnd;
-    ThongTinDiLai thongTinDiLai;
-    LienLac lienLac;
-    String[] trieuChung;
-    String[] phoiNhiem;
+    private String ten;
+    private int namSinh;
+    private String gioiTinh;
+    private String quocTich;
+    private String cmnd;
+    private ThongTinDiLai thongTinDiLai;
+    private LienLac lienLac;
+    private String[] trieuChung;
+    private String[] phoiNhiem;
 
     public ToKhaiYTe() {
     }

@@ -1,12 +1,12 @@
 package vn.codegym.model;
 
 public class LienLac {
-    String thanhPho;
-    String huyen;
-    String xa;
-    String diaChi;
-    String dienThoai;
-    String email;
+    private String thanhPho;
+    private String huyen;
+    private String xa;
+    private String diaChi;
+    private String dienThoai;
+    private String email;
 
     public LienLac() {
     }

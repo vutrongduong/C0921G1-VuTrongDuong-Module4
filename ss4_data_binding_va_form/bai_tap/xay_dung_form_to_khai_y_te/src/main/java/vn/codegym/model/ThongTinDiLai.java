@@ -1,12 +1,12 @@
 package vn.codegym.model;
 
 public class ThongTinDiLai {
-    String phuongTien;
-    String soHieu;
-    String soGhe;
-    String ngayKhoiHanh;
-    String ngayKetThuc;
-    String diaDiem;
+    private String phuongTien;
+    private String soHieu;
+    private String soGhe;
+    private String ngayKhoiHanh;
+    private String ngayKetThuc;
+    private String diaDiem;
 
     public ThongTinDiLai() {
     }
