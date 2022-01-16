@@ -5,7 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import vn.codegym.model.Song;
-import vn.codegym.service.SongService;
+import vn.codegym.service.ISongService;
 
 import java.util.List;
 
@@ -14,7 +14,7 @@ import java.util.List;
 @RequestMapping("songs")
 public class SongController {
     @Autowired
-    private SongService songService;
+    private ISongService songService;
 
     @GetMapping
     public ModelAndView showList() {
@@ -40,17 +40,21 @@ public class SongController {
 
     @GetMapping("/create")
     public ModelAndView showCreate() {
-        long id=0;
-        for (Song song:songService.findAll()) {
-            id=song.getId();
-        }
-        id=id+1;
-        return new ModelAndView("songs/create", "song", new Song(id));
+        return new ModelAndView("songs/create", "song", new Song());
     }
 
     @PostMapping("create")
-    public String create(Song song) {
+    public ModelAndView create(@ModelAttribute("song") Song song) {
         songService.save(song);
+        ModelAndView modelAndView = new ModelAndView("songs/create");
+        modelAndView.addObject("song", new Song());
+        modelAndView.addObject("mess", "New song created sucessfully");
+        return modelAndView;
+    }
+
+    @GetMapping("delete/{id}")
+    public String delete(@PathVariable Long id) {
+        songService.remove(id);
         return "redirect:/songs";
     }
 }

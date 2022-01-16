@@ -20,30 +20,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2b7dace-50ae-4bfb-a5fc-995614878c02" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/../../../ss5_thao_tac_voi_csdl_va_orm/bai_tap/xay_ung_dung_nghe_nhac_don_gian/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss5_thao_tac_voi_csdl_va_orm/bai_tap/xay_ung_dung_nghe_nhac_don_gian/.idea/compiler.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss5_thao_tac_voi_csdl_va_orm/bai_tap/xay_ung_dung_nghe_nhac_don_gian/.idea/gradle.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss5_thao_tac_voi_csdl_va_orm/bai_tap/xay_ung_dung_nghe_nhac_don_gian/.idea/jarRepositories.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss5_thao_tac_voi_csdl_va_orm/bai_tap/xay_ung_dung_nghe_nhac_don_gian/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss5_thao_tac_voi_csdl_va_orm/bai_tap/xay_ung_dung_nghe_nhac_don_gian/.idea/modules/xay_ung_dung_nghe_nhac_don_gian.main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss5_thao_tac_voi_csdl_va_orm/bai_tap/xay_ung_dung_nghe_nhac_don_gian/.idea/uiDesigner.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss5_thao_tac_voi_csdl_va_orm/bai_tap/xay_ung_dung_nghe_nhac_don_gian/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss5_thao_tac_voi_csdl_va_orm/bai_tap/xay_ung_dung_nghe_nhac_don_gian/src/main/java/vn/codegym/AppConfig.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss5_thao_tac_voi_csdl_va_orm/bai_tap/xay_ung_dung_nghe_nhac_don_gian/src/main/java/vn/codegym/AppInit.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss5_thao_tac_voi_csdl_va_orm/bai_tap/xay_ung_dung_nghe_nhac_don_gian/src/main/java/vn/codegym/controller/SongController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss5_thao_tac_voi_csdl_va_orm/bai_tap/xay_ung_dung_nghe_nhac_don_gian/src/main/java/vn/codegym/model/Song.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss5_thao_tac_voi_csdl_va_orm/bai_tap/xay_ung_dung_nghe_nhac_don_gian/src/main/java/vn/codegym/service/SongService.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss5_thao_tac_voi_csdl_va_orm/bai_tap/xay_ung_dung_nghe_nhac_don_gian/src/main/java/vn/codegym/service/impl/HibernateSongServiceImpl.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss5_thao_tac_voi_csdl_va_orm/bai_tap/xay_ung_dung_nghe_nhac_don_gian/src/main/resources/hibernate.conf.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss5_thao_tac_voi_csdl_va_orm/bai_tap/xay_ung_dung_nghe_nhac_don_gian/src/main/webapp/WEB-INF/templates/songs/create.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss5_thao_tac_voi_csdl_va_orm/bai_tap/xay_ung_dung_nghe_nhac_don_gian/src/main/webapp/WEB-INF/templates/songs/info.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/../../../ss5_thao_tac_voi_csdl_va_orm/bai_tap/xay_ung_dung_nghe_nhac_don_gian/src/main/webapp/WEB-INF/templates/songs/list.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../ss1_tong_quan_spring_mvc/thuc_hanh/customer-management" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss1_tong_quan_spring_mvc/thuc_hanh/customer-management" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../../ss2_spring_controller/thuc_hanh/customer-management" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss2_spring_controller/thuc_hanh/customer-management" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss4_data_binding_va_form/bai_tap/xay_dung_form_to_khai_y_te/src/main/java/vn/codegym/model/LienLac.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss4_data_binding_va_form/bai_tap/xay_dung_form_to_khai_y_te/src/main/java/vn/codegym/model/LienLac.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss4_data_binding_va_form/bai_tap/xay_dung_form_to_khai_y_te/src/main/java/vn/codegym/model/ThongTinDiLai.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss4_data_binding_va_form/bai_tap/xay_dung_form_to_khai_y_te/src/main/java/vn/codegym/model/ThongTinDiLai.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../../ss4_data_binding_va_form/bai_tap/xay_dung_form_to_khai_y_te/src/main/java/vn/codegym/model/ToKhaiYTe.java" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss4_data_binding_va_form/bai_tap/xay_dung_form_to_khai_y_te/src/main/java/vn/codegym/model/ToKhaiYTe.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../ss5_thao_tac_voi_csdl_va_orm/thuc_hanh/customer-management" beforeDir="false" afterPath="$PROJECT_DIR$/../../../ss5_thao_tac_voi_csdl_va_orm/thuc_hanh/customer-management" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -85,7 +64,7 @@
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../ss5_thao_tac_voi_csdl_va_orm/bai_tap/xay_ung_dung_nghe_nhac_don_gian" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../ss4_data_binding_va_form/bai_tap/xay_dung_form_to_khai_y_te" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -193,6 +172,7 @@
       <workItem from="1642324494192" duration="12000" />
       <workItem from="1642324561062" duration="15000" />
       <workItem from="1642324710210" duration="37000" />
+      <workItem from="1642327146697" duration="356000" />
     </task>
     <servers />
   </component>
@@ -224,10 +204,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="402" y="0" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/0.0.1536.824@0.0.1536.824" timestamp="1642093473464" />
-    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1642324746939">
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1642327504658">
       <screen x="0" y="0" width="1536" height="824" />
     </state>
-    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1642324746939" />
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824@0.0.1536.824" timestamp="1642327504658" />
     <state width="1024" height="217" key="GridCell.Tab.0.bottom" timestamp="1642135852495">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

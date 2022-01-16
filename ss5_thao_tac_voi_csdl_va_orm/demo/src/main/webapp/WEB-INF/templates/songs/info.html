@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Song Information</title>
+</head>
+<body>
+<form action="/songs" method="post">
+    <fieldset>
+        <legend>Song Information</legend>
+        <input type="hidden" name="id" th:value="${song.id}">
+        <table>
+            <tr>
+                <td>Id</td>
+                <td th:text="${song.id}"></td>
+            </tr>
+            <tr>
+                <td>Name</td>
+                <td>
+                    <input type="text" name="name" th:value="${song.name}">
+                </td>
+            </tr>
+            <tr>
+                <td>Singer</td>
+                <td>
+                    <input type="text" name="singer" th:value="${song.singer}">
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <input type="submit" value="Update">
+                </td>
+            </tr>
+        </table>
+    </fieldset>
+</form>
+<a href="/songs">Back to list</a>.
+</body>
+</html>

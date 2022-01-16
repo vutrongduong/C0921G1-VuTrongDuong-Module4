@@ -8,12 +8,9 @@
 <form action="/songs/create" method="post" th:object="${song}">
     <fieldset>
         <legend>Song Information</legend>
-        <input type="hidden" name="id" th:value="${song.id}">
+        <p th:text="${mess}" style="color:green;"></p>
+        <input type="hidden" name="id" th:field="*{id}">
         <table>
-            <tr>
-                <td>Id</td>
-                <td th:field="*{id}" th:text="*{id}"></td>
-            </tr>
             <tr>
                 <td>Name</td>
                 <td>
