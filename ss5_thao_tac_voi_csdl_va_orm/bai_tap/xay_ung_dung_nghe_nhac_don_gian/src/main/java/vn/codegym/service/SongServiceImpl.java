@@ -8,8 +8,6 @@ import java.util.List;
 public class SongServiceImpl implements ISongService {
     @Autowired
     private ISongRepository repository;
-
-
     @Override
     public List<Song> findAll() {
         return repository.findAll();
@@ -18,11 +16,6 @@ public class SongServiceImpl implements ISongService {
     @Override
     public Song findOne(Long id) {
         return repository.findOne(id);
-    }
-
-    @Override
-    public Song update(Song song) {
-        return repository.update(song);
     }
 
     @Override

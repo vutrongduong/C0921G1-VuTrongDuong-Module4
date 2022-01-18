@@ -8,7 +8,6 @@ public interface ISongService {
 
     Song findOne(Long id);
 
-    Song update(Song song);
 
     void save(Song song);
 

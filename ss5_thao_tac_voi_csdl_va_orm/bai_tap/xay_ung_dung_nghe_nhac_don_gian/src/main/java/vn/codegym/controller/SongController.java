@@ -9,7 +9,6 @@ import vn.codegym.service.ISongService;
 
 import java.util.List;
 
-
 @Controller
 @RequestMapping("songs")
 public class SongController {
@@ -33,7 +32,7 @@ public class SongController {
     }
 
     @PostMapping
-    public String updateCustomer(Song song) {
+    public String update(Song song) {
         songService.save(song);
         return "redirect:/songs";
     }

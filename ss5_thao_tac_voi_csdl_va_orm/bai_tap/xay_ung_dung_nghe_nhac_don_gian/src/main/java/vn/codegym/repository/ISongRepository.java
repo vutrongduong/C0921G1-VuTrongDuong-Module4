@@ -9,9 +9,7 @@ public interface ISongRepository {
 
     Song findOne(Long id);
 
-    Song update(Song song);
-
-    void save(Song song);
+    Song save(Song song);
 
     void remove(Long id);
 }

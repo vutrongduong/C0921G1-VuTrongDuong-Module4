@@ -1,4 +1,5 @@
 package vn.codegym.configuration;
+
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.ApplicationContext;
@@ -113,12 +114,12 @@ public class AppConfig implements WebMvcConfigurer, ApplicationContextAware {
     }
 
     @Bean
-    public ISongRepository customerRepository() {
+    public ISongRepository songRepository() {
         return new SongRepositoryImpl();
     }
 
     @Bean
-    public ISongService customerService() {
+    public ISongService songService() {
         return new SongServiceImpl();
     }
 }
