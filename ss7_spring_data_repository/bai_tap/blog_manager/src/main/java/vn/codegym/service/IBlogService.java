@@ -19,5 +19,8 @@ public interface IBlogService {
     Page<Blog> findAll(Pageable pageable);
 
     List<Blog> findByName(String name, Pageable pageable);
-    List<Blog> findByCategoryId(@Param("id") Long id, Pageable pageable);
+
+    List<Blog> findByCategory(Long id, Pageable pageable);
+
+    List<Blog> findByNameAndCategory(String name, Long id, Pageable pageable);
 }

@@ -29,10 +29,10 @@
         <tr>
             <td>Category:</td>
             <td>
-                <select>
-                    <option disabled selected >Choose Category</option>
-                    <th:block th:each="category : ${categorys}">
-                        <option th:value="${category.id}" th:text="${category.name}"></option>
+                <select th:field="*{category}">
+<!--                    <option disabled selected>Choose Category</option>-->
+                    <th:block th:each="c : ${categorys}">
+                        <option th:value="${c.id}" th:text="${c.name}"></option>
                     </th:block>
                 </select>
             </td>

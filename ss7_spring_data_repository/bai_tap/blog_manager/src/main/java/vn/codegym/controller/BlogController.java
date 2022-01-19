@@ -26,16 +26,22 @@ public class BlogController {
     public String listBlog(Optional<String> name, Optional<Long> cateId
             , Model model, @PageableDefault(size = 2) Pageable pageable) {
         model.addAttribute("categorys", categoryService.findAll());
-        if (!name.isPresent() || name.get().equals("")){
-            if(!cateId.isPresent()){
+        if (!name.isPresent() || name.get().equals("")) {
+            if (!cateId.isPresent()) {
                 model.addAttribute("blogs", blogService.findAll(pageable));
-            }else {
-                model.addAttribute("cateId",cateId.get());
-                model.addAttribute("blogs", blogService.findByCategoryId(cateId.get(),pageable));
+            } else {
+//                model.addAttribute("cateId", cateId.get());
+                model.addAttribute("blogs", blogService.findByCategory(cateId.get(), pageable));
             }
-        }else {
-            model.addAttribute("name",name.get());
-            model.addAttribute("blogs", blogService.findByName(name.get(),pageable));
+        } else {
+            if (!cateId.isPresent()) {
+//                model.addAttribute("name", name.get());
+                model.addAttribute("blogs", blogService.findByName(name.get(), pageable));
+            }else {
+//                model.addAttribute("name", name.get());
+                model.addAttribute("blogs", blogService.findByNameAndCategory(name.get(),cateId.get(), pageable));
+            }
+
         }
 
 
@@ -53,6 +59,7 @@ public class BlogController {
     public ModelAndView saveBlog(@ModelAttribute("blog") Blog blog) {
         blogService.save(blog);
         ModelAndView modelAndView = new ModelAndView("/create");
+//        modelAndView.addObject("categorys", categoryService.findAll());
         modelAndView.addObject("blog", new Blog());
         modelAndView.addObject("message", "New blog created successfully");
         return modelAndView;
