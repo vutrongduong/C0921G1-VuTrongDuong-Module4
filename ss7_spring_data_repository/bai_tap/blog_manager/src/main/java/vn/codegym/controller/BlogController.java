@@ -1,5 +1,4 @@
 package vn.codegym.controller;
-
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.ui.Model;
@@ -30,21 +29,18 @@ public class BlogController {
             if (!cateId.isPresent()) {
                 model.addAttribute("blogs", blogService.findAll(pageable));
             } else {
-//                model.addAttribute("cateId", cateId.get());
+                model.addAttribute("cateId", cateId.get());
                 model.addAttribute("blogs", blogService.findByCategory(cateId.get(), pageable));
             }
         } else {
             if (!cateId.isPresent()) {
-//                model.addAttribute("name", name.get());
+                model.addAttribute("name", name.get());
                 model.addAttribute("blogs", blogService.findByName(name.get(), pageable));
             }else {
 //                model.addAttribute("name", name.get());
                 model.addAttribute("blogs", blogService.findByNameAndCategory(name.get(),cateId.get(), pageable));
             }
-
         }
-
-
         return "list";
     }
 
@@ -59,7 +55,7 @@ public class BlogController {
     public ModelAndView saveBlog(@ModelAttribute("blog") Blog blog) {
         blogService.save(blog);
         ModelAndView modelAndView = new ModelAndView("/create");
-//        modelAndView.addObject("categorys", categoryService.findAll());
+        modelAndView.addObject("categorys", categoryService.findAll());
         modelAndView.addObject("blog", new Blog());
         modelAndView.addObject("message", "New blog created successfully");
         return modelAndView;
@@ -67,7 +63,10 @@ public class BlogController {
 
     @GetMapping("/edit/{id}")
     public ModelAndView showEditForm(@PathVariable Long id) {
-        return new ModelAndView("/edit", "blog", blogService.findById(id));
+        ModelAndView modelAndView = new ModelAndView("/edit");
+        modelAndView.addObject("categorys", categoryService.findAll());
+        modelAndView.addObject("blog", blogService.findById(id));
+        return modelAndView;
     }
 
     @PostMapping("/edit")

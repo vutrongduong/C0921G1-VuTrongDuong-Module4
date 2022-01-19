@@ -2,7 +2,6 @@ package vn.codegym.service;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.repository.query.Param;
 import vn.codegym.model.Blog;
 
 import java.util.List;
@@ -18,9 +17,9 @@ public interface IBlogService {
 
     Page<Blog> findAll(Pageable pageable);
 
-    List<Blog> findByName(String name, Pageable pageable);
+    Page<Blog> findByName(String name, Pageable pageable);
 
-    List<Blog> findByCategory(Long id, Pageable pageable);
+    Page<Blog> findByCategory(Long id, Pageable pageable);
 
-    List<Blog> findByNameAndCategory(String name, Long id, Pageable pageable);
+    Page<Blog> findByNameAndCategory(String name, Long id, Pageable pageable);
 }
