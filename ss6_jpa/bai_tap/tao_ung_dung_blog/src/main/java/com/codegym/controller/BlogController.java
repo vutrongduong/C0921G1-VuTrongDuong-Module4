@@ -16,7 +16,7 @@ public class BlogController {
 
     @GetMapping("")
     public ModelAndView listBlogs() {
-        return new ModelAndView("/listDemo", "blogs", blogService.findAll());
+        return new ModelAndView("/list", "blogs", blogService.findAll());
     }
 
     @GetMapping("/create")
@@ -68,6 +68,6 @@ public class BlogController {
 
     @GetMapping("/show/{id}")
     public ModelAndView showInfoBlog(@PathVariable Long id) {
-        return new ModelAndView("/info", "blog", blogService.findById(id));
+        return new ModelAndView("/show", "blog", blogService.findById(id));
     }
 }

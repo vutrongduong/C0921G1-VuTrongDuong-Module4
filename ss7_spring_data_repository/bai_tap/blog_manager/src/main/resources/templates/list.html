@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+</head>
+<body>
+<div class="container mt-2 mb-2 pt-5 pb-5" id="article-grid">
+
+    <form action="/blogs">
+        <H5>Search : </H5>
+        <input type="text" name="name" placeholder="Search by name">
+        <select name="cateId">
+            <option disabled selected>Choose Category</option>
+            <th:block th:each="category : ${categorys}">
+                <option th:value="${category.id}" th:text="${category.name}"></option>
+            </th:block>
+        </select>
+        <button type="submit">Search</button>
+    </form>
+    <a href="/blogs/create">Create new blog</a>
+    <h1>Blogs</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">ID Blog</th>
+            <th scope="col">Name Blog</th>
+            <th scope="col">Author</th>
+            <th scope="col">Title</th>
+            <th scope="col">Category</th>
+            <th scope="col">Edit</th>
+            <th scope="col">Delete</th>
+            <th scope="col">Show details</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="blog : ${blogs}">
+            <tr>
+                <td th:text="${blog.id}"></td>
+                <td th:text="${blog.name}"></td>
+                <td th:text="${blog.author}"></td>
+                <td th:text="${blog.title}"></td>
+                <td th:text="${blog.category.name}"></td>
+                <td><a th:href="@{/blogs/edit/__${blog.id}__ }">Edit</a></td>
+                <td><a th:href="@{/blogs/delete/__${blog.id}__ }">Delete</a></td>
+                <td><a th:href="@{/blogs/show/__${blog.id}__ }">Show details</a></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+<div>
+    <a th:href="@{'/blogs'(page=${blogs.number - 1})}" th:if="${blogs.hasPrevious()}"> Previous </a>
+    <span th:text="${blogs.number+1}"></span> / <span th:text="${blogs.totalPages}"></span>
+    <a th:href="@{'/blogs'(page=${blogs.number+1})}" th:if="${blogs.hasNext()}"> Next </a>
+</div>
+</body>
+<script src="/js/bootstrap.js"></script>
+</html>
