@@ -5,5 +5,9 @@ import vn.codegym.model.Category;
 import java.util.List;
 
 public interface ICategoryService {
-    public List<Category> findAll();
+    List<Category> findAll();
+
+    void save(Category category);
+
+    void remove(Long id);
 }

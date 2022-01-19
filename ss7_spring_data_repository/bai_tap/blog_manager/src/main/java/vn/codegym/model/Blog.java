@@ -13,6 +13,7 @@ public class Blog {
     private String author;
     private String title;
     private String content;
+    
     @ManyToOne(targetEntity = Category.class)
     private Category category;
 

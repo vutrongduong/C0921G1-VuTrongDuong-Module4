@@ -17,4 +17,14 @@ public class CategoryServiceImpl implements ICategoryService {
     public List<Category> findAll() {
         return repository.findAll();
     }
+
+    @Override
+    public void save(Category category) {
+        repository.save(category);
+    }
+
+    @Override
+    public void remove(Long id) {
+        repository.deleteById(id);
+    }
 }

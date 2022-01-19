@@ -1,4 +1,5 @@
 package vn.codegym.controller;
+
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.ui.Model;
@@ -36,9 +37,10 @@ public class BlogController {
             if (!cateId.isPresent()) {
                 model.addAttribute("name", name.get());
                 model.addAttribute("blogs", blogService.findByName(name.get(), pageable));
-            }else {
-//                model.addAttribute("name", name.get());
-                model.addAttribute("blogs", blogService.findByNameAndCategory(name.get(),cateId.get(), pageable));
+            } else {
+                model.addAttribute("name", name.get());
+                model.addAttribute("cateId", cateId.get());
+                model.addAttribute("blogs", blogService.findByNameAndCategory(name.get(), cateId.get(), pageable));
             }
         }
         return "list";
