@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Create song</title>
+</head>
+<body>
+<h1>Edit song</h1>
+<p>
+    <a href="/">Song list</a>
+</p>
+<th:block th:if="${mess}">
+    <p style="color:green;" th:text="${mess}"></p>
+</th:block>
+<form th:action="@{/edit}" th:object="${songDto}" method="post">
+    <table>
+        <tr>
+            <td><input type="hidden" th:field="*{id}"/></td>
+        </tr>
+        <tr>
+            <td>Name :</td>
+            <td><input type="text" th:field="*{name}"/></td>
+            <td style="color: red" th:if="${#fields.hasErrors('name')}" th:errors="*{name}" ></td>
+        </tr>
+        <tr>
+            <td>Singer:</td>
+            <td><input type="text" th:field="*{singer}"/>
+            <td style="color: red" th:if="${#fields.hasErrors('singer')}" th:errors="*{singer}" ></td></td>
+        </tr>
+        <tr>
+            <td>Type:</td>
+            <td><input type="text" th:field="*{type}"/>
+            <td style="color: red" th:if="${#fields.hasErrors('type')}" th:errors="*{type}" ></td></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><input type="submit" value="Edit song"></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

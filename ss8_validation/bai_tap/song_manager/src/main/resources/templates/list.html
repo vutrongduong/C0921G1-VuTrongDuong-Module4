@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link type="text/css" rel="stylesheet" href="css/bootstrap.css">
+    <link type="text/css" rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+<div class="container-fluid" id="header">
+    <nav class="navbar navbar-expand-md navbar-light">
+        <a class="navbar-brand w-25" href="#"><img class="w-50" src="/img/DUong%20vu.png"></a>
+    </nav>
+</div>
+<div class="container mt-2 mb-2 pt-5 pb-5" id="article-grid">
+
+    <a href="/create">Create new Song</a>
+    <h1>Songs</h1>
+    <table class="table table-bordered ">
+        <thead>
+        <tr class="bg-info">
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Singer</th>
+            <th scope="col">Type</th>
+            <th scope="col">Edit</th>
+        </tr>
+        </thead>
+        <tbody>
+        <th:block th:each="song : ${songList}">
+            <tr>
+                <td th:text="${song.id}"></td>
+                <td th:text="${song.name}"></td>
+                <td th:text="${song.singer}"></td>
+                <td th:text="${song.type}"></td>
+                <td><a th:href="@{/edit/__${song.id}__ }">Edit</a></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+</div>
+<footer class="container-fluid mt-1 p-4">
+        <div class="row pt-2">
+            <div class="col-lg-12 text-center">
+                <span>&copy <a href="">Design By DuongVu</a> All Rights Received.</span>
+            </div>
+        </div>
+    </div>
+</footer>
+</body>
+<script src="/js/bootstrap.js"></script>
+</html>
