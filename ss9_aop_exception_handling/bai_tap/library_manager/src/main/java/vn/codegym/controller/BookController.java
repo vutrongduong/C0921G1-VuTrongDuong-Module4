@@ -27,7 +27,7 @@ public class BookController {
     @Autowired
     private ICodeBookService codeBookService;
 
-    @GetMapping
+    @GetMapping("")
     public ModelAndView list() {
         return new ModelAndView("list", "bookList", bookService.findAll());
     }
@@ -59,20 +59,15 @@ public class BookController {
 
     @PostMapping("/return")
     public String returnBook(@RequestParam Long code, Model model) throws CodeException {
-        try {
-            CodeBook codeBook = codeBookService.findByCode(code);
-            Book book = bookService.findById(codeBook.getBook().getId());
-            int amount = book.getAmount();
-            book.setAmount(amount + 1);
-            codeBookService.delete(codeBook);
-            model.addAttribute("mess", "You have successfully returned the book with the code to borrow the book : " + code);
-            return "return";
-        } catch (MethodArgumentTypeMismatchException e) {
-            throw new CodeException();
-        } catch (NumberFormatException e) {
-            throw new CodeException();
-        } catch (Exception e) {
+        CodeBook codeBook = codeBookService.findByCode(code);
+        if (codeBook == null) {
             throw new CodeException();
         }
+        Book book = bookService.findById(codeBook.getBook().getId());
+        int amount = book.getAmount();
+        book.setAmount(amount + 1);
+        codeBookService.delete(codeBook);
+        model.addAttribute("mess", "You have successfully returned the book with the code to borrow the book : " + code);
+        return "return";
     }
 }

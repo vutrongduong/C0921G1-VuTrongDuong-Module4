@@ -1,20 +1,32 @@
 package vn.codegym.aspect;
 
+import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.*;
+import org.springframework.stereotype.Component;
+
 
 @Aspect
+@Component
 public class BookAspect {
-    @AfterReturning(value = "executeController()")
-    public void afterController() {
-        System.out.println("Ghi nhan thay doi");
+    //    @Around(value = "execution(* vn.codegym.service.impl.CodeBookService.add(..))" )
+    //    public void borrowBook(ProceedingJoinPoint joinPoint) throws Throwable {
+    //        ObjectMapper objectMapper=new ObjectMapper();
+    //        Object[] arr =  joinPoint.getArgs();
+    //        System.err.println("book with name" + "just borrowed with code"+ objectMapper.writeValueAsString(arr[0]));
+    //    }
+    @AfterReturning(value = "execution(* vn.codegym.service.impl.CodeBookService.add(..))")
+    public void borrowBook() {
+        System.err.println("A book has been borrowed");
     }
 
-    @Around(value = "executeController()")
-    public void aroundController() {
-        System.out.println("Ghi nhan thay doi");
+    @AfterReturning(value = "execution(* vn.codegym.service.impl.CodeBookService.delete(..))")
+    public void returnBook() {
+        System.err.println("A book has been paid");
     }
 
-    @Pointcut(value = "within(vn.codegym.service.impl.BookService)")
-    public void executeController() {
+    @After(value = "execution(* vn.codegym.service.impl.*.*(..))")
+    public void action(JoinPoint joinPoint) {
+        String name =joinPoint.getSignature().getName();
+        System.err.println("Customer just made : " + name);
     }
 }

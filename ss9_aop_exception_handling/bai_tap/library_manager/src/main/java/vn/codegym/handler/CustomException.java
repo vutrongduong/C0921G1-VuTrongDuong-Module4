@@ -18,10 +18,12 @@ public class CustomException {
     public ModelAndView exceptionCode() {
         return new ModelAndView("errorCode");
     }
+
     @ExceptionHandler(MissingServletRequestParameterException.class)
     public ModelAndView missingException() {
         return new ModelAndView("errorCode");
     }
+
     @ExceptionHandler(NumberFormatException.class)
     public ModelAndView numberFormatExceptionCode() {
         return new ModelAndView("errorCode");

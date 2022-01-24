@@ -57,4 +57,15 @@ public class Book {
     public void setCodeBook(Set<CodeBook> codeBook) {
         this.codeBook = codeBook;
     }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", amount=" + amount +
+                ", category='" + category + '\'' +
+                ", codeBook=" + codeBook +
+                '}';
+    }
 }

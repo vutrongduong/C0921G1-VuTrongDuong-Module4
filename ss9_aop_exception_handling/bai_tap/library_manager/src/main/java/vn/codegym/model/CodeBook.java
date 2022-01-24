@@ -44,4 +44,13 @@ public class CodeBook {
     public void setBook(Book book) {
         this.book = book;
     }
+
+//    @Override
+//    public String toString() {
+//        return "CodeBook{" +
+//                "id=" + id +
+//                ", code=" + code +
+//                ", book=" + book +
+//                '}';
+//    }
 }
