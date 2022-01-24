@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Shop</title>
+</head>
+<body>
+<p>
+    <a href="/shopping-cart">Your cart</a>
+</p>
+<h2 style="color: red;">Danh sách sản phẩm</h2>
+<table border="1">
+    <th:block th:each="p:${products}">
+        <tr>
+            <td>
+            <td><img th:src="${p.img}" width="250px"></td>
+            <td><a th:href="@{/info/__${p.id}__ }" th:text="${p.name}"></a></td>
+            <td>
+                <del th:text="${#numbers.formatDecimal(p.priceOld, 0, 'COMMA', 0, 'POINT')}"><small>đ</small></del>
+                <span th:text="${#numbers.formatDecimal(p.priceNow, 0, 'COMMA', 0, 'POINT')}"></span><small>đ</small>
+            </td>
+            <td th:text="${p.description}"></td>
+            </td>
+        </tr>
+    </th:block>
+</table>
+</body>
+</html>

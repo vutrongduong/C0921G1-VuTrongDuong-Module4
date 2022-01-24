@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h4 style="color:green;" th:text="${mess}"></h4>
+<form action="/return" method="post">
+    <input type="text" name="code" placeholder="Code Borrow">
+    <button type="submit">Return Book</button>
+</form>
+</body>
+</html>
