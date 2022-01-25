@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Shopping Cart</title>
 </head>
 <body>
+<h2>
+    <a href="/shop">Quay lại</a>
+</h2>
+<form th:action="@{/shop}" th:object="${cart}" method="post">
 
+    <table border="1" th:if="${cart != null && cart.getProducts().size()>0}">
+        <h3>GIỎ HÀNG (<span th:text="${cart.countItemQuantity()}"></span>)</h3>
+        <tr th:each="product: ${cart.products}">
+            <td><img width="100px" th:src="${product.getKey().img}"></td>
+            <td>
+                Tên sản phẩm : <span th:text="${product.getKey().name}"></span><br>
+                Đơn giá : <span
+                    th:text="${#numbers.formatDecimal(product.getKey().priceNow, 0, 'COMMA', 0, 'POINT')}"></span><small>đ</small><br>
+                Số lượng :
+                <select>
+                    <option th:text="${product.getValue()}"></option>
+                </select>
+                <a id="increase_button" th:href="@{/add/__${product.getKey().id}__}"
+                >+</a>
+            </td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><h3>Tổng cộng : <span
+                    th:text="${#numbers.formatDecimal(cart.countTotalPayment(), 0, 'COMMA', 0, 'POINT')}"><small>đ</small></span>
+            </h3></td>
+        </tr>
+    </table>
+    <div th:if="${cart == null || cart.getProducts().size() == 0}">
+        <strong>Cart Empty</strong>
+    </div>
+</form>
 </body>
 </html>

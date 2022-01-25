@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.method.annotation.MethodArgumentTypeMismatchException;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import vn.codegym.handler.exception.BorrowException;
@@ -27,7 +26,7 @@ public class BookController {
     @Autowired
     private ICodeBookService codeBookService;
 
-    @GetMapping("")
+    @GetMapping("/")
     public ModelAndView list() {
         return new ModelAndView("list", "bookList", bookService.findAll());
     }
@@ -43,7 +42,7 @@ public class BookController {
         int amount = book.getAmount();
         if (amount != 0) {
             book.setAmount(amount - 1);
-            Long code = ThreadLocalRandom.current().nextLong(10000, 49999);
+            Long code = ThreadLocalRandom.current().nextLong(10000, 99999);
             codeBookService.add(new CodeBook(code, book));
             redirectAttributes.addFlashAttribute("mess", "You have successfully borrowed the book, your borrowing code is : " + code);
             return "redirect:/";

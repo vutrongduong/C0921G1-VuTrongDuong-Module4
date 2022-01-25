@@ -5,9 +5,17 @@
     <title>Title</title>
 </head>
 <body>
-<form th:object="${product}">
-<!--<img th:src="*{img}">-->
-    <input readonly th:value="${product.name}">
-</form>
+<h2>
+    <a href="/shop">Quay lại trang chủ</a>
+</h2>
+<span th:object="${product}">
+    <input type="hidden" th:value="${product.id}" name="id">
+    <img th:src="${product.img}">
+    <p th:text="${product.name}"></p>
+    <p th:text="${product.description}"></p>
+    <del th:text="${#numbers.formatDecimal(product.priceOld, 0, 'COMMA', 0, 'POINT')}"></del><small>đ</small>
+    <span th:text="${#numbers.formatDecimal(product.priceNow, 0, 'COMMA', 0, 'POINT')}"></span><small>đ</small><br>
+   <h1> <a style="color: darkorange" th:href="@{/add/__${product.id}__}">Mua ngay</a></h1>
+</span>
 </body>
 </html>
