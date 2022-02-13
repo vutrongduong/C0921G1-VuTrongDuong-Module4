@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="VcsDirectoryMappings">
+    <mapping directory="$PROJECT_DIR$" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ss1_tong_quan_spring_mvc/thuc_hanh/customer-management" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ss2_spring_controller/thuc_hanh/customer-management" vcs="Git" />
+    <mapping directory="$PROJECT_DIR$/ss5_thao_tac_voi_csdl_va_orm/thuc_hanh/customer-management" vcs="Git" />
+  </component>
+</project>
