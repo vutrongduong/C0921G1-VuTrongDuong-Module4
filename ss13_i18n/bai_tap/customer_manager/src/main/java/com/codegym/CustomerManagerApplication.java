@@ -1,12 +1,13 @@
-package vn.codegym;
+package com.codegym;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class LoginApplication {
+public class CustomerManagerApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(LoginApplication.class, args);
+        SpringApplication.run(CustomerManagerApplication.class, args);
     }
+
 }
