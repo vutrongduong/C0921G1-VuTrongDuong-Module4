@@ -16,6 +16,8 @@ public class Customer {
     private String customerPhone;
     private String customerEmail;
     private String customerAddress;
+    @OneToOne(mappedBy = "customer")
+    private Contract contract;
 
     public Customer() {
     }

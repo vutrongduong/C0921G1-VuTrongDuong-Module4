@@ -24,7 +24,7 @@ public class Contract {
     public Contract() {
     }
 
-    public Contract(int id, String startDate, String endDate, double deposit, double totalMoney, int employee, int customer, int service) {
+    public Contract(int id, String startDate, String endDate, double deposit, double totalMoney, Employee employee, Customer customer, Service service) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -75,41 +75,27 @@ public class Contract {
         this.totalMoney = totalMoney;
     }
 
-    public int getEmployee() {
+    public Employee getEmployee() {
         return employee;
     }
 
-    public void setEmployee(int employee) {
+    public void setEmployee(Employee employee) {
         this.employee = employee;
     }
 
-    public int getCustomer() {
+    public Customer getCustomer() {
         return customer;
     }
 
-    public void setCustomer(int customer) {
+    public void setCustomer(Customer customer) {
         this.customer = customer;
     }
 
-    public int getService() {
+    public Service getService() {
         return service;
     }
 
-    public void setService(int service) {
+    public void setService(Service service) {
         this.service = service;
-    }
-
-    @Override
-    public String toString() {
-        return "Contract{" +
-                "id=" + id +
-                ", startDate='" + startDate + '\'' +
-                ", endDate='" + endDate + '\'' +
-                ", deposit=" + deposit +
-                ", totalMoney=" + totalMoney +
-                ", employee=" + employee +
-                ", customer=" + customer +
-                ", service=" + service +
-                '}';
     }
 }

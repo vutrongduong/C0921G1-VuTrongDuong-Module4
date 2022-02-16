@@ -11,15 +11,17 @@ public class Service {
     private double serviceCost;
     private int serviceMaxPeople;
     @ManyToOne
-    @JoinColumn(name = "rent_type_id",referencedColumnName = "rentTypeId")
+    @JoinColumn(name = "rent_type_id", referencedColumnName = "rentTypeId")
     private RentType rentType;
     @ManyToOne
-    @JoinColumn(name = "service_type_id",referencedColumnName = "serviceTypeId")
+    @JoinColumn(name = "service_type_id", referencedColumnName = "serviceTypeId")
     private ServiceType serviceType;
     private String standardRoom;
     private String descriptionOtherConvenience;
     private double poolArea;
     private int numberOfFloors;
+    @OneToOne(mappedBy = "service")
+    private Contract contract;
 
     public Service() {
     }

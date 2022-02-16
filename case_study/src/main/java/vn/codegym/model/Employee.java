@@ -27,6 +27,8 @@ public class Employee {
     @OneToOne
     @JoinColumn(name = "user_name",referencedColumnName = "userName")
     private User user;
+    @OneToOne(mappedBy = "employee")
+    private Contract contract;
 
     public Employee(int employeeId, String employeeName, String employeeBirthday, String employeeIdCard, double employeeSalary, String employeePhone, String employeeEmail, String employeeAddress, Position position, EducationDegree educationDegree, Division division, User user) {
         this.employeeId = employeeId;

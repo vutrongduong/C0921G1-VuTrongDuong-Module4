@@ -1,11 +1,20 @@
 package vn.codegym.model;
 
+import javax.persistence.*;
+import java.util.List;
+
+@Entity
 public class AttachService {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int attachServiceId;
     private String attachServiceName;
     private double attachServiceCost;
     private int attachServiceUnit;
     private String attachServiceStatus;
+
+    @OneToMany(mappedBy = "attachService")
+    private List<ContractDetail> contractDetail;
 
     public AttachService(String attachServiceName, double attachServiceCost, int attachServiceUnit, String attachServiceStatus) {
         this.attachServiceName = attachServiceName;
