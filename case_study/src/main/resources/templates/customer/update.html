@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/create.css">
+</head>
+<body>
+<div>
+    <div th:replace="layout/header::header"></div>
+    <div class="border border-3 row h-75">
+        <div class="col-lg-3 border border-3">
+            <a class="nav-link " href="/customer/create">Create New Customer</a>
+            <a class="nav-link " href="#">Item 2</a>
+            <a class="nav-link " href="#">Item 3</a>
+        </div>
+        <div class="col-lg-9 text-center container-fluid">
+            <div class="signup-form">
+                <form th:action="@{/customer/update}" method="post" class="form-horizontal" th:object="${customer}">
+                    <div class="row">
+                        <div class="col-8 offset-4">
+                            <h3>Update Customer</h3>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">ID Customer</label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" th:field="${customer.customerId}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Name</label>
+                        <div class="col-8 mt-2">
+                            <input class="form-control" type="text" th:field="${customer.customerName}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Gender</label>
+                        <div class="col-8 mt-2">
+                            <input type="radio" th:if="${customer.customerGender==true}" checked value="1">Male
+                            <input type="radio" th:if="${customer.customerGender==false}" checked value="0">Female
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Birthday</label>
+                        <div class="col-8 mt-2">
+                            <input class="form-control h-75" type="date" th:field="${customer.customerBirthday}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Customer Type</label>
+                        <div class="col-8 mt-2">
+                            <select id="customerType" th:field="${customer.customerType}">
+                                <option th:each=" type : ${customerTypeList}" th:text="${type.customerTypeName}"
+                                        th:value="${type.customerTypeId} "></option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class=" form-group row">
+                        <label class="col-form-label col-4">Id Card</label>
+                        <div class="col-8 mt-2">
+                            <input class="form-control" type="text" th:field="${customer.customerIdCard}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Phone</label>
+                        <div class="col-8 mt-2">
+                            <input class="form-control" type="text" th:field="${customer.customerPhone}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">E-mail</label>
+                        <div class="col-8 mt-2">
+                            <input class="form-control" type="email" th:field="${customer.customerEmail}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Address</label>
+                        <div class="col-8 mt-2">
+                            <input class="form-control" type="text" th:field="${customer.customerAddress}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                            <button type="submit" class="btn btn-primary btn-lg">Update Customer</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div th:replace="layout/footer::footer"></div>
+</div>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

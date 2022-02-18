@@ -1,6 +1,9 @@
 package vn.codegym.model;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Customer {
@@ -10,8 +13,9 @@ public class Customer {
     @JoinColumn(name = "customer_type_id", referencedColumnName = "customerTypeId")
     private CustomerType customerType;
     private String customerName;
-    private String customerBirthday;
-    private String customerGender;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date customerBirthday;
+    private Boolean customerGender;
     private String customerIdCard;
     private String customerPhone;
     private String customerEmail;
@@ -22,7 +26,7 @@ public class Customer {
     public Customer() {
     }
 
-    public Customer(String customerId, CustomerType customerType, String customerName, String customerBirthday, String customerGender, String customerIdCard, String customerPhone, String customerEmail, String customerAddress) {
+    public Customer(String customerId, CustomerType customerType, String customerName, Date customerBirthday, Boolean customerGender, String customerIdCard, String customerPhone, String customerEmail, String customerAddress, Contract contract) {
         this.customerId = customerId;
         this.customerType = customerType;
         this.customerName = customerName;
@@ -32,6 +36,7 @@ public class Customer {
         this.customerPhone = customerPhone;
         this.customerEmail = customerEmail;
         this.customerAddress = customerAddress;
+        this.contract = contract;
     }
 
     public String getCustomerId() {
@@ -58,19 +63,19 @@ public class Customer {
         this.customerName = customerName;
     }
 
-    public String getCustomerBirthday() {
+    public Date getCustomerBirthday() {
         return customerBirthday;
     }
 
-    public void setCustomerBirthday(String customerBirthday) {
+    public void setCustomerBirthday(Date customerBirthday) {
         this.customerBirthday = customerBirthday;
     }
 
-    public String getCustomerGender() {
+    public Boolean getCustomerGender() {
         return customerGender;
     }
 
-    public void setCustomerGender(String customerGender) {
+    public void setCustomerGender(Boolean customerGender) {
         this.customerGender = customerGender;
     }
 
@@ -104,5 +109,13 @@ public class Customer {
 
     public void setCustomerAddress(String customerAddress) {
         this.customerAddress = customerAddress;
+    }
+
+    public Contract getContract() {
+        return contract;
+    }
+
+    public void setContract(Contract contract) {
+        this.contract = contract;
     }
 }

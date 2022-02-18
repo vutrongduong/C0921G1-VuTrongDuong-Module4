@@ -1,14 +1,15 @@
 package vn.codegym.model;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Contract {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String startDate;
-    private String endDate;
+    private Date startDate;
+    private Date endDate;
     private double deposit;
     private double totalMoney;
     @OneToOne
@@ -24,7 +25,7 @@ public class Contract {
     public Contract() {
     }
 
-    public Contract(int id, String startDate, String endDate, double deposit, double totalMoney, Employee employee, Customer customer, Service service) {
+    public Contract(int id, Date startDate, Date endDate, double deposit, double totalMoney, Employee employee, Customer customer, Service service) {
         this.id = id;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -43,19 +44,19 @@ public class Contract {
         this.id = id;
     }
 
-    public String getStartDate() {
+    public Date getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(String startDate) {
+    public void setStartDate(Date startDate) {
         this.startDate = startDate;
     }
 
-    public String getEndDate() {
+    public Date getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(String endDate) {
+    public void setEndDate(Date endDate) {
         this.endDate = endDate;
     }
 

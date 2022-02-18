@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+<h1>Delete</h1>
+<h2>Are you sure ?</h2>
+<div>
+    <div class="container-fluid">
+        <p>ID : <span th:text="${customer.customerId}"></span></p>
+        <p>Name : <span th:text="${customer.customerName}"></span></p>
+        <p> Customer Type : <span th:text="${customer.customerType.customerTypeName}"></span></p>
+        Do you sure to delete?
+    </div>
+    <div class="mt-lg-3">
+        <button class="btn btn-danger deleteAction">Delete</button>
+        <input type="hidden" th:value="${customer.customerId}">
+    </div>
+</div>
+
+<script src="/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".deleteAction").click(function () {
+            let id = $(this).next().val();
+            $.ajax({
+                type: "POST",
+                url: "customer/delete/" + id,
+                dataType: "HTML",
+                success: function (data) {
+                    $(".modal").modal("hide");
+                    $("#list").html(data);
+                }
+            })
+        })
+    })
+</script>
+</body>
+</html>

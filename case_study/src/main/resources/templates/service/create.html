@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/create.css">
+</head>
+<body>
+<div>
+    <div th:replace="layout/header::header"></div>
+    <div class="border border-3 row h-75">
+        <div class="col-lg-3 border border-3">
+            <a class="nav-link " href="/customer/create">Create New Service</a>
+            <a class="nav-link " href="#">Item 2</a>
+            <a class="nav-link " href="#">Item 3</a>
+        </div>
+        <div class="col-lg-9 text-center container-fluid">
+            <div class="signup-form">
+                <form th:action="@{/service/create}" method="post" class="form-horizontal" th:object="${service}">
+                    <div class="row">
+                        <div class="col-8 offset-4">
+                            <h3>Add Service</h3>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">ID Service</label>
+                        <div class=" text-field col-8">
+                            <input autocomplete="off" type="text" name="serviceId" placeholder="Enter your id" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Name</label>
+                        <div class="text-field col-8">
+                            <input autocomplete="off" type="text" name="serviceName" placeholder="Enter your name" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Area</label>
+                        <div class="col-8 mt-2">
+                            <input autocomplete="off" type="text" name="serviceArea" placeholder="Enter your area" />
+                        </div>
+                    </div>
+                    <div class=" form-group row">
+                        <label class="col-form-label col-4">Cost</label>
+                        <div class="text-field col-8">
+                            <input autocomplete="off" type="text"  name="serviceCost" placeholder="Enter your cost" />
+                        </div>
+                    </div>
+                    <div class=" form-group row">
+                        <label class="col-form-label col-4">Max People</label>
+                        <div class="text-field col-8">
+                            <input autocomplete="off" type="text"  name="serviceMaxPeople" placeholder="Enter your max people" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Service Type</label>
+                        <div class="col-8 mt-2">
+                            <select id="serviceType" name="serviceType">
+                                <option disabled="disabled" selected="true">Selector</option>
+                                <option th:each=" type : ${serviceTypes}" th:text="${type.serviceTypeName}"
+                                        th:value="${type.serviceTypeId} "></option>
+
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Rent Type</label>
+                        <div class="col-8 mt-2">
+                            <select  name="rentType">
+                                <option disabled="disabled" selected="true">Selector</option>
+                                <option th:each=" rentType : ${rentTypeServices}" th:text="${rentType.rentTypeName}"
+                                        th:value="${rentType.rentTypeId} "></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class=" form-group row">
+                        <label class="col-form-label col-4">Standard Room</label>
+                        <div class="text-field col-8">
+                            <input autocomplete="off" type="text"  name="standardRoom" placeholder="Enter your standard room" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Description Other Convenience</label>
+                        <div class="text-field col-8">
+                            <input autocomplete="off" type="text"  name="descriptionOtherConvenience" placeholder="Enter your description other convenience" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Pool Area</label>
+                        <div class="text-field col-8">
+                            <input autocomplete="off" type="text"  name="poolArea" placeholder="Enter your pool area" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Number Of Floors</label>
+                        <div class="text-field col-8">
+                            <input autocomplete="off" type="text"  name="numberOfFloors" placeholder="Enter your number of floors" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-8 offset-4 ">
+                            <p><label class="form-check-label"><input type="checkbox"> I accept the <span>Are
+                    you sure the above information is completely correct?</span></label></p>
+                            <button type="submit" class="btn btn-primary btn-lg">Add New Service</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div th:replace="layout/footer::footer"></div>
+</div>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -7,26 +7,26 @@ import java.util.List;
 public class Division {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int divisionId;
+    private Long divisionId;
     private String divisionName;
 
     @OneToMany(mappedBy = "division")
     List<Employee> employeeList;
 
-    public Division(int divisionId) {
-        this.divisionId = divisionId;
+    public Division() {
     }
 
-    public Division(int divisionId, String divisionName) {
+    public Division(Long divisionId, String divisionName, List<Employee> employeeList) {
         this.divisionId = divisionId;
         this.divisionName = divisionName;
+        this.employeeList = employeeList;
     }
 
-    public int getDivisionId() {
+    public Long getDivisionId() {
         return divisionId;
     }
 
-    public void setDivisionId(int divisionId) {
+    public void setDivisionId(Long divisionId) {
         this.divisionId = divisionId;
     }
 
@@ -36,5 +36,13 @@ public class Division {
 
     public void setDivisionName(String divisionName) {
         this.divisionName = divisionName;
+    }
+
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
     }
 }

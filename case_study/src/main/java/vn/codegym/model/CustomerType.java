@@ -3,7 +3,6 @@ package vn.codegym.model;
 import javax.persistence.*;
 import java.util.List;
 
-
 @Entity
 public class CustomerType {
     @Id
@@ -20,7 +19,6 @@ public class CustomerType {
         this.customerTypeName = customerTypeName;
         this.customerList = customers;
     }
-
 
     public Long getCustomerTypeId() {
         return customerTypeId;

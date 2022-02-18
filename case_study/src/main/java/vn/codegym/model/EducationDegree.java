@@ -7,25 +7,25 @@ import java.util.List;
 public class EducationDegree {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int educationDegreeId;
+    private Long educationDegreeId;
     private String educationDegreeName;
     @OneToMany(mappedBy = "educationDegree")
     List<Employee> employeeList;
 
-    public EducationDegree(int educationDegreeId) {
-        this.educationDegreeId = educationDegreeId;
+    public EducationDegree() {
     }
 
-    public EducationDegree(int educationDegreeId, String educationDegreeName) {
+    public EducationDegree(Long educationDegreeId, String educationDegreeName, List<Employee> employeeList) {
         this.educationDegreeId = educationDegreeId;
         this.educationDegreeName = educationDegreeName;
+        this.employeeList = employeeList;
     }
 
-    public int getEducationDegreeId() {
+    public Long getEducationDegreeId() {
         return educationDegreeId;
     }
 
-    public void setEducationDegreeId(int educationDegreeId) {
+    public void setEducationDegreeId(Long educationDegreeId) {
         this.educationDegreeId = educationDegreeId;
     }
 
@@ -35,5 +35,13 @@ public class EducationDegree {
 
     public void setEducationDegreeName(String educationDegreeName) {
         this.educationDegreeName = educationDegreeName;
+    }
+
+    public List<Employee> getEmployeeList() {
+        return employeeList;
+    }
+
+    public void setEmployeeList(List<Employee> employeeList) {
+        this.employeeList = employeeList;
     }
 }

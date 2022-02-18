@@ -7,9 +7,9 @@ public class Service {
     @Id
     private String serviceId;
     private String serviceName;
-    private int serviceArea;
-    private double serviceCost;
-    private int serviceMaxPeople;
+    private Integer serviceArea;
+    private Double serviceCost;
+    private Integer serviceMaxPeople;
     @ManyToOne
     @JoinColumn(name = "rent_type_id", referencedColumnName = "rentTypeId")
     private RentType rentType;
@@ -18,15 +18,15 @@ public class Service {
     private ServiceType serviceType;
     private String standardRoom;
     private String descriptionOtherConvenience;
-    private double poolArea;
-    private int numberOfFloors;
+    private Double poolArea;
+    private Integer numberOfFloors;
     @OneToOne(mappedBy = "service")
     private Contract contract;
 
     public Service() {
     }
 
-    public Service(String serviceId, String serviceName, int serviceArea, double serviceCost, int serviceMaxPeople, RentType rentType, ServiceType serviceType, String standardRoom, String descriptionOtherConvenience, double poolArea, int numberOfFloors) {
+    public Service(String serviceId, String serviceName, Integer serviceArea, Double serviceCost, Integer serviceMaxPeople, RentType rentType, ServiceType serviceType, String standardRoom, String descriptionOtherConvenience, double poolArea, int numberOfFloors, Contract contract) {
         this.serviceId = serviceId;
         this.serviceName = serviceName;
         this.serviceArea = serviceArea;
@@ -38,6 +38,7 @@ public class Service {
         this.descriptionOtherConvenience = descriptionOtherConvenience;
         this.poolArea = poolArea;
         this.numberOfFloors = numberOfFloors;
+        this.contract = contract;
     }
 
     public String getServiceId() {
@@ -56,27 +57,27 @@ public class Service {
         this.serviceName = serviceName;
     }
 
-    public int getServiceArea() {
+    public Integer getServiceArea() {
         return serviceArea;
     }
 
-    public void setServiceArea(int serviceArea) {
+    public void setServiceArea(Integer serviceArea) {
         this.serviceArea = serviceArea;
     }
 
-    public double getServiceCost() {
+    public Double getServiceCost() {
         return serviceCost;
     }
 
-    public void setServiceCost(double serviceCost) {
+    public void setServiceCost(Double serviceCost) {
         this.serviceCost = serviceCost;
     }
 
-    public int getServiceMaxPeople() {
+    public Integer getServiceMaxPeople() {
         return serviceMaxPeople;
     }
 
-    public void setServiceMaxPeople(int serviceMaxPeople) {
+    public void setServiceMaxPeople(Integer serviceMaxPeople) {
         this.serviceMaxPeople = serviceMaxPeople;
     }
 
@@ -112,19 +113,27 @@ public class Service {
         this.descriptionOtherConvenience = descriptionOtherConvenience;
     }
 
-    public double getPoolArea() {
+    public Double getPoolArea() {
         return poolArea;
     }
 
-    public void setPoolArea(double poolArea) {
+    public void setPoolArea(Double poolArea) {
         this.poolArea = poolArea;
     }
 
-    public int getNumberOfFloors() {
+    public Integer getNumberOfFloors() {
         return numberOfFloors;
     }
 
-    public void setNumberOfFloors(int numberOfFloors) {
+    public void setNumberOfFloors(Integer numberOfFloors) {
         this.numberOfFloors = numberOfFloors;
+    }
+
+    public Contract getContract() {
+        return contract;
+    }
+
+    public void setContract(Contract contract) {
+        this.contract = contract;
     }
 }

@@ -2,16 +2,17 @@ package vn.codegym.model;
 
 
 import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Employee {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int employeeId;
+    private Long employeeId;
     private String employeeName;
-    private String employeeBirthday;
+    private Date employeeBirthday;
     private String employeeIdCard;
-    private double employeeSalary;
+    private Double employeeSalary;
     private String employeePhone;
     private String employeeEmail;
     private String employeeAddress;
@@ -30,7 +31,10 @@ public class Employee {
     @OneToOne(mappedBy = "employee")
     private Contract contract;
 
-    public Employee(int employeeId, String employeeName, String employeeBirthday, String employeeIdCard, double employeeSalary, String employeePhone, String employeeEmail, String employeeAddress, Position position, EducationDegree educationDegree, Division division, User user) {
+    public Employee() {
+    }
+
+    public Employee(Long employeeId, String employeeName, Date employeeBirthday, String employeeIdCard, Double employeeSalary, String employeePhone, String employeeEmail, String employeeAddress, Position position, EducationDegree educationDegree, Division division, User user, Contract contract) {
         this.employeeId = employeeId;
         this.employeeName = employeeName;
         this.employeeBirthday = employeeBirthday;
@@ -43,13 +47,14 @@ public class Employee {
         this.educationDegree = educationDegree;
         this.division = division;
         this.user = user;
+        this.contract = contract;
     }
 
-    public int getEmployeeId() {
+    public Long getEmployeeId() {
         return employeeId;
     }
 
-    public void setEmployeeId(int employeeId) {
+    public void setEmployeeId(Long employeeId) {
         this.employeeId = employeeId;
     }
 
@@ -61,11 +66,11 @@ public class Employee {
         this.employeeName = employeeName;
     }
 
-    public String getEmployeeBirthday() {
+    public Date getEmployeeBirthday() {
         return employeeBirthday;
     }
 
-    public void setEmployeeBirthday(String employeeBirthday) {
+    public void setEmployeeBirthday(Date employeeBirthday) {
         this.employeeBirthday = employeeBirthday;
     }
 
@@ -77,11 +82,11 @@ public class Employee {
         this.employeeIdCard = employeeIdCard;
     }
 
-    public double getEmployeeSalary() {
+    public Double getEmployeeSalary() {
         return employeeSalary;
     }
 
-    public void setEmployeeSalary(double employeeSalary) {
+    public void setEmployeeSalary(Double employeeSalary) {
         this.employeeSalary = employeeSalary;
     }
 
@@ -139,5 +144,13 @@ public class Employee {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Contract getContract() {
+        return contract;
+    }
+
+    public void setContract(Contract contract) {
+        this.contract = contract;
     }
 }
