@@ -1,6 +1,8 @@
 package vn.codegym.model;
 
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -10,6 +12,7 @@ public class Employee {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long employeeId;
     private String employeeName;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date employeeBirthday;
     private String employeeIdCard;
     private Double employeeSalary;
@@ -25,16 +28,16 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "division_id",referencedColumnName = "divisionId")
     private Division division;
-    @OneToOne
-    @JoinColumn(name = "user_name",referencedColumnName = "userName")
-    private User user;
+//    @OneToOne
+//    @JoinColumn(name = "user_name",referencedColumnName = "userName")
+//    private User user;
     @OneToOne(mappedBy = "employee")
     private Contract contract;
 
     public Employee() {
     }
 
-    public Employee(Long employeeId, String employeeName, Date employeeBirthday, String employeeIdCard, Double employeeSalary, String employeePhone, String employeeEmail, String employeeAddress, Position position, EducationDegree educationDegree, Division division, User user, Contract contract) {
+    public Employee(Long employeeId, String employeeName, Date employeeBirthday, String employeeIdCard, Double employeeSalary, String employeePhone, String employeeEmail, String employeeAddress, Position position, EducationDegree educationDegree, Division division, Contract contract) {
         this.employeeId = employeeId;
         this.employeeName = employeeName;
         this.employeeBirthday = employeeBirthday;
@@ -46,7 +49,6 @@ public class Employee {
         this.position = position;
         this.educationDegree = educationDegree;
         this.division = division;
-        this.user = user;
         this.contract = contract;
     }
 
@@ -136,14 +138,6 @@ public class Employee {
 
     public void setDivision(Division division) {
         this.division = division;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public Contract getContract() {

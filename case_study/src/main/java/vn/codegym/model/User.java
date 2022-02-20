@@ -13,8 +13,8 @@ public class User {
     @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
             inverseJoinColumns = @JoinColumn(name = "user_name"))
     List<Role> roleList;
-    @OneToOne(mappedBy = "user")
-    Employee employee;
+//    @OneToOne(mappedBy = "user")
+//    Employee employee;
 
     public User() {
     }

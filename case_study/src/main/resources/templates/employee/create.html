@@ -72,48 +72,33 @@
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-form-label col-4">Service Type</label>
+                        <label class="col-form-label col-4">Position</label>
                         <div class="col-8 mt-2">
                             <select id="serviceType" name="position">
                                 <option disabled="disabled" selected="true">Selector</option>
-                                <option th:each=" type : ${serviceTypes}" th:text="${type.serviceTypeName}"
-                                        th:value="${type.serviceTypeId} "></option>
-
+                                <option th:each=" position : ${positions}" th:text="${position.positionName}"
+                                        th:value="${position.positionId} "></option>
                             </select>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-form-label col-4">Rent Type</label>
+                        <label class="col-form-label col-4">Education Degrees</label>
                         <div class="col-8 mt-2">
-                            <select  name="rentType">
+                            <select  name="educationDegree">
                                 <option disabled="disabled" selected="true">Selector</option>
-                                <option th:each=" rentType : ${rentTypeServices}" th:text="${rentType.rentTypeName}"
-                                        th:value="${rentType.rentTypeId} "></option>
+                                <option th:each=" educationDegree : ${educationDegrees}" th:text="${educationDegree.educationDegreeName}"
+                                        th:value="${educationDegree.educationDegreeId} "></option>
                             </select>
                         </div>
                     </div>
-                    <div class=" form-group row">
-                        <label class="col-form-label col-4">Standard Room</label>
-                        <div class="text-field col-8">
-                            <input autocomplete="off" type="text"  name="standardRoom" placeholder="Enter your standard room" />
-                        </div>
-                    </div>
                     <div class="form-group row">
-                        <label class="col-form-label col-4">Description Other Convenience</label>
-                        <div class="text-field col-8">
-                            <input autocomplete="off" type="text"  name="descriptionOtherConvenience" placeholder="Enter your description other convenience" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-4">Pool Area</label>
-                        <div class="text-field col-8">
-                            <input autocomplete="off" type="text"  name="poolArea" placeholder="Enter your pool area" />
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-4">Number Of Floors</label>
-                        <div class="text-field col-8">
-                            <input autocomplete="off" type="text"  name="numberOfFloors" placeholder="Enter your number of floors" />
+                        <label class="col-form-label col-4">Division</label>
+                        <div class="col-8 mt-2">
+                            <select  name="division">
+                                <option disabled="disabled" selected="true">Selector</option>
+                                <option th:each=" division : ${divisions}" th:text="${division.divisionName}"
+                                        th:value="${division.divisionId} "></option>
+                            </select>
                         </div>
                     </div>
                     <div class="form-group row">

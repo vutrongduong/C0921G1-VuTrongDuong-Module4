@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/create.css">
+</head>
+<body>
+<div>
+    <div th:replace="layout/header::header"></div>
+    <div class="border border-3 row h-75">
+        <div class="col-lg-3 border border-3">
+            <a class="nav-link " href="/contract/create">Create New Contract</a>
+            <a class="nav-link " href="#">Item 2</a>
+            <a class="nav-link " href="#">Item 3</a>
+        </div>
+        <div class="col-lg-9 text-center container-fluid">
+            <div class="signup-form">
+                <form th:action="@{/contract/create}" th:object="${contract}" method="POST">
+                    <div class="row">
+                        <div class="col-8 offset-4">
+                            <h3>Add Contract</h3>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Start Date</label>
+                        <div class=" text-field col-8">
+                            <input autocomplete="off" type="date" name="startDate" />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">End Date</label>
+                        <div class="text-field col-8">
+                            <input autocomplete="off" type="date" name="endDate"  />
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Deposit</label>
+                        <div class="col-8 mt-2">
+                            <input class="form-control h-75" type="text" name="deposit" placeholder="Enter your deposit">
+                        </div>
+                    </div>
+                    <div class=" form-group row">
+                        <label class="col-form-label col-4">Total Money</label>
+                        <div class="text-field col-8">
+                            <input autocomplete="off" type="text"  name="totalMoney" placeholder="Enter your Total Money" />
+                        </div>
+                    </div>
+                    <div class=" form-group row">
+                        <label class="col-form-label col-4">Employee</label>
+                        <div class="text-field col-8">
+                            <select name="employee" >
+                                <option disabled selected >Choose option</option>
+                                <option th:each="item:${employee}" th:value="${item.employeeId}"  th:text="${item.employeeName}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Service</label>
+                        <div class="text-field col-8">
+                            <select name="service">
+                                <option disabled selected >Choose option</option>
+                                <option th:each="item:${service}" th:value="${item.serviceId}"  th:text="${item.serviceName}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Customer</label>
+                        <div class="text-field col-8">
+                            <select name="customer">
+                                <option disabled selected >Choose option</option>
+                                <option th:each="item:${customer}" th:value="${item.customerId}"  th:text="${item.customerName}"></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-8 offset-4 ">
+                            <p><label class="form-check-label"><input type="checkbox"> I accept the <span>Are
+                    you sure the above information is completely correct?</span></label></p>
+                            <button type="submit" class="btn btn-primary btn-lg">Add New Service</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div th:replace="layout/footer::footer"></div>
+</div>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

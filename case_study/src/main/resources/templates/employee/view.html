@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+<div>
+    <h3>Customer Details</h3>
+    <div class="border border-3 row h-75">
+        <div class="text-center">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <td th:text="${employee.employeeId}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">Name</th>
+                    <td th:text="${employee.employeeName}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">Birthday</th>
+                    <td th:text="${employee.employeeBirthday}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">Salary</th>
+                    <td th:text="${employee.employeeSalary}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">Position</th>
+                    <td th:text="${employee.position.positionName}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">Division</th>
+                    <td th:text="${employee.division.divisionName}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">Education Degree</th>
+                    <td th:text="${employee.educationDegree.educationDegreeName}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">ID CARD</th>
+                    <td th:text="${employee.employeeIdCard}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">Phone</th>
+                    <td th:text="${employee.employeePhone}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">E-mail</th>
+                    <td th:text="${employee.employeeEmail}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">Address</th>
+                    <td th:text="${employee.employeeAddress}"></td>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>
