@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-</head>
+<head th:replace="layout/head::head">
 <body>
 <div id="list">
     <div th:replace="layout/header::header"></div>
@@ -15,22 +11,28 @@
             <a class="nav-link " href="#">Item 3</a>
         </div>
         <div class="col-lg-9 text-center" id="table">
-            <h3>Manage Employee</h3>
-            <form action="/employee">
-                <input name="name" type="text" placeholder="search">
-                <select name="positionId">
+            <h3 style="color:lightseagreen">Manage Employee</h3>
+            <form action="/employee" class=" row">
+                <div class="search-input col-lg-4">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" name="name" placeholder="Serach By Name">
+                </div>
+                <select name="positionId" class="col-lg-2 search-input">
                     <option disabled selected>Choose Position</option>
-                    <option th:each="position : ${positions}" th:value="${position.positionId}" th:text="${position.positionName}"></option>
+                    <option th:each="position : ${positions}" th:value="${position.positionId}"
+                            th:text="${position.positionName}"></option>
                 </select>
-                <select name="divisionId">
+                <select name="divisionId" class="col-lg-2 search-input">
                     <option disabled selected>Choose Division</option>
-                    <option th:each="division : ${divisions}" th:value="${division.divisionId}" th:text="${division.divisionName}"></option>
+                    <option th:each="division : ${divisions}" th:value="${division.divisionId}"
+                            th:text="${division.divisionName}"></option>
                 </select>
-                <select name="educationDegreeId">
+                <select name="educationDegreeId" class="col-lg-2 search-input">
                     <option disabled selected>Choose Education Degree</option>
-                    <option th:each="education : ${educations}" th:value="${education.educationDegreeId}" th:text="${education.educationDegreeName}"></option>
+                    <option th:each="education : ${educations}" th:value="${education.educationDegreeId}"
+                            th:text="${education.educationDegreeName}"></option>
                 </select>
-                <button type="submit">Search</button>
+                <button class="col-lg-1 btn btn-primary" type="submit">Search</button>
             </form>
             <table class="table">
                 <thead>
@@ -82,10 +84,27 @@
                 </tbody>
             </table>
             <div>
-                <a th:href="@{'/employee' (page=${employees.number - 1})}"
-                   th:if="${employees.hasPrevious()}">Previous</a>
-                <span th:text="${employees.number+1}"></span>/<span th:text="${employees.totalPages}"></span>
-                <a th:href="@{'/employee' (page=${employees.number + 1})}" th:if="${employees.hasNext()}">Next</a>
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" th:href="@{'/employee' (page=${employees.number - 1},
+                name = ${name},
+                  positionId = ${positionId},
+                  divisionId = ${divisionId},
+                  educationDegreeId=${educationDegreeId} )}"
+                               th:if="${employees.hasPrevious()}" style="color:lightseagreen">Previous</a>
+                        </li>
+                        <li class="page-item"><span th:text="${employees.number+1}"></span>/<span
+                                th:text="${employees.totalPages}"></span></li>
+                        <li class="page-item">
+                            <a class="page-link" th:href="@{'/employee' (page=${employees.number + 1},
+                 name = ${name},
+                  positionId = ${positionId},
+                  divisionId = ${divisionId},
+                  educationDegreeId=${educationDegreeId})}" th:if="${employees.hasNext()}" style="color:lightseagreen">Next</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>

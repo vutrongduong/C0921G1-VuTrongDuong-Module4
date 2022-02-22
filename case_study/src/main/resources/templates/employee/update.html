@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/create.css">
+    <link rel="stylesheet" href="/css/footer.css">
 </head>
 <body>
 <div>
@@ -17,34 +19,35 @@
         </div>
         <div class="col-lg-9 text-center container-fluid">
             <div class="signup-form">
-                <form th:action="@{/employee/update}" method="post" class="form-horizontal" th:object="${employee}">
+                <form th:action="@{/employee/update}" method="post" class="form-horizontal" th:object="${employeeDto}">
                     <div class="row">
                         <div class="col-8 offset-4">
-                            <h3>Update Employee</h3>
+                            <h3  style="color:lightseagreen"> Update Employee</h3>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">ID Employee</label>
                         <div class="col-8">
-                            <input type="text" class="form-control" th:field="${employee.employeeId}">
+                            <input type="hidden" class="form-control" th:field="*{employeeId}">
+                            <h5 th:text="${employeeDto.employeeId}"></h5>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Name</label>
                         <div class="col-8 mt-2">
-                            <input class="form-control" type="text" th:field="${employee.employeeName}">
+                            <input class="form-control" type="text" th:field="*{employeeName}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Birthday</label>
                         <div class="col-8 mt-2">
-                            <input class="form-control h-75" type="date" th:field="${employee.employeeBirthday}">
+                            <input class="form-control h-75" type="date" th:field="*{employeeBirthday}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Division</label>
                         <div class="col-8 mt-2">
-                            <select th:field="${employee.division}">
+                            <select th:field="*{division}">
                                 <option th:each=" division : ${divisions}" th:text="${division.divisionName}"
                                         th:value="${division.divisionId} "></option>
                             </select>
@@ -53,7 +56,7 @@
                     <div class="form-group row">
                         <label class="col-form-label col-4">Position</label>
                         <div class="col-8 mt-2">
-                            <select th:field="${employee.position}">
+                            <select th:field="*{position}">
                                 <option th:each=" position : ${positions}" th:text="${position.positionName}"
                                         th:value="${position.positionId} "></option>
                             </select>
@@ -62,8 +65,9 @@
                     <div class="form-group row">
                         <label class="col-form-label col-4">Education Degree</label>
                         <div class="col-8 mt-2">
-                            <select th:field="${employee.educationDegree}">
-                                <option th:each=" educationDegree : ${educations}" th:text="${educationDegree.educationDegreeName}"
+                            <select th:field="*{educationDegree}">
+                                <option th:each=" educationDegree : ${educations}"
+                                        th:text="${educationDegree.educationDegreeName}"
                                         th:value="${educationDegree.educationDegreeId} "></option>
                             </select>
                         </div>
@@ -71,30 +75,35 @@
                     <div class=" form-group row">
                         <label class="col-form-label col-4">Id Card</label>
                         <div class="col-8 mt-2">
-                            <input class="form-control" type="text" th:field="${employee.employeeIdCard}">
+                            <input class="form-control" type="text" th:field="*{employeeIdCard}">
+                        </div>
+                    </div>
+                    <div class=" form-group row">
+                        <label class="col-form-label col-4">Salary</label>
+                        <div class="col-8 mt-2">
+                            <input class="form-control" type="text" th:field="*{employeeSalary}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Phone</label>
                         <div class="col-8 mt-2">
-                            <input class="form-control" type="text" th:field="${employee.employeePhone}">
+                            <input class="form-control" type="text" th:field="*{employeePhone}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">E-mail</label>
                         <div class="col-8 mt-2">
-                            <input class="form-control" type="email" th:field="${employee.employeeEmail}">
+                            <input class="form-control" type="email" th:field="*{employeeEmail}">
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Address</label>
                         <div class="col-8 mt-2">
-                            <input class="form-control" type="text" th:field="${employee.employeeAddress}">
+                            <input class="form-control" type="text" th:field="*{employeeAddress}">
                         </div>
                     </div>
                     <div class="form-group row">
-                            <button type="submit" class="btn btn-primary btn-lg">Update Employee</button>
-                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg">Update Employee</button>
                     </div>
                 </form>
             </div>

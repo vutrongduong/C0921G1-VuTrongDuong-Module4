@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
     <head>
         <meta charset="UTF-8">
         <title>Title</title>
-        <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
         <script src="../../static/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="/css/header.css">
     </head>
     <body>
         <div class="container-fluid" th:fragment="header">
@@ -14,17 +17,29 @@
                          src="../../x512x512.b34453a20c19849144c890211fcce945.ai.1.png.pagespeed.ic.SHuE2e4RHb.webp">
                 </div>
                 <div class="col-lg-2 mt-lg-3 pe-lg-5">
-                    <a href="#" class="nav-link float-lg-end">Nguyen Van A</a>
+                    <div sec:authorize="isAuthenticated()"> <!--Kiểm tra đã xác thực hay chưa.-->
+                        <h5 style="color:lightseagreen">Hello : <span sec:authentication="principal.username"></span></h5>
+
+<!--                        &lt;!&ndash;data hiển thị của admin&ndash;&gt;-->
+<!--                        <div sec:authorize="hasRole('ADMIN')" style="color: red">-->
+<!--                            Đây là nội dung của role admin-->
+<!--                        </div>-->
+
+<!--                        &lt;!&ndash;data hiển thị của user&ndash;&gt;-->
+<!--                        <div sec:authorize="hasRole('USER')" style="color: green">-->
+<!--                            Đây là nội dung của role user-->
+<!--                        </div>-->
+                    </div>
                 </div>
             </div>
-            <div class="border border-3 row">
-                <div class="col-lg-9 row float-lg-end">
-                    <p class="col-lg-2"></p>
-                    <a class="nav-link col-lg-2" href="/">Home</a>
-                    <a class="nav-link col-lg-2" href="/employee">Employee</a>
-                    <a class="nav-link col-lg-2" href="/customer">Customer</a>
-                    <a class="nav-link col-lg-2" href="/service">Service</a>
-                    <a class="nav-link col-lg-2" href="/contract/create">Contact</a>
+            <div class="border border-3 row header">
+                <div class="col-lg-10 row float-lg-end ">
+                    <a class="nav-link-1 col-lg-2" href="/">Home</a>
+                    <a class="nav-link-1 col-lg-2" href="/employee">Employee</a>
+                    <a class="nav-link-1 col-lg-2" href="/customer">Customer</a>
+                    <a class="nav-link-1 col-lg-2" href="/service">Service</a>
+                    <a class="nav-link-1 col-lg-2" href="/contract/create">Contact</a>
+                    <a class="nav-link-1 col-lg-2" href="/contract_detail/create">Contact Detail</a>
                 </div>
             </div>
         </div>

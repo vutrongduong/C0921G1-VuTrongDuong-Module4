@@ -5,6 +5,7 @@
     <title>Title</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/create.css">
+    <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/footer.css">
 </head>
 <body>
@@ -18,85 +19,107 @@
         </div>
         <div class="col-lg-9 text-center container-fluid">
             <div class="signup-form">
-                <form th:action="@{/service/create}" method="post" class="form-horizontal" th:object="${service}">
+                <form th:action="@{/service/create}" method="post" class="form-horizontal" th:object="${serviceDto}">
                     <div class="row">
                         <div class="col-8 offset-4">
-                            <h3>Add Service</h3>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-4">ID Service</label>
-                        <div class=" text-field col-8">
-                            <input autocomplete="off" type="text" name="serviceId" placeholder="Enter your id" />
+                            <h3  style="color:lightseagreen">Add Service</h3>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Name</label>
                         <div class="text-field col-8">
-                            <input autocomplete="off" type="text" name="serviceName" placeholder="Enter your name" />
+                            <input autocomplete="off" type="text" th:field="*{serviceName}" name="serviceName"
+                                   placeholder="Enter your name"/>
+                            <p style="color: red" th:if="${#fields.hasErrors('serviceName')}"
+                               th:errors="*{serviceName}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Area</label>
-                        <div class="col-8 mt-2">
-                            <input autocomplete="off" type="text" name="serviceArea" placeholder="Enter your area" />
+                        <div class=" text-field col-8 mt-2">
+                            <input autocomplete="off" type="text" th:field="*{serviceArea}" name="serviceArea"
+                                   placeholder="Enter your area"/>
+                            <p style="color: red" th:if="${#fields.hasErrors('serviceArea')}"
+                               th:errors="*{serviceArea}"></p>
                         </div>
                     </div>
                     <div class=" form-group row">
                         <label class="col-form-label col-4">Cost</label>
                         <div class="text-field col-8">
-                            <input autocomplete="off" type="text"  name="serviceCost" placeholder="Enter your cost" />
+                            <input autocomplete="off" type="text" th:field="*{serviceCost}" name="serviceCost"
+                                   placeholder="Enter your cost"/>
+                            <p style="color: red" th:if="${#fields.hasErrors('serviceCost')}"
+                               th:errors="*{serviceCost}"></p>
                         </div>
                     </div>
                     <div class=" form-group row">
                         <label class="col-form-label col-4">Max People</label>
                         <div class="text-field col-8">
-                            <input autocomplete="off" type="text"  name="serviceMaxPeople" placeholder="Enter your max people" />
+                            <input autocomplete="off" type="text" th:field="*{serviceMaxPeople}" name="serviceMaxPeople"
+                                   placeholder="Enter your max people"/>
+                            <p style="color: red" th:if="${#fields.hasErrors('serviceMaxPeople')}"
+                               th:errors="*{serviceMaxPeople}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Service Type</label>
                         <div class="col-8 mt-2">
-                            <select id="serviceType" name="serviceType">
-                                <option disabled="disabled" selected="true">Selector</option>
+                            <select id="serviceType" th:field="*{serviceType}" name="serviceType">
+                                <option th:value="null" selected="true">Selector</option>
                                 <option th:each=" type : ${serviceTypes}" th:text="${type.serviceTypeName}"
                                         th:value="${type.serviceTypeId} "></option>
-
                             </select>
+                            <p style="color: red" th:if="${#fields.hasErrors('serviceType')}"
+                               th:errors="*{serviceType}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Rent Type</label>
                         <div class="col-8 mt-2">
-                            <select  name="rentType">
-                                <option disabled="disabled" selected="true">Selector</option>
+                            <select th:field="*{rentType}" name="rentType">
+                                <option th:value="null" selected="true">Selector</option>
                                 <option th:each=" rentType : ${rentTypeServices}" th:text="${rentType.rentTypeName}"
                                         th:value="${rentType.rentTypeId} "></option>
                             </select>
+                            <p style="color: red" th:if="${#fields.hasErrors('rentType')}"
+                               th:errors="*{rentType}"></p>
                         </div>
                     </div>
                     <div class=" form-group row">
                         <label class="col-form-label col-4">Standard Room</label>
                         <div class="text-field col-8">
-                            <input autocomplete="off" type="text"  name="standardRoom" placeholder="Enter your standard room" />
+                            <input autocomplete="off" type="text" th:field="*{standardRoom}" name="standardRoom"
+                                   placeholder="Enter your standard room"/>
+                            <p style="color: red" th:if="${#fields.hasErrors('standardRoom')}"
+                               th:errors="*{standardRoom}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Description Other Convenience</label>
                         <div class="text-field col-8">
-                            <input autocomplete="off" type="text"  name="descriptionOtherConvenience" placeholder="Enter your description other convenience" />
+                            <input autocomplete="off" type="text" th:field="*{descriptionOtherConvenience}"
+                                   name="descriptionOtherConvenience"
+                                   placeholder="Enter your description other convenience"/>
+                            <p style="color: red" th:if="${#fields.hasErrors('descriptionOtherConvenience')}"
+                               th:errors="*{descriptionOtherConvenience}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Pool Area</label>
                         <div class="text-field col-8">
-                            <input autocomplete="off" type="text"  name="poolArea" placeholder="Enter your pool area" />
+                            <input autocomplete="off" type="text" th:field="*{poolArea}" name="poolArea"
+                                   placeholder="Enter your pool area"/>
+                            <p style="color: red" th:if="${#fields.hasErrors('poolArea')}"
+                               th:errors="*{poolArea}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Number Of Floors</label>
                         <div class="text-field col-8">
-                            <input autocomplete="off" type="text"  name="numberOfFloors" placeholder="Enter your number of floors" />
+                            <input autocomplete="off" type="text" th:field="*{numberOfFloors}" name="numberOfFloors"
+                                   placeholder="Enter your number of floors"/>
+                            <p style="color: red" th:if="${#fields.hasErrors('numberOfFloors')}"
+                               th:errors="*{numberOfFloors}"></p>
                         </div>
                     </div>
                     <div class="form-group row">

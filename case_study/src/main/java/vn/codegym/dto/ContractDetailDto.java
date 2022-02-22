@@ -1,34 +1,23 @@
-package vn.codegym.model.contract_detail;
+package vn.codegym.dto;
 
 import vn.codegym.model.contract_detail.AttachService;
 import vn.codegym.model.contract_detail.Contract;
 
-import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
-
-@Entity
-public class ContractDetail {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+public class ContractDetailDto {
     private Long id;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name ="contract_id",referencedColumnName = "id")
+    @NotNull(message = "PLease select contract")
     private Contract contract;
-
-    @ManyToOne
-    @JoinColumn(name ="attach_service_id",referencedColumnName = "attachServiceId")
+    @NotNull(message = "PLease select attach service")
     private AttachService attachService;
-
+    @NotEmpty(message = "PLease input total money")
+    @Pattern(regexp = "^([1-9])([0-9]*)$", message = "Quantity must be a positive integer")
     private String quantity;
 
-    public ContractDetail() {
-    }
-
-    public ContractDetail(Long id, Contract contract, AttachService attachService, String quantity) {
-        this.id = id;
-        this.contract = contract;
-        this.attachService = attachService;
-        this.quantity = quantity;
+    public ContractDetailDto() {
     }
 
     public Long getId() {

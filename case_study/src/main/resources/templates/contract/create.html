@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/create.css">
+    <link rel="stylesheet" href="/css/footer.css">
 </head>
 <body>
 <div>
@@ -17,61 +19,75 @@
         </div>
         <div class="col-lg-9 text-center container-fluid">
             <div class="signup-form">
-                <form th:action="@{/contract/create}" th:object="${contract}" method="POST">
+                <form th:action="@{/contract/create}" th:object="${contractDto}" method="POST">
                     <div class="row">
                         <div class="col-8 offset-4">
-                            <h3>Add Contract</h3>
+                            <h3  style="color:lightseagreen">Add Contract</h3>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Start Date</label>
                         <div class=" text-field col-8">
-                            <input autocomplete="off" type="date" name="startDate" />
+                            <input autocomplete="off" th:field="*{startDate}" type="date" name="startDate" />
+                            <p style="color: red" th:if="${#fields.hasErrors('startDate')}"
+                               th:errors="*{startDate}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">End Date</label>
                         <div class="text-field col-8">
-                            <input autocomplete="off" type="date" name="endDate"  />
+                            <input autocomplete="off" type="date" th:field="*{endDate}" name="endDate"  />
+                            <p style="color: red" th:if="${#fields.hasErrors('endDate')}"
+                               th:errors="*{endDate}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Deposit</label>
                         <div class="col-8 mt-2">
-                            <input class="form-control h-75" type="text" name="deposit" placeholder="Enter your deposit">
+                            <input class="form-control " type="text" th:field="*{deposit}" name="deposit" placeholder="Enter your deposit">
+                            <p style="color: red" th:if="${#fields.hasErrors('deposit')}"
+                               th:errors="*{deposit}"></p>
                         </div>
                     </div>
                     <div class=" form-group row">
                         <label class="col-form-label col-4">Total Money</label>
                         <div class="text-field col-8">
-                            <input autocomplete="off" type="text"  name="totalMoney" placeholder="Enter your Total Money" />
+                            <input autocomplete="off" type="text" th:field="*{totalMoney}" name="totalMoney" placeholder="Enter your Total Money" />
+                            <p style="color: red" th:if="${#fields.hasErrors('totalMoney')}"
+                               th:errors="*{totalMoney}"></p>
                         </div>
                     </div>
                     <div class=" form-group row">
                         <label class="col-form-label col-4">Employee</label>
                         <div class="text-field col-8">
-                            <select name="employee" >
-                                <option disabled selected >Choose option</option>
+                            <select th:field="*{employee}" name="employee" >
+                                <option th:value="null" selected >Choose Employee</option>
                                 <option th:each="item:${employee}" th:value="${item.employeeId}"  th:text="${item.employeeName}"></option>
                             </select>
+                            <p style="color: red" th:if="${#fields.hasErrors('employee')}"
+                               th:errors="*{employee}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Service</label>
                         <div class="text-field col-8">
-                            <select name="service">
-                                <option disabled selected >Choose option</option>
-                                <option th:each="item:${service}" th:value="${item.serviceId}"  th:text="${item.serviceName}"></option>
+                            <select  th:field="*{service}" name="service">
+                                <option th:value="null" selected >Choose Service</option>
+                                <option class="click" th:each="item:${service}" th:value="${item.serviceId}"  th:text="${item.serviceName}"></option>
                             </select>
+                            <p style="color: red" th:if="${#fields.hasErrors('service')}"
+                               th:errors="*{service}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Customer</label>
                         <div class="text-field col-8">
-                            <select name="customer">
-                                <option disabled selected >Choose option</option>
+                            <select th:field="*{customer}" name="customer">
+                                <option th:value="null" selected >Choose Customer</option>
                                 <option th:each="item:${customer}" th:value="${item.customerId}"  th:text="${item.customerName}"></option>
                             </select>
+                            <p style="color: red" th:if="${#fields.hasErrors('customer')}"
+                               th:errors="*{customer}"></p>
                         </div>
                     </div>
                     <div class="form-group row">

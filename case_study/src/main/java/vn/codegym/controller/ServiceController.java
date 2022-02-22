@@ -1,12 +1,16 @@
 package vn.codegym.controller;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import vn.codegym.dto.ServiceDto;
 import vn.codegym.model.contract_detail.Contract;
 import vn.codegym.model.employee.Employee;
 import vn.codegym.model.service.Service;
@@ -29,17 +33,25 @@ public class ServiceController {
 
     @GetMapping("/create")
     public String addShow(Model model) {
-        model.addAttribute("service", new Service());
+        model.addAttribute("serviceDto", new ServiceDto());
         model.addAttribute("serviceTypes", serviceType.findAll());
         model.addAttribute("rentTypeServices", rentTypeService.findAll());
         return "service/create";
     }
 
     @PostMapping("/create")
-    public String add(@ModelAttribute Service service) {
+    public String add(@ModelAttribute @Validated ServiceDto serviceDto, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasFieldErrors()) {
+            model.addAttribute("serviceDto", serviceDto);
+            model.addAttribute("serviceTypes", serviceType.findAll());
+            model.addAttribute("rentTypeServices", rentTypeService.findAll());
+            return "service/create";
+        }
+        Service service = new Service();
+        BeanUtils.copyProperties(serviceDto, service);
         service.setStatus(1);
         serviceImpl.add(service);
-        return "service/create";
+        return "redirect:/service/";
     }
 
     @GetMapping("")
@@ -53,7 +65,10 @@ public class ServiceController {
 
     @GetMapping("/update/{id}")
     public String list(@PathVariable String id, Model model) {
-        model.addAttribute("service", serviceImpl.findById(id));
+        Service service = serviceImpl.findById(id).get();
+        ServiceDto serviceDto = new ServiceDto();
+        BeanUtils.copyProperties(service, serviceDto);
+        model.addAttribute("serviceDto", serviceDto);
         model.addAttribute("serviceTypes", serviceType.findAll());
         model.addAttribute("rentTypeServices", rentTypeService.findAll());
         return "service/edit";

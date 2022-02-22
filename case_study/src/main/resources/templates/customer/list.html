@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/list.css">
-    <script src="/js/fontAnwesome.js"></script>
-    <link rel="stylesheet" href="/css/footer.css">
-</head>
+<head th:replace="layout/head::head">
 <body>
 <div id="list">
     <div th:replace="layout/header::header"></div>
@@ -19,8 +12,8 @@
         </div>
         <div class="col-lg-9 text-center" id="table">
             <div class="row">
-                <h3 class="col-lg-3">Manage Customer</h3>
-                <form action="/customer/" class="col-lg-9 row">
+                <h3 class="col-lg-3" style="color:lightseagreen">Manage Customer</h3>
+                <form action="/customer" class="col-lg-9 row">
                     <div class="search-input col-lg-4">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <input type="text" name="customerName" placeholder="Serach By Name">
@@ -36,7 +29,7 @@
                                     th:value="${typeList.customerTypeId}"></option>
                         </th:block>
                     </select>
-                    <button class="col-lg-1 btn btn-primary" type="submit">Search</button>
+                    <button class="col-lg-1 btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
             <th:block>
@@ -98,7 +91,7 @@
                 customerName = ${customerName},
                   customerAddress = ${customerAddress},
                   customerType = ${customerType})}"
-                               th:if="${customers.hasPrevious()}">Previous</a>
+                               th:if="${customers.hasPrevious()}" style="color:lightseagreen">Previous</a>
                         </li>
                         <li class="page-item"><span th:text="${customers.number+1}"></span>/<span
                                 th:text="${customers.totalPages}"></span></li>
@@ -106,7 +99,7 @@
                             <a class="page-link" th:href="@{'/customer' (page=${customers.number + 1},
                 customerName = ${customerName},
                 customerAddress = ${customerAddress},
-                customerType = ${customerType})}" th:if="${customers.hasNext()}">Next</a>
+                customerType = ${customerType})}" th:if="${customers.hasNext()}" style="color:lightseagreen">Next</a>
                         </li>
                     </ul>
                 </nav>

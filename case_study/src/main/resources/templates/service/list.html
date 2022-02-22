@@ -1,13 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="/css/bootstrap.min.css">
-    <link rel="stylesheet" href="/css/list.css">
-    <script src="/js/fontAnwesome.js"></script>
-    <link rel="stylesheet" href="/css/footer.css">
-</head>
+<head th:replace="layout/head :: head">
 <body>
 <div id="list">
     <div th:replace="layout/header::header"></div>
@@ -19,8 +12,8 @@
         </div>
         <div class="col-lg-9 text-center" id="table">
             <div class="row">
-                <h3 class="col-lg-3">Manage Service</h3>
-                <form action="/service/" class="col-lg-9 row">
+                <h3 class="col-lg-3" style="color:lightseagreen">Manage Service</h3>
+                <form action="/service" class="col-lg-9 row">
                     <div class="search-input col-lg-4">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <input type="text" name="customerName" placeholder="Serach By Name Customer">

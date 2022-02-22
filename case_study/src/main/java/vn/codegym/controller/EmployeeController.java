@@ -1,20 +1,31 @@
 package vn.codegym.controller;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import vn.codegym.dto.CustomerDto;
+import vn.codegym.dto.EmployeeDto;
+import vn.codegym.model.User;
+import vn.codegym.model.customer.Customer;
 import vn.codegym.model.employee.Division;
 import vn.codegym.model.employee.EducationDegree;
 import vn.codegym.model.employee.Employee;
 import vn.codegym.model.employee.Position;
+import vn.codegym.repository.UserRepository;
+import vn.codegym.security.MyUserDetailService;
 import vn.codegym.service.employee.IDivisionService;
 import vn.codegym.service.employee.IEducationDegreeService;
 import vn.codegym.service.employee.IEmployeeService;
 import vn.codegym.service.employee.IPositionService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Controller
@@ -28,6 +39,8 @@ public class EmployeeController {
     private IEducationDegreeService educationDegreeService;
     @Autowired
     private IDivisionService divisionService;
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping
     public String list(@PageableDefault(value = 5) Pageable pageable,
@@ -35,6 +48,10 @@ public class EmployeeController {
                        @RequestParam(defaultValue = "") String positionId,
                        @RequestParam(defaultValue = "") String divisionId,
                        @RequestParam(defaultValue = "") String educationDegreeId) {
+        model.addAttribute("name", name);
+        model.addAttribute("positionId", positionId);
+        model.addAttribute("divisionId", divisionId);
+        model.addAttribute("educationDegreeId", educationDegreeId);
         model.addAttribute("employees", employeeService.search(name, positionId,
                 divisionId, educationDegreeId, pageable));
         return "employee/list";
@@ -42,13 +59,31 @@ public class EmployeeController {
 
     @GetMapping("/create")
     public String addShow(Model model) {
-        model.addAttribute("employee", new Employee());
+        model.addAttribute("employeeDto", new EmployeeDto());
         return "employee/create";
     }
 
     @PostMapping("/create")
-    public String addShow(@ModelAttribute Employee employee) {
+    public String add(@ModelAttribute @Validated EmployeeDto employeeDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+        if (employeeDto.getEmployeeBirthday() != null) {
+            new EmployeeDto().validate(employeeDto, bindingResult);
+        }
+        if (bindingResult.hasFieldErrors()) {
+            model.addAttribute("employeeDto", employeeDto);
+            return "employee/create";
+        }
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(employeeDto, employee);
+        User user = employee.getUser();
+        user.setPassword("$2a$10$MwpBEXT0.ZDIThEnNHMlQu52RuzaYNa6jlx/CioUnn3EYvvw4JWbO");
+        userRepository.save(user);
+        employee.setStatus(1);
         employeeService.add(employee);
+        if (employee.getPosition().getPositionId() == 1) {
+            userRepository.addRole(user.getUserName(), 2);
+        } else {
+            userRepository.addRole(user.getUserName(), 1);
+        }
         return "redirect:/employee";
     }
 
@@ -73,12 +108,24 @@ public class EmployeeController {
 
     @GetMapping("/update/{id}")
     public String updateShow(@PathVariable Long id, Model model) {
-        model.addAttribute("employee", employeeService.findById(id).get());
+        Employee employee = employeeService.findById(id).get();
+        EmployeeDto employeeDto = new EmployeeDto();
+        BeanUtils.copyProperties(employee, employeeDto);
+        model.addAttribute("employeeDto", employeeDto);
         return "employee/update";
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute Employee employee) {
+    public String update(@ModelAttribute @Validated EmployeeDto employeeDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+        if (employeeDto.getEmployeeBirthday() != null) {
+            new EmployeeDto().validate(employeeDto, bindingResult);
+        }
+        if (bindingResult.hasFieldErrors()) {
+            model.addAttribute("employeeDto", employeeDto);
+            return "employee/update";
+        }
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(employeeDto, employee);
         employeeService.add(employee);
         return "redirect:/employee";
     }

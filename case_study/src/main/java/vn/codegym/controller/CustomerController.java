@@ -34,9 +34,9 @@ public class CustomerController {
                           @RequestParam(defaultValue = "") String customerName,
                           @RequestParam(defaultValue = "") String customerAddress,
                           @RequestParam(defaultValue = "") String customerType) {
-        model.addAttribute("customerName",customerName);
-        model.addAttribute("customerAddress",customerAddress);
-        model.addAttribute("customerType",customerType);
+        model.addAttribute("customerName", customerName);
+        model.addAttribute("customerAddress", customerAddress);
+        model.addAttribute("customerType", customerType);
         model.addAttribute("customers", customerService.find(customerName, customerAddress, customerType, pageable));
         return "customer/list";
     }
@@ -50,7 +50,9 @@ public class CustomerController {
 
     @PostMapping("/create")
     public String create(@ModelAttribute @Valid CustomerDto customerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
-        new CustomerDto().validate(customerDto,bindingResult);
+        if (customerDto.getCustomerBirthday() != null) {
+            new CustomerDto().validate(customerDto, bindingResult);
+        }
         if (bindingResult.hasFieldErrors()) {
             model.addAttribute("customerDto", customerDto);
             return "customer/create";
@@ -59,7 +61,7 @@ public class CustomerController {
         BeanUtils.copyProperties(customerDto, customer);
         customer.setStatus(1);
         customerService.add(customer);
-        return "redirect:/customer/";
+        return "redirect:/customer";
     }
 
     @GetMapping("/view/{id}")
@@ -79,7 +81,7 @@ public class CustomerController {
         Customer customer = customerService.findById(id);
         customer.setStatus(0);
         customerService.add(customer);
-        return "redirect:/customer/";
+        return "redirect:/customer";
     }
 
     @GetMapping("/update/{id}")
@@ -102,7 +104,7 @@ public class CustomerController {
         BeanUtils.copyProperties(customerDto, customer);
         customerService.add(customer);
         redirectAttributes.addFlashAttribute("mess", "fầl");
-        return "redirect:/customer/";
+        return "redirect:/customer";
     }
 
     @ModelAttribute("customerTypeList")

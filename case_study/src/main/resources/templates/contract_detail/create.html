@@ -5,6 +5,8 @@
     <title>Title</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/create.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
 </head>
 <body>
 <div>
@@ -17,34 +19,40 @@
         </div>
         <div class="col-lg-9 text-center container-fluid">
             <div class="signup-form">
-                <form th:action="@{/contract_detail/create}" th:object="${contractDetail}" method="POST">
+                <form th:action="@{/contract_detail/create}" th:object="${contractDetailDto}" method="POST">
                     <div class="row">
                         <div class="col-8 offset-4">
-                            <h3>Add Contract Detail</h3>
+                            <h3  style="color:lightseagreen">Add Contract Detail</h3>
                         </div>
                     </div>
                     <div class=" form-group row">
                         <label class="col-form-label col-4">Contract</label>
                         <div class="text-field col-8">
-                            <select name="contract" >
-                                <option disabled selected >Choose option</option>
+                            <select th:field="*{contract}" name="contract" >
+                                <option th:value="null" selected >Choose option</option>
                                 <option th:each="item:${contracts}" th:value="${item.id}"  th:text="${item.id}"></option>
                             </select>
+                            <p style="color: red" th:if="${#fields.hasErrors('contract')}"
+                               th:errors="*{contract}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Service</label>
                         <div class="text-field col-8">
-                            <select name="attachService">
-                                <option disabled selected >Choose option</option>
+                            <select th:field="*{attachService}" name="attachService">
+                                <option th:value="null" selected >Choose option</option>
                                 <option th:each="item:${attachServices}" th:value="${item.attachServiceId}"  th:text="${item.attachServiceName}"></option>
                             </select>
+                            <p style="color: red" th:if="${#fields.hasErrors('attachService')}"
+                               th:errors="*{attachService}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Quantity</label>
                         <div class=" text-field col-8">
                             <input autocomplete="off" type="text" name="quantity" placeholder="Enter your quantity" />
+                            <p style="color: red" th:if="${#fields.hasErrors('quantity')}"
+                               th:errors="*{quantity}"></p>
                         </div>
                     </div>
                     <div class="form-group row">

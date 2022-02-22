@@ -10,13 +10,14 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Calendar;
 import java.util.Date;
 
 public class CustomerDto implements Validator {
-
     @Pattern(regexp = "^KH-[0-9]{4}$", message = "Customer ID has the format KH-XXXX (X is number from 0-9)")
     private String customerId;
     @NotNull(message = "Please select customer type")
@@ -149,6 +150,7 @@ public class CustomerDto implements Validator {
         }
         return flag;
     }
+
 
     @Override
     public boolean supports(Class<?> clazz) {

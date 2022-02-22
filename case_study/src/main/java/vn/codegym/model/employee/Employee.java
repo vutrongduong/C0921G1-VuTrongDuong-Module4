@@ -2,6 +2,7 @@ package vn.codegym.model.employee;
 
 
 import org.springframework.format.annotation.DateTimeFormat;
+import vn.codegym.model.User;
 import vn.codegym.model.contract_detail.Contract;
 
 import javax.persistence.*;
@@ -16,7 +17,7 @@ public class Employee {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date employeeBirthday;
     private String employeeIdCard;
-    private Double employeeSalary;
+    private String employeeSalary;
     private String employeePhone;
     private String employeeEmail;
     private String employeeAddress;
@@ -29,16 +30,17 @@ public class Employee {
     @ManyToOne
     @JoinColumn(name = "division_id", referencedColumnName = "divisionId")
     private Division division;
-    //    @OneToOne
-//    @JoinColumn(name = "user_name",referencedColumnName = "userName")
-//    private User user;
+    private Integer status;
+    @OneToOne
+    @JoinColumn(name = "user_name", referencedColumnName = "userName")
+    private User user;
     @OneToOne(fetch = FetchType.LAZY, mappedBy = "employee")
     private Contract contract;
 
     public Employee() {
     }
 
-    public Employee(Long employeeId, String employeeName, Date employeeBirthday, String employeeIdCard, Double employeeSalary, String employeePhone, String employeeEmail, String employeeAddress, Position position, EducationDegree educationDegree, Division division, Contract contract) {
+    public Employee(Long employeeId, String employeeName, Date employeeBirthday, String employeeIdCard, String employeeSalary, String employeePhone, String employeeEmail, String employeeAddress, Position position, EducationDegree educationDegree, Division division, Integer status, User user, Contract contract) {
         this.employeeId = employeeId;
         this.employeeName = employeeName;
         this.employeeBirthday = employeeBirthday;
@@ -50,6 +52,8 @@ public class Employee {
         this.position = position;
         this.educationDegree = educationDegree;
         this.division = division;
+        this.status = status;
+        this.user = user;
         this.contract = contract;
     }
 
@@ -85,11 +89,11 @@ public class Employee {
         this.employeeIdCard = employeeIdCard;
     }
 
-    public Double getEmployeeSalary() {
+    public String getEmployeeSalary() {
         return employeeSalary;
     }
 
-    public void setEmployeeSalary(Double employeeSalary) {
+    public void setEmployeeSalary(String employeeSalary) {
         this.employeeSalary = employeeSalary;
     }
 
@@ -147,5 +151,21 @@ public class Employee {
 
     public void setContract(Contract contract) {
         this.contract = contract;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public void setStatus(Integer status) {
+        this.status = status;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

@@ -1,35 +1,45 @@
-package vn.codegym.model.service;
+package vn.codegym.dto;
 
-import vn.codegym.model.contract_detail.Contract;
+import vn.codegym.model.service.RentType;
+import vn.codegym.model.service.ServiceType;
 
-import javax.persistence.*;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
 
-@Entity
-public class Service {
-    @Id
+public class ServiceDto {
     private String serviceId;
+    @NotEmpty(message = "PLease input name")
     private String serviceName;
+    @NotEmpty(message = "PLease input area")
+    @Pattern(regexp = "^([1-9])([0-9].*)$", message = "Area must be a positive integer")
     private String serviceArea;
+    @NotEmpty(message = "PLease input cost")
+    @Pattern(regexp = "^([1-9])([0-9].*)$", message = "Cost must be a positive integer")
     private String serviceCost;
+    @NotEmpty(message = "PLease input max people")
+    @Pattern(regexp = "^([1-9])([0-9]*)$", message = "Number of floors must be a positive integer")
     private String serviceMaxPeople;
-    @ManyToOne
-    @JoinColumn(name = "rent_type_id", referencedColumnName = "rentTypeId")
+    @NotNull(message = "Please select rent type")
     private RentType rentType;
-    @ManyToOne
-    @JoinColumn(name = "service_type_id", referencedColumnName = "serviceTypeId")
+    @NotNull(message = "Please select service type")
     private ServiceType serviceType;
+    @NotEmpty(message = "PLease input standard room")
     private String standardRoom;
+    @NotEmpty(message = "PLease input description other convenience")
     private String descriptionOtherConvenience;
+    @NotEmpty(message = "PLease input pool area")
+    @Pattern(regexp = "^([1-9])([0-9].*)$", message = "Pool area must be a positive integer")
     private String poolArea;
+    @NotEmpty(message = "PLease input number of floors")
+    @Pattern(regexp = "^([1-9])([0-9]*)$", message = "Number of floors must be a positive integer")
     private String numberOfFloors;
     private Integer status;
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "service")
-    private Contract contract;
 
-    public Service() {
+    public ServiceDto() {
     }
 
-    public Service(String serviceId, String serviceName, String serviceArea, String serviceCost, String serviceMaxPeople, RentType rentType, ServiceType serviceType, String standardRoom, String descriptionOtherConvenience, String poolArea, String numberOfFloors, Integer status, Contract contract) {
+    public ServiceDto(String serviceId, @NotEmpty(message = "PLease input name") String serviceName, @NotEmpty(message = "PLease input area") @Pattern(regexp = "^([1-9])([0-9].*)$", message = "Area must be a positive integer") String serviceArea, @NotEmpty(message = "PLease input cost") @Pattern(regexp = "^([1-9])([0-9].*)$", message = "Cost must be a positive integer") String serviceCost, @NotEmpty(message = "PLease input max people") @Pattern(regexp = "^([1-9])([0-9]*)$", message = "Number of floors must be a positive integer") String serviceMaxPeople, @NotNull(message = "Please select rent type") RentType rentType, @NotNull(message = "Please select service type") ServiceType serviceType, @NotEmpty(message = "PLease input standard room") String standardRoom, @NotEmpty(message = "PLease input description other convenience") String descriptionOtherConvenience, @NotEmpty(message = "PLease input pool area") @Pattern(regexp = "^([1-9])([0-9].*)$", message = "Pool area must be a positive integer") String poolArea, @NotEmpty(message = "PLease input number of floors") @Pattern(regexp = "^([1-9])([0-9]*)$", message = "Number of floors must be a positive integer") String numberOfFloors, Integer status) {
         this.serviceId = serviceId;
         this.serviceName = serviceName;
         this.serviceArea = serviceArea;
@@ -42,22 +52,6 @@ public class Service {
         this.poolArea = poolArea;
         this.numberOfFloors = numberOfFloors;
         this.status = status;
-        this.contract = contract;
-    }
-
-    public Service(String serviceName, String serviceArea, String serviceCost, String serviceMaxPeople, RentType rentType, ServiceType serviceType, String standardRoom, String descriptionOtherConvenience, String poolArea, String numberOfFloors, Integer status, Contract contract) {
-        this.serviceName = serviceName;
-        this.serviceArea = serviceArea;
-        this.serviceCost = serviceCost;
-        this.serviceMaxPeople = serviceMaxPeople;
-        this.rentType = rentType;
-        this.serviceType = serviceType;
-        this.standardRoom = standardRoom;
-        this.descriptionOtherConvenience = descriptionOtherConvenience;
-        this.poolArea = poolArea;
-        this.numberOfFloors = numberOfFloors;
-        this.status = status;
-        this.contract = contract;
     }
 
     public String getServiceId() {
@@ -154,13 +148,5 @@ public class Service {
 
     public void setStatus(Integer status) {
         this.status = status;
-    }
-
-    public Contract getContract() {
-        return contract;
-    }
-
-    public void setContract(Contract contract) {
-        this.contract = contract;
     }
 }

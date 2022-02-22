@@ -1,5 +1,7 @@
 package vn.codegym.model;
 
+import vn.codegym.model.employee.Employee;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -9,12 +11,12 @@ public class User {
     private String userName;
     private String password;
 
-    @ManyToMany
-    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"),
-            inverseJoinColumns = @JoinColumn(name = "user_name"))
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_name"),
+            inverseJoinColumns = @JoinColumn(name = "role_id"))
     List<Role> roleList;
-//    @OneToOne(mappedBy = "user")
-//    Employee employee;
+    @OneToOne(mappedBy = "user")
+    Employee employee;
 
     public User() {
     }
@@ -47,5 +49,13 @@ public class User {
 
     public void setRoleList(List<Role> roleList) {
         this.roleList = roleList;
+    }
+
+    public Employee getEmployee() {
+        return employee;
+    }
+
+    public void setEmployee(Employee employee) {
+        this.employee = employee;
     }
 }

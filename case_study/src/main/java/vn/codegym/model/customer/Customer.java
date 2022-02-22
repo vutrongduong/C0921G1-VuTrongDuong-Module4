@@ -2,6 +2,7 @@ package vn.codegym.model.customer;
 
 
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.Parameter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import vn.codegym.model.contract_detail.Contract;
@@ -12,12 +13,9 @@ import java.util.Date;
 @Entity
 public class Customer {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id")
-    @GenericGenerator(name ="id",strategy = "vn.codegym.on.dto.StringPrefixedSequenceIdGenerator",
-            parameters = {
-                    @Parameter(name = StringPrefixedSequenceIdGenerator.INCREMENT_PARAM, value = "9999"),
-                    @Parameter(name = StringPrefixedSequenceIdGenerator.VALUE_PREFIX_PARAMETER, value = "KH-"),
-                    @Parameter(name = StringPrefixedSequenceIdGenerator.NUMBER_FORMAT_PARAMETER, value = "%04d") })
+    @GeneratedValue(generator = "id_gen_customer")
+    @GenericGenerator(name = "id_gen_customer", parameters =
+    @Parameter(name = "prefix", value = "KH-"), strategy = "vn.codegym.model.customer.IdGenerator")
     private String customerId;
     @ManyToOne
     @JoinColumn(name = "customer_type_id", referencedColumnName = "customerTypeId")

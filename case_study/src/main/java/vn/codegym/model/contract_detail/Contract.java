@@ -12,13 +12,13 @@ import java.util.Date;
 public class Contract {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Long id;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date startDate;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
-    private double deposit;
-    private double totalMoney;
+    private String deposit;
+    private String totalMoney;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "employee_id", referencedColumnName = "employeeId")
     private Employee employee;
@@ -28,29 +28,17 @@ public class Contract {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "service_id", referencedColumnName = "serviceId")
     private Service service;
-    @OneToOne(mappedBy = "contract")
+    @OneToOne(fetch = FetchType.LAZY,mappedBy = "contract")
     private ContractDetail contractDetail;
 
     public Contract() {
     }
 
-    public Contract(int id, Date startDate, Date endDate, double deposit, double totalMoney, Employee employee, Customer customer, Service service, ContractDetail contractDetail) {
-        this.id = id;
-        this.startDate = startDate;
-        this.endDate = endDate;
-        this.deposit = deposit;
-        this.totalMoney = totalMoney;
-        this.employee = employee;
-        this.customer = customer;
-        this.service = service;
-        this.contractDetail = contractDetail;
-    }
-
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -70,19 +58,19 @@ public class Contract {
         this.endDate = endDate;
     }
 
-    public double getDeposit() {
+    public String getDeposit() {
         return deposit;
     }
 
-    public void setDeposit(double deposit) {
+    public void setDeposit(String deposit) {
         this.deposit = deposit;
     }
 
-    public double getTotalMoney() {
+    public String getTotalMoney() {
         return totalMoney;
     }
 
-    public void setTotalMoney(double totalMoney) {
+    public void setTotalMoney(String totalMoney) {
         this.totalMoney = totalMoney;
     }
 

@@ -5,7 +5,9 @@
     <title>Title</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
     <link rel="stylesheet" href="/css/create.css">
+    <link rel="stylesheet" href="/css/header.css">
     <link rel="stylesheet" href="/css/footer.css">
+
 </head>
 <body>
 <div>
@@ -18,95 +20,125 @@
         </div>
         <div class="col-lg-9 text-center container-fluid">
             <div class="signup-form">
-                <form th:action="@{/employee/create}" method="post" class="form-horizontal" th:object="${employee}">
+                <form th:action="@{/employee/create}" method="post" class="form-horizontal" th:object="${employeeDto}">
                     <div class="row">
                         <div class="col-8 offset-4">
-                            <h3>Add Employee</h3>
-                        </div>
-                    </div>
-                    <div class="form-group row">
-                        <label class="col-form-label col-4">ID Employee</label>
-                        <div class=" text-field col-8">
-                            <input autocomplete="off" type="text" name="employeeId" placeholder="Enter your id" />
+                            <h3  style="color:lightseagreen">Add Employee</h3>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Name</label>
                         <div class="text-field col-8">
-                            <input autocomplete="off" type="text" name="employeeName" placeholder="Enter your name" />
+                            <input autocomplete="off" type="text" th:field="*{employeeName}"
+                                   placeholder="Enter your name"/>
+                            <p style="color: red" th:if="${#fields.hasErrors('employeeName')}"
+                               th:errors="*{employeeName}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Birthday</label>
                         <div class="col-8 mt-2">
-                            <input class="form-control h-75" type="date" name="employeeBirthday">
+                            <input class="form-control h-75" type="date" th:field="*{employeeBirthday}">
+                            <p style="color: red" th:if="${#fields.hasErrors('employeeBirthday')}"
+                               th:errors="*{employeeBirthday}"></p>
                         </div>
                     </div>
                     <div class=" form-group row">
                         <label class="col-form-label col-4">Id Card</label>
                         <div class="text-field col-8">
-                            <input autocomplete="off" type="text"  name="employeeIdCard" placeholder="Enter your id card" />
+                            <input autocomplete="off" type="text" th:field="*{employeeIdCard}"
+                                   placeholder="Enter your id card"/>
+                            <p style="color: red" th:if="${#fields.hasErrors('employeeIdCard')}"
+                               th:errors="*{employeeIdCard}"></p>
                         </div>
                     </div>
                     <div class=" form-group row">
                         <label class="col-form-label col-4">Salary</label>
                         <div class="text-field col-8">
-                            <input autocomplete="off" type="text"  name="employeeSalary" placeholder="Enter your salary" />
+                            <input autocomplete="off" type="text" th:field="*{employeeSalary}"
+                                   placeholder="Enter your salary"/>
+                            <p style="color: red" th:if="${#fields.hasErrors('employeeSalary')}"
+                               th:errors="*{employeeSalary}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Phone</label>
                         <div class="text-field col-8">
-                            <input autocomplete="off" type="text"  name="employeePhone" placeholder="Enter your phone" />
+                            <input autocomplete="off" type="text" th:field="*{employeePhone}"
+                                   placeholder="Enter your phone"/>
+                            <p style="color: red" th:if="${#fields.hasErrors('employeePhone')}"
+                               th:errors="*{employeePhone}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">E-mail</label>
                         <div class="text-field col-8">
-                            <input autocomplete="off" type="text"  name="employeeEmail" placeholder="Enter your email" />
+                            <input autocomplete="off" type="text" th:field="*{employeeEmail}"
+                                   placeholder="Enter your email"/>
+                            <p style="color: red" th:if="${#fields.hasErrors('employeeEmail')}"
+                               th:errors="*{employeeEmail}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Address</label>
                         <div class="text-field col-8">
-                            <input autocomplete="off" type="text"  name="employeeAddress" placeholder="Enter your address" />
+                            <input autocomplete="off" type="text" th:field="*{employeeAddress}"
+                                   placeholder="Enter your address"/>
+                            <p style="color: red" th:if="${#fields.hasErrors('employeeAddress')}"
+                               th:errors="*{employeeAddress}"></p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">User</label>
+                        <div class="text-field col-8">
+                            <input autocomplete="off" type="text" th:field="*{user.userName}"
+                                   placeholder="Enter your user"/>
+                            <p style="color: red" th:if="${#fields.hasErrors('user')}"
+                               th:errors="*{user}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Position</label>
                         <div class="col-8 mt-2">
-                            <select id="serviceType" name="position">
-                                <option disabled="disabled" selected="true">Selector</option>
+                            <select th:field="*{position}">
+                                <option th:value="null" selected="true">Selector</option>
                                 <option th:each=" position : ${positions}" th:text="${position.positionName}"
                                         th:value="${position.positionId} "></option>
                             </select>
+                            <p style="color: red" th:if="${#fields.hasErrors('position')}"
+                               th:errors="*{position}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Education Degrees</label>
                         <div class="col-8 mt-2">
-                            <select  name="educationDegree">
-                                <option disabled="disabled" selected="true">Selector</option>
-                                <option th:each=" educationDegree : ${educationDegrees}" th:text="${educationDegree.educationDegreeName}"
+                            <select th:field="*{educationDegree}">
+                                <option th:value="null" selected="true">Selector</option>
+                                <option th:each=" educationDegree : ${educations}"
+                                        th:text="${educationDegree.educationDegreeName}"
                                         th:value="${educationDegree.educationDegreeId} "></option>
                             </select>
+                            <p style="color: red" th:if="${#fields.hasErrors('educationDegree')}"
+                               th:errors="*{educationDegree}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Division</label>
                         <div class="col-8 mt-2">
-                            <select  name="division">
-                                <option disabled="disabled" selected="true">Selector</option>
+                            <select th:field="*{division}">
+                                <option th:value="null" selected="true">Selector</option>
                                 <option th:each=" division : ${divisions}" th:text="${division.divisionName}"
                                         th:value="${division.divisionId} "></option>
                             </select>
+                            <p style="color: red" th:if="${#fields.hasErrors('division')}"
+                               th:errors="*{division}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <div class="col-8 offset-4 ">
                             <p><label class="form-check-label"><input type="checkbox"> I accept the <span>Are
                     you sure the above information is completely correct?</span></label></p>
-                            <button type="submit" class="btn btn-primary btn-lg">Add New Service</button>
+                            <button type="submit" class="btn btn-primary btn-lg">Add New Employee</button>
                         </div>
                     </div>
                 </form>

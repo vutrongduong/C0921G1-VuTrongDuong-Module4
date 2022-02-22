@@ -10,7 +10,7 @@ public class Role {
     private int roleId;
     private String roleName;
 
-    @ManyToMany(mappedBy = "roleList")
+    @ManyToMany(fetch = FetchType.EAGER,mappedBy = "roleList")
     private List<User> userList;
 
     public Role() {

@@ -1,3 +1,5 @@
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Calendar;
@@ -14,6 +16,18 @@ public class Validate {
         LocalDate currentDate = LocalDate.now();
         int age = Period.between(date, currentDate).getYears();
         if (age < 100 && age >= 18) {
+            flag = true;
+        }
+        return flag;
+    }
+
+    public static Boolean checkDateContract(Date startDate, Date endDate) {
+        boolean flag;
+        if (startDate.compareTo(endDate) > 0) {
+            flag = false;
+        } else if (startDate.compareTo(endDate) < 0) {
+            flag = true;
+        } else {
             flag = true;
         }
         return flag;
