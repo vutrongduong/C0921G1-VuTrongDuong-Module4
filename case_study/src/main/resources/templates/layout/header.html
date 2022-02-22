@@ -1,39 +1,32 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
-    <script src="../../static/js/bootstrap.min.js"></script>
-</head>
-<body>
-    <div class="container-fluid" th:fragment="header">
-        <div class="row">
-            <div class="col-lg-10">
-                <img width="75px"
-                     src="../../x512x512.b34453a20c19849144c890211fcce945.ai.1.png.pagespeed.ic.SHuE2e4RHb.webp">
+    <head>
+        <meta charset="UTF-8">
+        <title>Title</title>
+        <link rel="stylesheet" href="../../static/css/bootstrap.min.css">
+        <script src="../../static/js/bootstrap.min.js"></script>
+    </head>
+    <body>
+        <div class="container-fluid" th:fragment="header">
+            <div class="row">
+                <div class="col-lg-10">
+                    <img width="75px"
+                         src="../../x512x512.b34453a20c19849144c890211fcce945.ai.1.png.pagespeed.ic.SHuE2e4RHb.webp">
+                </div>
+                <div class="col-lg-2 mt-lg-3 pe-lg-5">
+                    <a href="#" class="nav-link float-lg-end">Nguyen Van A</a>
+                </div>
             </div>
-            <div class="col-lg-2 mt-lg-3 pe-lg-5">
-                <a href="#" class="nav-link float-lg-end">Nguyen Van A</a>
-            </div>
-        </div>
-        <div class="border border-3 row">
-            <div class="col-lg-9 row float-lg-end">
-                <p class="col-lg-2"></p>
-                <a class="nav-link col-lg-2" href="/home">Home</a>
-                <a class="nav-link col-lg-2" href="/employee">Employee</a>
-                <a class="nav-link col-lg-2" href="/customer">Customer</a>
-                <a class="nav-link col-lg-2" href="/service/create">Service</a>
-                <a class="nav-link col-lg-2" href="/contract/create">Contact</a>
-            </div>
-            <div class="col-lg-3 pt-lg-1">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search"
-                     viewBox="0 0 16 16">
-                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-                </svg>
-                <input class="rounded-pill w-75" type="text" placeholder=" search">
+            <div class="border border-3 row">
+                <div class="col-lg-9 row float-lg-end">
+                    <p class="col-lg-2"></p>
+                    <a class="nav-link col-lg-2" href="/">Home</a>
+                    <a class="nav-link col-lg-2" href="/employee">Employee</a>
+                    <a class="nav-link col-lg-2" href="/customer">Customer</a>
+                    <a class="nav-link col-lg-2" href="/service">Service</a>
+                    <a class="nav-link col-lg-2" href="/contract/create">Contact</a>
+                </div>
             </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>

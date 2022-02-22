@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/create.css">
+</head>
+<body>
+<div>
+    <div th:replace="layout/header::header"></div>
+    <div class="border border-3 row h-75">
+        <div class="col-lg-3 border border-3">
+            <a class="nav-link " href="/service/create">Create New Service</a>
+            <a class="nav-link " href="#">Item 2</a>
+            <a class="nav-link " href="#">Item 3</a>
+        </div>
+        <div class="col-lg-9 text-center container-fluid">
+            <div class="signup-form">
+                <form th:action="@{/service/update}" method="post" class="form-horizontal" th:object="${service}">
+                    <div class="row">
+                        <div class="col-8 offset-4">
+                            <h3>Update Service</h3>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">ID</label>
+                        <div class="col-8">
+                            <input type="text" class="form-control" th:field="*{serviceId}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Name</label>
+                        <div class="col-8 mt-2">
+                            <input class="form-control" type="text" th:field="*{serviceName}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Area</label>
+                        <div class="col-8 mt-2">
+                            <input class="form-control h-75" type="text" th:field="*{serviceArea}">
+                        </div>
+                    </div>
+                    <div class=" form-group row">
+                        <label class="col-form-label col-4">Cost</label>
+                        <div class="col-8 mt-2">
+                            <input class="form-control" type="text" th:field="*{serviceCost}">
+                        </div>
+                    </div>
+                    <div class=" form-group row">
+                        <label class="col-form-label col-4">Max people</label>
+                        <div class="col-8 mt-2">
+                            <input class="form-control" type="text" th:field="*{serviceMaxPeople}">
+                        </div>
+                    </div>
+                    <div class=" form-group row">
+                        <label class="col-form-label col-4">Standard Room</label>
+                        <div class="col-8 mt-2">
+                            <input class="form-control" type="text" th:field="*{standardRoom}">
+                        </div>
+                    </div>
+                    <div class=" form-group row">
+                        <label class="col-form-label col-4">Description</label>
+                        <div class="col-8 mt-2">
+                            <input class="form-control" type="text" th:field="*{descriptionOtherConvenience}">
+                        </div>
+                    </div>
+                    <div class=" form-group row">
+                        <label class="col-form-label col-4">Pool Area</label>
+                        <div class="col-8 mt-2">
+                            <input class="form-control" type="text" th:field="*{poolArea}">
+                        </div>
+                    </div>
+                    <div class=" form-group row">
+                        <label class="col-form-label col-4">Number of floors</label>
+                        <div class="col-8 mt-2">
+                            <input class="form-control" type="text" th:field="*{numberOfFloors}">
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Service Type</label>
+                        <div class="col-8 mt-2">
+                            <select th:field="*{serviceType}">
+                                <option th:each=" type : ${serviceTypes}" th:text="${type.serviceTypeName}"
+                                        th:value="${type.serviceTypeId} "></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Rent Type</label>
+                        <div class="col-8 mt-2">
+                            <select th:field="*{rentType}">
+                                <option th:each=" rentType : ${rentTypeServices}" th:text="${rentType.rentTypeName}"
+                                        th:value="${rentType.rentTypeId} "></option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <button type="submit" class="btn btn-primary btn-lg">Update Service</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div th:replace="layout/footer::footer"></div>
+</div>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

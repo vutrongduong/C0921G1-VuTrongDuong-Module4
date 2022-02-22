@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <title>Title</title>
     <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/list.css">
+    <script src="/js/fontAnwesome.js"></script>
+    <link rel="stylesheet" href="/css/footer.css">
 </head>
 <body>
 <div id="list">
@@ -15,18 +18,30 @@
             <a class="nav-link " href="#">Item 3</a>
         </div>
         <div class="col-lg-9 text-center" id="table">
-            <h3>Manage Customer</h3>
-            <form action="/customer/">
-                <input type="text" name="customerName" placeholder="Serach By Name">
-                <input type="text" name="customerAddress" placeholder="Serach By Address">
-                <select name="customerType">
-                    <option disabled selected>Choose Customer Type</option>
-                    <th:block th:each="typeList :${customerTypeList}">
-                        <option th:text="${typeList.customerTypeName}" th:value="${typeList.customerTypeId}"></option>
-                    </th:block>
-                </select>
-                <button type="submit">Search</button>
-            </form>
+            <div class="row">
+                <h3 class="col-lg-3">Manage Customer</h3>
+                <form action="/customer/" class="col-lg-9 row">
+                    <div class="search-input col-lg-4">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" name="customerName" placeholder="Serach By Name">
+                    </div>
+                    <div class="search-input col-lg-4">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" name="customerAddress" placeholder="Serach By Address">
+                    </div>
+                    <select name="customerType" class="col-lg-3 search-input">
+                        <option disabled selected>Choose Customer Type</option>
+                        <th:block th:each="typeList :${customerTypeList}">
+                            <option th:text="${typeList.customerTypeName}"
+                                    th:value="${typeList.customerTypeId}"></option>
+                        </th:block>
+                    </select>
+                    <button class="col-lg-1 btn btn-primary" type="submit">Search</button>
+                </form>
+            </div>
+            <th:block>
+                <!--                <h4 th:text="${mess}"></h4>-->
+            </th:block>
             <table class="table">
                 <thead>
                 <tr>
@@ -76,10 +91,25 @@
                 </tbody>
             </table>
             <div>
-                <a th:href="@{'/customer' (page=${customers.number - 1})}"
-                   th:if="${customers.hasPrevious()}">Previous</a>
-                <span th:text="${customers.number+1}"></span>/<span th:text="${customers.totalPages}"></span>
-                <a th:href="@{'/customer' (page=${customers.number + 1})}" th:if="${customers.hasNext()}">Next</a>
+                <nav aria-label="...">
+                    <ul class="pagination">
+                        <li class="page-item">
+                            <a class="page-link" th:href="@{'/customer' (page=${customers.number - 1},
+                customerName = ${customerName},
+                  customerAddress = ${customerAddress},
+                  customerType = ${customerType})}"
+                               th:if="${customers.hasPrevious()}">Previous</a>
+                        </li>
+                        <li class="page-item"><span th:text="${customers.number+1}"></span>/<span
+                                th:text="${customers.totalPages}"></span></li>
+                        <li class="page-item">
+                            <a class="page-link" th:href="@{'/customer' (page=${customers.number + 1},
+                customerName = ${customerName},
+                customerAddress = ${customerAddress},
+                customerType = ${customerType})}" th:if="${customers.hasNext()}">Next</a>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </div>
     </div>

@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import vn.codegym.model.Contract;
-import vn.codegym.service.IContractService;
-import vn.codegym.service.ICustomerService;
-import vn.codegym.service.IEmployeeService;
-import vn.codegym.service.IService;
+import vn.codegym.model.contract_detail.Contract;
+import vn.codegym.service.contract_detail.IContractService;
+import vn.codegym.service.customer.ICustomerService;
+import vn.codegym.service.employee.IEmployeeService;
+import vn.codegym.service.service.IService;
 
 @Controller
 @RequestMapping("/contract")
@@ -40,6 +40,6 @@ public class ContractController {
     @PostMapping("/create")
     public String create(@ModelAttribute Contract contract) {
         contractService.save(contract);
-        return "redirect:/employee";
+        return "redirect:/";
     }
 }

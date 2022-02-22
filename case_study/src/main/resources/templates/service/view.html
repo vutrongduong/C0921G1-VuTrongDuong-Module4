@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+</head>
+<body>
+<div>
+    <h3>Service Details</h3>
+    <div class="border border-3 row h-75">
+        <div class="text-center">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <td th:text="${service.serviceId}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">Name</th>
+                    <td th:text="${service.serviceName}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">Area</th>
+                    <td th:text="${service.serviceArea}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">Cost</th>
+                    <td th:text="${service.serviceCost}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">Max people</th>
+                    <td th:text="${service.serviceMaxPeople}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">Standard room</th>
+                    <td th:text="${service.standardRoom}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">Description</th>
+                    <td th:text="${service.descriptionOtherConvenience}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">Pool Area</th>
+                    <td th:text="${service.poolArea}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">Number of floors</th>
+                    <td th:text="${service.numberOfFloors}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">Service Type</th>
+                    <td th:text="${service.serviceType.serviceTypeName}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">Rent Type</th>
+                    <td th:text="${service.rentType.rentTypeName}"></td>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

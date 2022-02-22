@@ -17,7 +17,7 @@
         </div>
         <div class="col-lg-9 text-center container-fluid">
             <div class="signup-form">
-                <form th:action="@{/customer/update}" method="post" class="form-horizontal" th:object="${customer}">
+                <form th:action="@{/customer/update}" method="post" class="form-horizontal" th:object="${customerDto}">
                     <div class="row">
                         <div class="col-8 offset-4">
                             <h3>Update Customer</h3>
@@ -26,65 +26,81 @@
                     <div class="form-group row">
                         <label class="col-form-label col-4">ID Customer</label>
                         <div class="col-8">
-                            <input type="text" class="form-control" th:field="${customer.customerId}">
+                            <input type="text" class="form-control" th:field="${customerDto.customerId}">
+                            <p style="color: red" th:if="${#fields.hasErrors('customerId')}"
+                               th:errors="*{customerId}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Name</label>
                         <div class="col-8 mt-2">
-                            <input class="form-control" type="text" th:field="${customer.customerName}">
+                            <input class="form-control" type="text" th:field="${customerDto.customerName}">
+                            <p style="color: red" th:if="${#fields.hasErrors('customerName')}"
+                               th:errors="*{customerName}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Gender</label>
                         <div class="col-8 mt-2">
-                            <input type="radio" th:if="${customer.customerGender==true}" checked value="1">Male
-                            <input type="radio" th:if="${customer.customerGender==false}" checked value="0">Female
+                            <input type="radio" name="customerGender" th:if="${customerDto.customerGender==true}"  checked >Male
+                            <input type="radio" name="customerGender"  th:if="${customerDto.customerGender==false}" checked >Female
+                            <p style="color: red" th:if="${#fields.hasErrors('customerGender')}"
+                               th:errors="*{customerGender}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Birthday</label>
                         <div class="col-8 mt-2">
-                            <input class="form-control h-75" type="date" th:field="${customer.customerBirthday}">
+                            <input class="form-control h-75" type="date" th:field="${customerDto.customerBirthday}">
+                            <p style="color: red" th:if="${#fields.hasErrors('customerBirthday')}"
+                               th:errors="*{customerBirthday}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Customer Type</label>
                         <div class="col-8 mt-2">
-                            <select id="customerType" th:field="${customer.customerType}">
+                            <select id="customerType" th:field="${customerDto.customerType}">
                                 <option th:each=" type : ${customerTypeList}" th:text="${type.customerTypeName}"
                                         th:value="${type.customerTypeId} "></option>
-
                             </select>
+                            <p style="color: red" th:if="${#fields.hasErrors('customerType')}"
+                               th:errors="*{customerType}"></p>
                         </div>
                     </div>
                     <div class=" form-group row">
                         <label class="col-form-label col-4">Id Card</label>
                         <div class="col-8 mt-2">
-                            <input class="form-control" type="text" th:field="${customer.customerIdCard}">
+                            <input class="form-control" type="text" th:field="${customerDto.customerIdCard}">
+                            <p style="color: red" th:if="${#fields.hasErrors('customerIdCard')}"
+                               th:errors="*{customerIdCard}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Phone</label>
                         <div class="col-8 mt-2">
-                            <input class="form-control" type="text" th:field="${customer.customerPhone}">
+                            <input class="form-control" type="text" th:field="${customerDto.customerPhone}">
+                            <p style="color: red" th:if="${#fields.hasErrors('customerPhone')}"
+                               th:errors="*{customerPhone}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">E-mail</label>
                         <div class="col-8 mt-2">
-                            <input class="form-control" type="email" th:field="${customer.customerEmail}">
+                            <input class="form-control" type="email" th:field="${customerDto.customerEmail}">
+                            <p style="color: red" th:if="${#fields.hasErrors('customerEmail')}"
+                               th:errors="*{customerEmail}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Address</label>
                         <div class="col-8 mt-2">
-                            <input class="form-control" type="text" th:field="${customer.customerAddress}">
+                            <input class="form-control" type="text" th:field="${customerDto.customerAddress}">
+                            <p style="color: red" th:if="${#fields.hasErrors('customerAddress')}"
+                               th:errors="*{customerAddress}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
-                            <button type="submit" class="btn btn-primary btn-lg">Update Customer</button>
-                        </div>
+                        <button type="submit" class="btn btn-primary btn-lg">Update Customer</button>
                     </div>
                 </form>
             </div>
