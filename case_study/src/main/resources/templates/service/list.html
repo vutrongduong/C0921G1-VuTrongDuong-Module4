@@ -4,13 +4,13 @@
 <body>
 <div id="list">
     <div th:replace="layout/header::header"></div>
-    <div class="border border-3 row h-75 c">
+    <div class="border border-3 row h-75 container-fluid">
         <div class="col-lg-3 border border-3">
             <a class="nav-link " href="/service/create">Add New Service</a>
             <a class="nav-link " href="#">Item 2</a>
             <a class="nav-link " href="#">Item 3</a>
         </div>
-        <div class="col-lg-9 text-center" id="table">
+        <div class="col-lg-9 text-center container-fluid" id="table">
             <div class="row">
                 <h3 class="col-lg-3" style="color:lightseagreen">Manage Service</h3>
                 <form action="/service" class="col-lg-9 row">

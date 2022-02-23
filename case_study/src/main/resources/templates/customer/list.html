@@ -4,7 +4,7 @@
 <body>
 <div id="list">
     <div th:replace="layout/header::header"></div>
-    <div class="border border-3 row h-75 c">
+    <div class="border border-3 row h-75 container-fluid">
         <div class="col-lg-3 border border-3">
             <a class="nav-link " href="/customer/create">Add New Customer</a>
             <a class="nav-link " href="#">Item 2</a>
@@ -14,6 +14,10 @@
             <div class="row">
                 <h3 class="col-lg-3" style="color:lightseagreen">Manage Customer</h3>
                 <form action="/customer" class="col-lg-9 row">
+<!--                    <div class="search-input col-lg-4">-->
+<!--                        <i class="fa-solid fa-magnifying-glass"></i>-->
+<!--                        <input type="text" name="keyword" placeholder="Search Full">-->
+<!--                    </div>-->
                     <div class="search-input col-lg-4">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <input type="text" name="customerName" placeholder="Serach By Name">

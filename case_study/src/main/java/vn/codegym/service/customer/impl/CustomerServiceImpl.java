@@ -42,6 +42,13 @@ public class CustomerServiceImpl implements ICustomerService {
 
     @Override
     public Page<Customer> find(String name, String address, String typeId, Pageable pageable) {
-        return repository.searchCustomer(name,address,typeId,pageable);
+        return repository.searchCustomer(name, address, typeId, pageable);
     }
+
+    @Override
+    public Page<Customer> findFull(String keyword, Pageable pageable) {
+        return repository.searchFull(keyword, pageable);
+    }
+
+
 }

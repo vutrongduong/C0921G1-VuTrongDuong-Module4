@@ -1,12 +1,17 @@
 package vn.codegym.model.service;
 
+import org.hibernate.annotations.GenericGenerator;
 import vn.codegym.model.contract_detail.Contract;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class Service {
     @Id
+    @GeneratedValue(generator = "id_gen_service")
+    @GenericGenerator(name = "id_gen_service", parameters =
+    @org.hibernate.annotations.Parameter(name = "prefix", value = "DV-"), strategy = "vn.codegym.model.customer.IdGenerator")
     private String serviceId;
     private String serviceName;
     private String serviceArea;
@@ -23,29 +28,14 @@ public class Service {
     private String poolArea;
     private String numberOfFloors;
     private Integer status;
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "service")
-    private Contract contract;
+    @OneToMany(mappedBy = "service")
+    private List<Contract> contract;
 
     public Service() {
     }
 
-    public Service(String serviceId, String serviceName, String serviceArea, String serviceCost, String serviceMaxPeople, RentType rentType, ServiceType serviceType, String standardRoom, String descriptionOtherConvenience, String poolArea, String numberOfFloors, Integer status, Contract contract) {
+    public Service(String serviceId, String serviceName, String serviceArea, String serviceCost, String serviceMaxPeople, RentType rentType, ServiceType serviceType, String standardRoom, String descriptionOtherConvenience, String poolArea, String numberOfFloors, Integer status, List<Contract> contract) {
         this.serviceId = serviceId;
-        this.serviceName = serviceName;
-        this.serviceArea = serviceArea;
-        this.serviceCost = serviceCost;
-        this.serviceMaxPeople = serviceMaxPeople;
-        this.rentType = rentType;
-        this.serviceType = serviceType;
-        this.standardRoom = standardRoom;
-        this.descriptionOtherConvenience = descriptionOtherConvenience;
-        this.poolArea = poolArea;
-        this.numberOfFloors = numberOfFloors;
-        this.status = status;
-        this.contract = contract;
-    }
-
-    public Service(String serviceName, String serviceArea, String serviceCost, String serviceMaxPeople, RentType rentType, ServiceType serviceType, String standardRoom, String descriptionOtherConvenience, String poolArea, String numberOfFloors, Integer status, Contract contract) {
         this.serviceName = serviceName;
         this.serviceArea = serviceArea;
         this.serviceCost = serviceCost;
@@ -156,11 +146,11 @@ public class Service {
         this.status = status;
     }
 
-    public Contract getContract() {
+    public List<Contract> getContract() {
         return contract;
     }
 
-    public void setContract(Contract contract) {
+    public void setContract(List<Contract> contract) {
         this.contract = contract;
     }
 }

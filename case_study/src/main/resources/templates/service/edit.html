@@ -10,7 +10,7 @@
 <body>
 <div>
     <div th:replace="layout/header::header"></div>
-    <div class="border border-3 row h-75">
+    <div class="border border-3 row h-75 container-fluid">
         <div class="col-lg-3 border border-3">
             <a class="nav-link " href="/service/create">Create New Service</a>
             <a class="nav-link " href="#">Item 2</a>
@@ -28,55 +28,71 @@
                         <label class="col-form-label col-4">ID</label>
                         <div class="col-8">
                             <input type="hidden" class="form-control" th:field="*{serviceId}">
-                            <h5 th:text="${serviceDto.serviceId}"></h5>
+                            <h5 style="color: black;margin-top: 9px;" th:text="${serviceDto.serviceId}"></h5>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Name</label>
                         <div class="col-8 mt-2">
                             <input class="form-control" type="text" th:field="*{serviceName}">
+                            <p style="color: red" th:if="${#fields.hasErrors('serviceName')}"
+                               th:errors="*{serviceName}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Area</label>
                         <div class="col-8 mt-2">
                             <input class="form-control" type="text" th:field="*{serviceArea}">
+                            <p style="color: red" th:if="${#fields.hasErrors('serviceArea')}"
+                               th:errors="*{serviceArea}"></p>
                         </div>
                     </div>
                     <div class=" form-group row">
                         <label class="col-form-label col-4">Cost</label>
                         <div class="col-8 mt-2">
                             <input class="form-control" type="text" th:field="*{serviceCost}">
+                            <p style="color: red" th:if="${#fields.hasErrors('serviceCost')}"
+                               th:errors="*{serviceCost}"></p>
                         </div>
                     </div>
                     <div class=" form-group row">
                         <label class="col-form-label col-4">Max people</label>
                         <div class="col-8 mt-2">
                             <input class="form-control" type="text" th:field="*{serviceMaxPeople}">
+                            <p style="color: red" th:if="${#fields.hasErrors('serviceMaxPeople')}"
+                               th:errors="*{serviceMaxPeople}"></p>
                         </div>
                     </div>
                     <div class=" form-group row">
                         <label class="col-form-label col-4">Standard Room</label>
                         <div class="col-8 mt-2">
                             <input class="form-control" type="text" th:field="*{standardRoom}">
+                            <p style="color: red" th:if="${#fields.hasErrors('standardRoom')}"
+                               th:errors="*{standardRoom}"></p>
                         </div>
                     </div>
                     <div class=" form-group row">
                         <label class="col-form-label col-4">Description</label>
                         <div class="col-8 mt-2">
                             <input class="form-control" type="text" th:field="*{descriptionOtherConvenience}">
+                            <p style="color: red" th:if="${#fields.hasErrors('descriptionOtherConvenience')}"
+                               th:errors="*{descriptionOtherConvenience}"></p>
                         </div>
                     </div>
                     <div class=" form-group row">
                         <label class="col-form-label col-4">Pool Area</label>
                         <div class="col-8 mt-2">
                             <input class="form-control" type="text" th:field="*{poolArea}">
+                            <p style="color: red" th:if="${#fields.hasErrors('poolArea')}"
+                               th:errors="*{poolArea}"></p>
                         </div>
                     </div>
                     <div class=" form-group row">
                         <label class="col-form-label col-4">Number of floors</label>
                         <div class="col-8 mt-2">
                             <input class="form-control" type="text" th:field="*{numberOfFloors}">
+                            <p style="color: red" th:if="${#fields.hasErrors('numberOfFloors')}"
+                               th:errors="*{numberOfFloors}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -86,6 +102,8 @@
                                 <option th:each=" type : ${serviceTypes}" th:text="${type.serviceTypeName}"
                                         th:value="${type.serviceTypeId} "></option>
                             </select>
+                            <p style="color: red" th:if="${#fields.hasErrors('serviceType')}"
+                               th:errors="*{serviceType}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -95,6 +113,8 @@
                                 <option th:each=" rentType : ${rentTypeServices}" th:text="${rentType.rentTypeName}"
                                         th:value="${rentType.rentTypeId} "></option>
                             </select>
+                            <p style="color: red" th:if="${#fields.hasErrors('rentType')}"
+                               th:errors="*{rentType}"></p>
                         </div>
                     </div>
                     <div class="form-group row">

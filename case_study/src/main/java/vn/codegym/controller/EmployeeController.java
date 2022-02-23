@@ -4,6 +4,7 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import vn.codegym.dto.CustomerDto;
 import vn.codegym.dto.EmployeeDto;
+import vn.codegym.model.Role;
 import vn.codegym.model.User;
 import vn.codegym.model.customer.Customer;
 import vn.codegym.model.employee.Division;
@@ -26,6 +28,7 @@ import vn.codegym.service.employee.IEmployeeService;
 import vn.codegym.service.employee.IPositionService;
 
 import javax.validation.Valid;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -75,14 +78,25 @@ public class EmployeeController {
         Employee employee = new Employee();
         BeanUtils.copyProperties(employeeDto, employee);
         User user = employee.getUser();
-        user.setPassword("$2a$10$MwpBEXT0.ZDIThEnNHMlQu52RuzaYNa6jlx/CioUnn3EYvvw4JWbO");
+        BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
+        String pass = bCryptPasswordEncoder.encode("123");
+        user.setPassword(pass);
         userRepository.save(user);
         employee.setStatus(1);
         employeeService.add(employee);
+
         if (employee.getPosition().getPositionId() == 1) {
-            userRepository.addRole(user.getUserName(), 2);
-        } else {
             userRepository.addRole(user.getUserName(), 1);
+//            List<Role> roles = new ArrayList<>();
+//            Role role = new Role(1, "ROLE_ADMIN");
+//            roles.add(role);
+//            user.setRoleList(roles);
+        } else {
+            userRepository.addRole(user.getUserName(), 2);
+//            List<Role> roles = new ArrayList<>();
+//            Role role = new Role(2, "ROLE_EMP");
+//            roles.add(role);
+//            user.setRoleList(roles);
         }
         return "redirect:/employee";
     }

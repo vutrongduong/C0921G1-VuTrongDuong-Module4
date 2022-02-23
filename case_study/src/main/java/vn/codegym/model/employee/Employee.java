@@ -7,6 +7,7 @@ import vn.codegym.model.contract_detail.Contract;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Employee {
@@ -34,13 +35,13 @@ public class Employee {
     @OneToOne
     @JoinColumn(name = "user_name", referencedColumnName = "userName")
     private User user;
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "employee")
-    private Contract contract;
+    @OneToMany( mappedBy = "employee")
+    private List<Contract> contract;
 
     public Employee() {
     }
 
-    public Employee(Long employeeId, String employeeName, Date employeeBirthday, String employeeIdCard, String employeeSalary, String employeePhone, String employeeEmail, String employeeAddress, Position position, EducationDegree educationDegree, Division division, Integer status, User user, Contract contract) {
+    public Employee(Long employeeId, String employeeName, Date employeeBirthday, String employeeIdCard, String employeeSalary, String employeePhone, String employeeEmail, String employeeAddress, Position position, EducationDegree educationDegree, Division division, Integer status, User user, List<Contract> contract) {
         this.employeeId = employeeId;
         this.employeeName = employeeName;
         this.employeeBirthday = employeeBirthday;
@@ -145,14 +146,6 @@ public class Employee {
         this.division = division;
     }
 
-    public Contract getContract() {
-        return contract;
-    }
-
-    public void setContract(Contract contract) {
-        this.contract = contract;
-    }
-
     public Integer getStatus() {
         return status;
     }
@@ -167,5 +160,13 @@ public class Employee {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public List<Contract> getContract() {
+        return contract;
+    }
+
+    public void setContract(List<Contract> contract) {
+        this.contract = contract;
     }
 }

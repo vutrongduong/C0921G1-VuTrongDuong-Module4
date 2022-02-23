@@ -1,5 +1,6 @@
 package vn.codegym.model.service;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import vn.codegym.model.service.Service;
 
 import javax.persistence.*;
@@ -11,7 +12,7 @@ public class ServiceType {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long serviceTypeId;
     private String serviceTypeName;
-
+    @JsonBackReference
     @OneToMany(mappedBy = "serviceType")
     List<Service> serviceList;
 

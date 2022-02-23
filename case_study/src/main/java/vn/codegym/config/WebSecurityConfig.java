@@ -31,18 +31,22 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/");
+        http.authorizeRequests().and().exceptionHandling().accessDeniedPage("/403");
         http
                 .formLogin().loginPage("/login")
                 .defaultSuccessUrl("/").permitAll()
                 .and()
                 .authorizeRequests()
+                .antMatchers("/home", "/", "/**/*.js", "/**/*.css", "/**/*.jpg", "/**/*.gif", "/**/*.jpeg", "/**/*.png").permitAll() /*không cần xác thực.*/
                 .antMatchers("/employee").hasRole("EMP")
                 .antMatchers("/employee/**", "/employee").hasRole("ADMIN")
-                .antMatchers("/employee/view/*").hasAnyRole("EMP", "ADMIN")
+                .antMatchers("/employee/view/*").hasAnyRole("EMP")
                 .anyRequest().authenticated();
+        http.logout().logoutUrl("/logout").logoutSuccessUrl("/");
         http.authorizeRequests().and().rememberMe()
                 .tokenRepository(this.persistentTokenRepository()).tokenValiditySeconds(60 * 60 * 24);
+
+
     }
 
     @Bean

@@ -30,7 +30,7 @@ public class CustomerController {
 
     @GetMapping("")
     public String getList(Model model,
-                          @PageableDefault(value = 3) Pageable pageable,
+                          @PageableDefault(value = 5) Pageable pageable,
                           @RequestParam(defaultValue = "") String customerName,
                           @RequestParam(defaultValue = "") String customerAddress,
                           @RequestParam(defaultValue = "") String customerType) {
@@ -40,6 +40,15 @@ public class CustomerController {
         model.addAttribute("customers", customerService.find(customerName, customerAddress, customerType, pageable));
         return "customer/list";
     }
+//    @GetMapping("")
+//    public String getListSearch(Model model,
+//                                @PageableDefault(value = 3) Pageable pageable,
+//                                @RequestParam(defaultValue = "") String keyword) {
+//        model.addAttribute("keyword", keyword);
+//        model.addAttribute("customers", customerService.findFull(keyword, pageable));
+//        return "customer/list";
+//    }
+
 
     @GetMapping("/create")
     public ModelAndView createForm() {

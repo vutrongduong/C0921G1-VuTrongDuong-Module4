@@ -25,7 +25,7 @@ public class EmployeeDto implements Validator {
     @Pattern(regexp = "^\\d{12}|\\d{9}$", message = "Invalid id card format")
     private String employeeIdCard;
     @NotNull(message = "PLease input salary")
-    @Pattern(regexp = "^([1-9])([0-9].*)$", message = "Salary must be a positive integer")
+    @Pattern(regexp = "^([1-9])([0-9]*)$", message = "Salary must be a positive integer")
     private String employeeSalary;
     @Pattern(regexp = "^(090|091|\\(84\\)\\+90|\\(84\\)\\+91){1}\\d{7}$", message = "Invalid phone format")
     private String employeePhone;

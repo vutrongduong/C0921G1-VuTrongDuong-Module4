@@ -10,8 +10,14 @@ public interface ICustomerService {
     List<Customer> findAll();
 
     void add(Customer customer);
+
     Customer findById(String id);
+
     void delete(String id);
+
     Page<Customer> findAll(Pageable pageable);
-    Page<Customer> find(String name,String address,String typeId,Pageable pageable);
+
+    Page<Customer> find(String name, String address, String typeId, Pageable pageable);
+
+    Page<Customer> findFull(String keyword, Pageable pageable);
 }

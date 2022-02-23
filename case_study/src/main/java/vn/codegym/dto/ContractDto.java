@@ -25,10 +25,10 @@ public class ContractDto implements Validator {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date endDate;
     @NotEmpty(message = "PLease input deposit")
-    @Pattern(regexp = "^([1-9])([0-9].*)$", message = "Deposit money must be a positive integer")
+    @Pattern(regexp = "^([1-9])([0-9]*)$", message = "Deposit money must be a positive integer")
     private String deposit;
     @NotEmpty(message = "PLease input total money")
-    @Pattern(regexp = "^([1-9])([0-9].*)$", message = "Total money must be a positive integer")
+    @Pattern(regexp = "^([1-9])([0-9]*)$", message = "Total money must be a positive integer")
     private String totalMoney;
     @NotNull(message = "PLease select employee")
     private Employee employee;

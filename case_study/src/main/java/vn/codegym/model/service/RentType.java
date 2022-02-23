@@ -1,5 +1,6 @@
 package vn.codegym.model.service;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import vn.codegym.model.service.Service;
 
 import javax.persistence.*;
@@ -14,6 +15,7 @@ public class RentType {
     private double rentTypeCost;
 
     @OneToMany(mappedBy = "rentType")
+    @JsonBackReference
     List<Service> serviceList;
 
     public RentType() {

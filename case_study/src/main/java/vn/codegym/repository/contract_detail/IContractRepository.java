@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import vn.codegym.model.contract_detail.Contract;
 
 @Repository
-public interface IContractRepository extends JpaRepository<Contract, Integer> {
+public interface IContractRepository extends JpaRepository<Contract, Long> {
     @Query(value = "SELECT * FROM  Contract  \n" +
             "            left join contract_detail  on contract.id=contract_detail.contract_id " +
             "            left join attach_service as attach_service on contract_detail.attach_service_id=attach_service.attach_service_id " +

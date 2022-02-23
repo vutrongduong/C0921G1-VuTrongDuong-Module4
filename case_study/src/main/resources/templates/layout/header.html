@@ -6,19 +6,23 @@
         <meta charset="UTF-8">
         <title>Title</title>
         <link rel="stylesheet" href="/css/bootstrap.min.css">
-        <script src="../../static/js/bootstrap.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
         <link rel="stylesheet" href="/css/header.css">
     </head>
     <body>
         <div class="container-fluid" th:fragment="header">
-            <div class="row">
-                <div class="col-lg-10">
+            <div class="row container-fluid">
+                <div class="col-lg-9">
                     <img width="75px"
-                         src="../../x512x512.b34453a20c19849144c890211fcce945.ai.1.png.pagespeed.ic.SHuE2e4RHb.webp">
+                         src="/img/logofurana.png">
                 </div>
-                <div class="col-lg-2 mt-lg-3 pe-lg-5">
+                <div class="col-lg-3 pt-lg-5 pe-lg-5" sec:authorize="anonymous">
+                    <a class="btn btn-success" href="/login">Login</a>
+                </div>
+                <div class="col-lg-3 mt-lg-3 pe-lg-5">
                     <div sec:authorize="isAuthenticated()"> <!--Kiểm tra đã xác thực hay chưa.-->
-                        <h5 style="color:lightseagreen">Hello : <span sec:authentication="principal.username"></span></h5>
+                        <h5 style="color:lightseagreen">Hello : <span sec:authentication="principal.name"></span></h5>
+                        <a class="btn btn-warning" th:href="@{/logout}">Logout</a>
 
 <!--                        &lt;!&ndash;data hiển thị của admin&ndash;&gt;-->
 <!--                        <div sec:authorize="hasRole('ADMIN')" style="color: red">-->

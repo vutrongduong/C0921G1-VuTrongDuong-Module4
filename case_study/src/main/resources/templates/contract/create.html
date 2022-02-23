@@ -11,7 +11,7 @@
 <body>
 <div>
     <div th:replace="layout/header::header"></div>
-    <div class="border border-3 row h-75">
+    <div class="border border-3 row h-75 container-fluid">
         <div class="col-lg-3 border border-3">
             <a class="nav-link " href="/contract/create">Create New Contract</a>
             <a class="nav-link " href="#">Item 2</a>
@@ -22,13 +22,13 @@
                 <form th:action="@{/contract/create}" th:object="${contractDto}" method="POST">
                     <div class="row">
                         <div class="col-8 offset-4">
-                            <h3  style="color:lightseagreen">Add Contract</h3>
+                            <h3 style="color:lightseagreen">Add Contract</h3>
                         </div>
                     </div>
                     <div class="form-group row">
                         <label class="col-form-label col-4">Start Date</label>
                         <div class=" text-field col-8">
-                            <input autocomplete="off" th:field="*{startDate}" type="date" name="startDate" />
+                            <input autocomplete="off" th:field="*{startDate}" type="date" name="startDate"/>
                             <p style="color: red" th:if="${#fields.hasErrors('startDate')}"
                                th:errors="*{startDate}"></p>
                         </div>
@@ -36,7 +36,7 @@
                     <div class="form-group row">
                         <label class="col-form-label col-4">End Date</label>
                         <div class="text-field col-8">
-                            <input autocomplete="off" type="date" th:field="*{endDate}" name="endDate"  />
+                            <input autocomplete="off" type="date" th:field="*{endDate}" name="endDate"/>
                             <p style="color: red" th:if="${#fields.hasErrors('endDate')}"
                                th:errors="*{endDate}"></p>
                         </div>
@@ -44,15 +44,30 @@
                     <div class="form-group row">
                         <label class="col-form-label col-4">Deposit</label>
                         <div class="col-8 mt-2">
-                            <input class="form-control " type="text" th:field="*{deposit}" name="deposit" placeholder="Enter your deposit">
+                            <input class="form-control " type="text" th:field="*{deposit}" name="deposit"
+                                   placeholder="Enter your deposit">
                             <p style="color: red" th:if="${#fields.hasErrors('deposit')}"
                                th:errors="*{deposit}"></p>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Service</label>
+                        <div class="text-field col-8">
+                            <select th:field="*{service}" name="service" class="money">
+                                <option th:value="null"  selected>Choose Service</option>
+                                <option th:each="item:${service}" th:value="${item.serviceId}"
+                                        th:text="${item.serviceName}"></option>
+                            </select>
+                            <p style="color: red" th:if="${#fields.hasErrors('service')}"
+                               th:errors="*{service}"></p>
                         </div>
                     </div>
                     <div class=" form-group row">
                         <label class="col-form-label col-4">Total Money</label>
                         <div class="text-field col-8">
-                            <input autocomplete="off" type="text" th:field="*{totalMoney}" name="totalMoney" placeholder="Enter your Total Money" />
+                            <input readonly style="color: black;margin-top: 9px;" class="form-control " id="money"
+                                   type="text" th:field="*{totalMoney}" name="totalMoney">
                             <p style="color: red" th:if="${#fields.hasErrors('totalMoney')}"
                                th:errors="*{totalMoney}"></p>
                         </div>
@@ -60,31 +75,22 @@
                     <div class=" form-group row">
                         <label class="col-form-label col-4">Employee</label>
                         <div class="text-field col-8">
-                            <select th:field="*{employee}" name="employee" >
-                                <option th:value="null" selected >Choose Employee</option>
-                                <option th:each="item:${employee}" th:value="${item.employeeId}"  th:text="${item.employeeName}"></option>
+                            <select th:field="*{employee}" name="employee">
+                                <option th:value="null" selected>Choose Employee</option>
+                                <option th:each="item:${employee}" th:value="${item.employeeId}"
+                                        th:text="${item.employeeName}"></option>
                             </select>
                             <p style="color: red" th:if="${#fields.hasErrors('employee')}"
                                th:errors="*{employee}"></p>
                         </div>
                     </div>
                     <div class="form-group row">
-                        <label class="col-form-label col-4">Service</label>
-                        <div class="text-field col-8">
-                            <select  th:field="*{service}" name="service">
-                                <option th:value="null" selected >Choose Service</option>
-                                <option class="click" th:each="item:${service}" th:value="${item.serviceId}"  th:text="${item.serviceName}"></option>
-                            </select>
-                            <p style="color: red" th:if="${#fields.hasErrors('service')}"
-                               th:errors="*{service}"></p>
-                        </div>
-                    </div>
-                    <div class="form-group row">
                         <label class="col-form-label col-4">Customer</label>
                         <div class="text-field col-8">
                             <select th:field="*{customer}" name="customer">
-                                <option th:value="null" selected >Choose Customer</option>
-                                <option th:each="item:${customer}" th:value="${item.customerId}"  th:text="${item.customerName}"></option>
+                                <option th:value="null" selected>Choose Customer</option>
+                                <option th:each="item:${customer}" th:value="${item.customerId}"
+                                        th:text="${item.customerName}"></option>
                             </select>
                             <p style="color: red" th:if="${#fields.hasErrors('customer')}"
                                th:errors="*{customer}"></p>
@@ -93,7 +99,7 @@
                     <div class="form-group row">
                         <div class="col-8 offset-4 ">
                             <p><label class="form-check-label"><input type="checkbox"> I accept the <span>Are
-                    you sure the above information is completely correct?</span></label></p>
+                                                you sure the above information is completely correct?</span></label></p>
                             <button type="submit" class="btn btn-primary btn-lg">Add New Contract</button>
                         </div>
                     </div>
@@ -104,5 +110,23 @@
     <div th:replace="layout/footer::footer"></div>
 </div>
 <script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery-3.5.1.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".money").change(function () {
+            let id = $(this).val();
+            console.log(id)
+            $.ajax({
+                type: "GET",
+                url: "/contract/money/" + id,
+                dataType: "JSON",
+                success: function (data) {
+                    document.getElementById("money").value = data
+                }
+            })
+        })
+    })
+
+</script>
 </body>
 </html>

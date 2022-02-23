@@ -9,6 +9,7 @@ import vn.codegym.model.contract_detail.Contract;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class Customer {
@@ -29,13 +30,13 @@ public class Customer {
     private String customerEmail;
     private String customerAddress;
     private Integer status;
-    @OneToOne(fetch = FetchType.LAZY, mappedBy = "customer")
-    private Contract contract;
+    @OneToMany(mappedBy = "customer")
+    private List<Contract> contract;
 
     public Customer() {
     }
 
-    public Customer(String customerId, CustomerType customerType, String customerName, Date customerBirthday, Boolean customerGender, String customerIdCard, String customerPhone, String customerEmail, String customerAddress, Contract contract) {
+    public Customer(String customerId, CustomerType customerType, String customerName, Date customerBirthday, Boolean customerGender, String customerIdCard, String customerPhone, String customerEmail, String customerAddress, Integer status, List<Contract> contract) {
         this.customerId = customerId;
         this.customerType = customerType;
         this.customerName = customerName;
@@ -45,6 +46,7 @@ public class Customer {
         this.customerPhone = customerPhone;
         this.customerEmail = customerEmail;
         this.customerAddress = customerAddress;
+        this.status = status;
         this.contract = contract;
     }
 
@@ -120,14 +122,6 @@ public class Customer {
         this.customerAddress = customerAddress;
     }
 
-    public Contract getContract() {
-        return contract;
-    }
-
-    public void setContract(Contract contract) {
-        this.contract = contract;
-    }
-
     public Integer getStatus() {
         return status;
     }
@@ -136,17 +130,11 @@ public class Customer {
         this.status = status;
     }
 
-    public Customer(String customerId, CustomerType customerType, String customerName, Date customerBirthday, Boolean customerGender, String customerIdCard, String customerPhone, String customerEmail, String customerAddress, Integer status, Contract contract) {
-        this.customerId = customerId;
-        this.customerType = customerType;
-        this.customerName = customerName;
-        this.customerBirthday = customerBirthday;
-        this.customerGender = customerGender;
-        this.customerIdCard = customerIdCard;
-        this.customerPhone = customerPhone;
-        this.customerEmail = customerEmail;
-        this.customerAddress = customerAddress;
-        this.status = status;
+    public List<Contract> getContract() {
+        return contract;
+    }
+
+    public void setContract(List<Contract> contract) {
         this.contract = contract;
     }
 }

@@ -11,7 +11,7 @@
 <body>
 <div>
     <div th:replace="layout/header::header"></div>
-    <div class="border border-3 row h-75">
+    <div class="border border-3 row h-75 container">
         <div class="col-lg-3 border border-3">
             <a class="nav-link " href="/customer/create">Create New Customer</a>
             <a class="nav-link " href="#">Item 2</a>
@@ -29,7 +29,7 @@
                         <label class="col-form-label col-4">ID Customer</label>
                         <div class="col-8">
                             <input type="hidden" class="form-control" th:field="*{customerId}">
-                            <h5 th:text="${customerDto.customerId}"></h5>
+                            <h5 style="color: black;margin-top: 9px;" th:text="${customerDto.customerId}"></h5>
                             <p style="color: red" th:if="${#fields.hasErrors('customerId')}"
                                th:errors="*{customerId}"></p>
                         </div>
@@ -104,8 +104,9 @@
                                th:errors="*{customerAddress}"></p>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <button type="submit" class="btn btn-primary btn-lg">Update Customer</button>
+                    <div class="form-group col-lg-8 float-lg-end">
+                        <button type="submit" class="btn btn-success btn-lg col-lg-6">Update Customer</button>
+                        <a style="color: white" href="/customer" class="btn btn-secondary btn-lg col-lg-2 float-lg-end">Return</a>
                     </div>
                 </form>
             </div>

@@ -19,6 +19,8 @@ import vn.codegym.service.service.IRentTypeService;
 import vn.codegym.service.service.IService;
 import vn.codegym.service.service.IServiceType;
 
+import javax.validation.Valid;
+
 @Controller
 @RequestMapping("/service")
 public class ServiceController {
@@ -51,11 +53,11 @@ public class ServiceController {
         BeanUtils.copyProperties(serviceDto, service);
         service.setStatus(1);
         serviceImpl.add(service);
-        return "redirect:/service/";
+        return "redirect:/service";
     }
 
     @GetMapping("")
-    public String list(@PageableDefault(value = 2) Pageable pageable, Model model
+    public String list(@PageableDefault(value = 5) Pageable pageable, Model model
             , @RequestParam(defaultValue = "") String customerName,
                        @RequestParam(defaultValue = "") String serviceName) {
         Page<Contract> contract = contractService.findAll(customerName, serviceName, pageable);
@@ -75,9 +77,17 @@ public class ServiceController {
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute Service service) {
+    public String update(@ModelAttribute @Valid ServiceDto serviceDto, BindingResult bindingResult, Model model) {
+        if (bindingResult.hasFieldErrors()) {
+            model.addAttribute("serviceDto", serviceDto);
+            model.addAttribute("serviceTypes", serviceType.findAll());
+            model.addAttribute("rentTypeServices", rentTypeService.findAll());
+            return "service/edit";
+        }
+        Service service = new Service();
+        BeanUtils.copyProperties(serviceDto,service);
         serviceImpl.add(service);
-        return "redirect:/service/";
+        return "redirect:/service";
     }
 
     @GetMapping("/view/{id}")

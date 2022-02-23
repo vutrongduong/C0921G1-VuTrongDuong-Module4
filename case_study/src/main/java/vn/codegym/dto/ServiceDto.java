@@ -12,10 +12,10 @@ public class ServiceDto {
     @NotEmpty(message = "PLease input name")
     private String serviceName;
     @NotEmpty(message = "PLease input area")
-    @Pattern(regexp = "^([1-9])([0-9].*)$", message = "Area must be a positive integer")
+    @Pattern(regexp = "^([1-9])([0-9]*)$", message = "Area must be a positive integer")
     private String serviceArea;
     @NotEmpty(message = "PLease input cost")
-    @Pattern(regexp = "^([1-9])([0-9].*)$", message = "Cost must be a positive integer")
+    @Pattern(regexp = "^([1-9])([0-9]*)$", message = "Cost must be a positive integer")
     private String serviceCost;
     @NotEmpty(message = "PLease input max people")
     @Pattern(regexp = "^([1-9])([0-9]*)$", message = "Number of floors must be a positive integer")
@@ -29,7 +29,7 @@ public class ServiceDto {
     @NotEmpty(message = "PLease input description other convenience")
     private String descriptionOtherConvenience;
     @NotEmpty(message = "PLease input pool area")
-    @Pattern(regexp = "^([1-9])([0-9].*)$", message = "Pool area must be a positive integer")
+    @Pattern(regexp = "^([1-9])([0-9]*)$", message = "Pool area must be a positive integer")
     private String poolArea;
     @NotEmpty(message = "PLease input number of floors")
     @Pattern(regexp = "^([1-9])([0-9]*)$", message = "Number of floors must be a positive integer")

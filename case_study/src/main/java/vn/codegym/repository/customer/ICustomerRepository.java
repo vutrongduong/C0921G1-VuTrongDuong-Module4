@@ -16,4 +16,8 @@ public interface ICustomerRepository extends JpaRepository<Customer, String> {
                                   @Param("customerAdress") String customerAdress,
                                   @Param("customerTypeId") String customerTypeId,
                                   Pageable pagle);
+    @Query(value = "SELECT * FROM  Customer where (customer_name like concat('%',:keyword,'%') " +
+            " or  customer_address like concat('%',:keyword,'%')  or customer_type_id like concat('%',:keyword,'%')) and status = 1", nativeQuery = true)
+    Page<Customer> searchFull(@Param("keyword") String keyword,
+                                  Pageable pagle);
 }

@@ -19,16 +19,16 @@ public class Contract {
     private Date endDate;
     private String deposit;
     private String totalMoney;
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "employee_id", referencedColumnName = "employeeId")
     private Employee employee;
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "customer_id", referencedColumnName = "customerId")
     private Customer customer;
-    @OneToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "service_id", referencedColumnName = "serviceId")
     private Service service;
-    @OneToOne(fetch = FetchType.LAZY,mappedBy = "contract")
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "contract")
     private ContractDetail contractDetail;
 
     public Contract() {
