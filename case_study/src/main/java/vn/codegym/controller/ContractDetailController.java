@@ -23,11 +23,11 @@ import javax.validation.Valid;
 @RequestMapping("/contract_detail")
 public class ContractDetailController {
     @Autowired
-    IContractDetailService contractDetailService;
+    private IContractDetailService contractDetailService;
     @Autowired
-    IContractService contractService;
+   private IContractService contractService;
     @Autowired
-    IAttachService attachService;
+   private IAttachService attachService;
 
 
     @GetMapping("/create")

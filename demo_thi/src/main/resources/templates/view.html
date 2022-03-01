@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/head::head">
+<body>
+<div>
+    <h3 style="color:lightseagreen">Customer Details</h3>
+    <div class="border border-3 row h-75">
+        <div class="text-center">
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Id</th>
+                    <td th:text="${customer.customerId}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">Name</th>
+                    <td th:text="${customer.customerName}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">Gender</th>
+                    <td th:text="${customer.customerGender}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">Birthday</th>
+                    <td th:text="${customer.customerBirthday}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">Type</th>
+                    <td th:text="${customer.customerType.customerTypeName}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">ID Card</th>
+                    <td th:text="${customer.customerIdCard}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">Phone</th>
+                    <td th:text="${customer.customerPhone}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">E-mail</th>
+                    <td th:text="${customer.customerEmail}"></td>
+                </tr>
+                <tr>
+                    <th scope="col">Address</th>
+                    <td th:text="${customer.customerAddress}"></td>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

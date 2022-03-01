@@ -10,6 +10,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import vn.codegym.dto.ServiceDto;
 import vn.codegym.model.contract_detail.Contract;
 import vn.codegym.model.employee.Employee;
@@ -25,13 +26,13 @@ import javax.validation.Valid;
 @RequestMapping("/service")
 public class ServiceController {
     @Autowired
-    IService serviceImpl;
+    private IService serviceImpl;
     @Autowired
-    IServiceType serviceType;
+    private IServiceType serviceType;
     @Autowired
-    IRentTypeService rentTypeService;
+    private IRentTypeService rentTypeService;
     @Autowired
-    IContractService contractService;
+    private IContractService contractService;
 
     @GetMapping("/create")
     public String addShow(Model model) {
@@ -42,7 +43,7 @@ public class ServiceController {
     }
 
     @PostMapping("/create")
-    public String add(@ModelAttribute @Validated ServiceDto serviceDto, BindingResult bindingResult, Model model) {
+    public String add(@ModelAttribute @Validated ServiceDto serviceDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
         if (bindingResult.hasFieldErrors()) {
             model.addAttribute("serviceDto", serviceDto);
             model.addAttribute("serviceTypes", serviceType.findAll());
@@ -52,6 +53,7 @@ public class ServiceController {
         Service service = new Service();
         BeanUtils.copyProperties(serviceDto, service);
         service.setStatus(1);
+        redirectAttributes.addFlashAttribute("mess", "Successfully added new service : " + service.getServiceName());
         serviceImpl.add(service);
         return "redirect:/service";
     }
@@ -85,9 +87,11 @@ public class ServiceController {
             return "service/edit";
         }
         Service service = new Service();
-        BeanUtils.copyProperties(serviceDto,service);
+        BeanUtils.copyProperties(serviceDto, service);
+        service.setStatus(1);
+        model.addAttribute("mess","Update service : " +service.getServiceName()+ " successful");
         serviceImpl.add(service);
-        return "redirect:/service";
+        return "service/edit";
     }
 
     @GetMapping("/view/{id}")
@@ -103,10 +107,11 @@ public class ServiceController {
     }
 
     @PostMapping("/delete/{id}")
-    public String delete(@PathVariable String id) {
+    public String delete(@PathVariable String id,RedirectAttributes redirectAttributes) {
         Service service = serviceImpl.findById(id).get();
         service.setStatus(0);
         serviceImpl.add(service);
-        return "redirect:/service/";
+        redirectAttributes.addFlashAttribute("messDelete", "Delete service : " + service.getServiceName() + " successful");
+        return "redirect:/service";
     }
 }

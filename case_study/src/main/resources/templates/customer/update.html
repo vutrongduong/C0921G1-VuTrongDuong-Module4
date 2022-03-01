@@ -11,16 +11,16 @@
 <body>
 <div>
     <div th:replace="layout/header::header"></div>
-    <div class="border border-3 row h-75 container">
-        <div class="col-lg-3 border border-3">
-            <a class="nav-link " href="/customer/create">Create New Customer</a>
-            <a class="nav-link " href="#">Item 2</a>
-            <a class="nav-link " href="#">Item 3</a>
+    <div class="border border-3 row h-75 container-fluid">
+        <div class="col-lg-3">
+            <img style="width: 650px" src="https://furamavietnam.com/wp-content/uploads/2020/03/tet-pop-up-01.png">
         </div>
         <div class="col-lg-9 text-center container-fluid">
+
             <div class="signup-form">
                 <form th:action="@{/customer/update}" method="post" class="form-horizontal" th:object="${customerDto}">
                     <div class="row">
+                        <h5 style="color:green;" th:if="${mess}" th:text="${mess}"></h5>
                         <div class="col-8 offset-4">
                             <h3 style="color:lightseagreen">Update Customer</h3>
                         </div>

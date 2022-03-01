@@ -35,7 +35,7 @@ public class Employee {
     @OneToOne
     @JoinColumn(name = "user_name", referencedColumnName = "userName")
     private User user;
-    @OneToMany( mappedBy = "employee")
+    @OneToMany(mappedBy = "employee")
     private List<Contract> contract;
 
     public Employee() {

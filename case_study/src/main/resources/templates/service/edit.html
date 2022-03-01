@@ -11,17 +11,16 @@
 <div>
     <div th:replace="layout/header::header"></div>
     <div class="border border-3 row h-75 container-fluid">
-        <div class="col-lg-3 border border-3">
-            <a class="nav-link " href="/service/create">Create New Service</a>
-            <a class="nav-link " href="#">Item 2</a>
-            <a class="nav-link " href="#">Item 3</a>
+        <div class="col-lg-3 ">
+            <img style="width: 650px" src="https://furamavietnam.com/wp-content/uploads/2020/03/tet-pop-up-01.png">
         </div>
         <div class="col-lg-9 text-center container-fluid">
             <div class="signup-form">
                 <form th:action="@{/service/update}" method="post" class="form-horizontal" th:object="${serviceDto}">
                     <div class="row">
+                        <h5 style="color:green;" th:if="${mess}" th:text="${mess}"></h5>
                         <div class="col-8 offset-4">
-                            <h3  style="color:lightseagreen">Update Service</h3>
+                            <h3 style="color:lightseagreen">Update Service</h3>
                         </div>
                     </div>
                     <div class="form-group row">
@@ -117,8 +116,9 @@
                                th:errors="*{rentType}"></p>
                         </div>
                     </div>
-                    <div class="form-group row">
-                        <button type="submit" class="btn btn-primary btn-lg">Update Service</button>
+                    <div class="form-group col-lg-8 float-lg-end">
+                        <button type="submit" class="btn btn-success btn-lg col-lg-6">Update Service</button>
+                        <a style="color: white" href="/service" class="btn btn-secondary btn-lg col-lg-2 float-lg-end">Return</a>
                     </div>
                 </form>
             </div>

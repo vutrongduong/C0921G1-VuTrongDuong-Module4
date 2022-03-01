@@ -69,6 +69,7 @@ public class CustomerController {
         Customer customer = new Customer();
         BeanUtils.copyProperties(customerDto, customer);
         customer.setStatus(1);
+        redirectAttributes.addFlashAttribute("mess","Successfully added new customer : " +customer.getCustomerName());
         customerService.add(customer);
         return "redirect:/customer";
     }
@@ -86,10 +87,11 @@ public class CustomerController {
     }
 
     @PostMapping("/delete/{id}")
-    public String delete(@PathVariable String id) {
+    public String delete(@PathVariable String id,RedirectAttributes redirectAttributes) {
         Customer customer = customerService.findById(id);
         customer.setStatus(0);
         customerService.add(customer);
+        redirectAttributes.addFlashAttribute("messDelete", "Delete customer : " + customer.getCustomerName() + " successful");
         return "redirect:/customer";
     }
 
@@ -103,17 +105,17 @@ public class CustomerController {
     }
 
     @PostMapping("/update")
-
-    public String update(@ModelAttribute @Valid CustomerDto customerDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
+    public String update(@ModelAttribute @Valid CustomerDto customerDto, BindingResult bindingResult, Model model) {
         if (bindingResult.hasFieldErrors()) {
             model.addAttribute("customerDto", customerDto);
             return "customer/update";
         }
         Customer customer = new Customer();
         BeanUtils.copyProperties(customerDto, customer);
+        model.addAttribute("mess","Update customer : " +customer.getCustomerName()+ " successful");
+        customer.setStatus(1);
         customerService.add(customer);
-        redirectAttributes.addFlashAttribute("mess", "fầl");
-        return "redirect:/customer";
+        return "customer/update";
     }
 
     @ModelAttribute("customerTypeList")

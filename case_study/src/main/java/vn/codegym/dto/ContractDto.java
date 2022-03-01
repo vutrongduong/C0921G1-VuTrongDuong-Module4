@@ -9,9 +9,7 @@ import vn.codegym.model.employee.Employee;
 import vn.codegym.model.service.Service;
 
 import javax.validation.Valid;
-import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import javax.validation.constraints.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -20,9 +18,12 @@ public class ContractDto implements Validator {
     private Long id;
     @NotNull(message = "PLease input start date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @FutureOrPresent
+//    @PastOrPresent
     private Date startDate;
     @NotNull(message = "PLease input end date")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @FutureOrPresent
     private Date endDate;
     @NotEmpty(message = "PLease input deposit")
     @Pattern(regexp = "^([1-9])([0-9]*)$", message = "Deposit money must be a positive integer")

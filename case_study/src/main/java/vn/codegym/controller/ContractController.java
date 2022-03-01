@@ -23,16 +23,16 @@ import java.util.Optional;
 @RequestMapping("/contract")
 public class ContractController {
     @Autowired
-    IContractService contractService;
+    private IContractService contractService;
 
     @Autowired
-    ICustomerService customerService;
+    private ICustomerService customerService;
 
     @Autowired
-    IEmployeeService employeeService;
+    private IEmployeeService employeeService;
 
     @Autowired
-    IService service;
+    private IService service;
 
     @GetMapping("/create")
     public String showCreate(Model model) {

@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/create.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body>
+<div>
+    <div class="border border-3 row h-75">
+        <div class="col-lg-3">
+            <img style="width: 650px" src="https://furamavietnam.com/wp-content/uploads/2020/03/tet-pop-up-01.png">
+        </div>
+        <div class="col-lg-9 text-center container-fluid">
+            <div class="signup-form">
+                <form th:action="@{/giaoDich/create}" method="post" class="form-horizontal" th:object="${giaoDichDto}">
+                    <div class="row">
+                        <h4 style="color: green" th:if="${mess}" th:text="${mess}"></h4>
+                        <div class="col-8 offset-4">
+                            <h3 style="color:lightseagreen">Thêm mới giao dịch </h3>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Tên khách hàng</label>
+                        <div class="col-8 mt-2">
+                            <select th:field="*{khachHang}">
+                                <option th:value="null" selected>Chọn khách hàng</option>
+                                <option th:each=" item : ${khachHangs}" th:text="${item.name}"
+                                        th:value="${item.id} "></option>
+                            </select>
+                            <p style="color: red" th:if="${#fields.hasErrors('khachHang')}"
+                               th:errors="*{khachHang}"></p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Loại bất động sản</label>
+                        <div class="col-8 mt-2">
+                            <select th:field="*{loaiDichVu}">
+                                <option th:value="null" selected>Chọn loại bất động sản</option>
+                                <option th:each=" item : ${loaiDichVus}" th:text="${item.name}"
+                                        th:value="${item.id} "></option>
+                            </select>
+                            <p style="color: red" th:if="${#fields.hasErrors('loaiDichVu')}"
+                               th:errors="*{loaiDichVu}"></p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label class="col-form-label col-4">Ngày giao dịch</label>
+                        <div class="col-8 mt-2">
+                            <input class="form-control h-75" type="date" th:field="*{ngayGiaoDich}">
+                            <p style="color: red" th:if="${#fields.hasErrors('ngayGiaoDich')}"
+                               th:errors="*{ngayGiaoDich}"></p>
+                        </div>
+                    </div>
+
+                    <div class=" form-group row">
+                        <label class="col-form-label col-4">Đơn giá(VND)</label>
+                        <div class="text-field col-8">
+                            <input type="text" th:field="*{donGia}"/>
+                            <p style="color: red" th:if="${#fields.hasErrors('donGia')}"
+                               th:errors="*{donGia}"></p>
+                        </div>
+                    </div>
+                    <div class=" form-group row">
+                        <label class="col-form-label col-4">Diện tích (m2)</label>
+                        <div class="text-field col-8">
+                            <input type="text" th:field="*{dienTich}"/>
+                            <p style="color: red" th:if="${#fields.hasErrors('dienTich')}"
+                               th:errors="*{dienTich}"></p>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-8 offset-4 ">
+                            <button type="submit" class="btn btn-success btn-lg">Lưu</button>
+                            <a style="color: white" href="/giaoDich" class="btn btn-secondary btn-lg">Hủy</a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/bootstrap.min.js"></script>
+</body>
+</html>

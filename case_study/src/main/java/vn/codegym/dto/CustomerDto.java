@@ -30,8 +30,9 @@ public class CustomerDto implements Validator {
     @NotNull(message = "Please select your gender")
     private Boolean customerGender;
     @Pattern(regexp = "^\\d{12}|\\d{9}$", message = "Invalid id card format")
+    @Pattern(regexp = "^[a-zA-Z\\d]+")
     private String customerIdCard;
-    @Pattern(regexp = "^(090|091|\\(84\\)\\+90|\\(84\\)\\+91){1}\\d{7}$", message = "Invalid phone format")
+    @Pattern(regexp = "^(090|091|\\(84\\)\\+90|\\(84\\)\\+91){1}\\d{7}$", message = "Phone number must be in the correct format 090xxxxxxx or 091xxxxxxx or (84)+90xxxxxxx or (84)+91xxxxxxx")
     private String customerPhone;
     @NotEmpty(message = "PLease input email")
     @Email(message = "Invalid email format")

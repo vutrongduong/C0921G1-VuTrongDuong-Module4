@@ -6,18 +6,15 @@
     <div th:replace="layout/header::header"></div>
     <div class="border border-3 row h-75 container-fluid">
         <div class="col-lg-3 border border-3">
-            <a class="nav-link " href="/customer/create">Add New Customer</a>
-            <a class="nav-link " href="#">Item 2</a>
-            <a class="nav-link " href="#">Item 3</a>
+            <a class="btn btn-danger float-lg-end mt-lg-3" href="/customer/create">Add New Customer</a>
+            <img style="width: 300px" src="https://furamavietnam.com/wp-content/uploads/2020/03/tet-pop-up-01.png">
         </div>
         <div class="col-lg-9 text-center" id="table">
+            <h5 style="color: green" th:if="${mess}" th:text="${mess}"></h5>
+            <h5 style="color: red" th:if="${messDelete}" th:text="${messDelete}"></h5>
             <div class="row">
                 <h3 class="col-lg-3" style="color:lightseagreen">Manage Customer</h3>
                 <form action="/customer" class="col-lg-9 row">
-<!--                    <div class="search-input col-lg-4">-->
-<!--                        <i class="fa-solid fa-magnifying-glass"></i>-->
-<!--                        <input type="text" name="keyword" placeholder="Search Full">-->
-<!--                    </div>-->
                     <div class="search-input col-lg-4">
                         <i class="fa-solid fa-magnifying-glass"></i>
                         <input type="text" name="customerName" placeholder="Serach By Name">
@@ -36,9 +33,6 @@
                     <button class="col-lg-1 btn btn-outline-success" type="submit">Search</button>
                 </form>
             </div>
-            <th:block>
-                <!--                <h4 th:text="${mess}"></h4>-->
-            </th:block>
             <table class="table">
                 <thead>
                 <tr>
@@ -97,8 +91,17 @@
                   customerType = ${customerType})}"
                                th:if="${customers.hasPrevious()}" style="color:lightseagreen">Previous</a>
                         </li>
-                        <li class="page-item"><span th:text="${customers.number+1}"></span>/<span
-                                th:text="${customers.totalPages}"></span></li>
+<!--                        <li class="page-item"><p class="page-link" style="color:red "-->
+<!--                                                    th:text="${customers.number+1}">/</p></li>        <p class="page-item"><span class="page-link" style="color:red "-->
+<!--                                                                                                                                    >/</span></p>-->
+<!--                        <li class="page-item"><span class="page-link" style="color:red "-->
+<!--                                                    th:text="${customers.totalPages}"></span></li>-->
+                        <li class="page-item">
+                            <div class="page-link " style="color: red">
+                                <span th:text="${customers.number+1}"></span> <span style="color: lightseagreen">/</span>
+                                <span th:text="${customers.totalPages}"></span>
+                            </div>
+                        </li>
                         <li class="page-item">
                             <a class="page-link" th:href="@{'/customer' (page=${customers.number + 1},
                 customerName = ${customerName},

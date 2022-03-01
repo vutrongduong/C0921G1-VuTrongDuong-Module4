@@ -3,9 +3,6 @@ package vn.codegym;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import vn.codegym.dto.ContractDetailDto;
-import vn.codegym.dto.ContractDto;
-import vn.codegym.dto.CustomerDto;
 
 @SpringBootApplication
 public class CaseStudyApplication {

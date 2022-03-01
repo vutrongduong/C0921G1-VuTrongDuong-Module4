@@ -1,18 +1,22 @@
 package vn.codegym.dto;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 import vn.codegym.model.User;
 import vn.codegym.model.employee.Division;
 import vn.codegym.model.employee.EducationDegree;
+import vn.codegym.model.employee.Employee;
 import vn.codegym.model.employee.Position;
+import vn.codegym.service.employee.IEmployeeService;
 
 import javax.validation.constraints.*;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class EmployeeDto implements Validator {
 
@@ -27,7 +31,7 @@ public class EmployeeDto implements Validator {
     @NotNull(message = "PLease input salary")
     @Pattern(regexp = "^([1-9])([0-9]*)$", message = "Salary must be a positive integer")
     private String employeeSalary;
-    @Pattern(regexp = "^(090|091|\\(84\\)\\+90|\\(84\\)\\+91){1}\\d{7}$", message = "Invalid phone format")
+    @Pattern(regexp = "^(090|091|\\(84\\)\\+90|\\(84\\)\\+91){1}\\d{7}$", message = "Phone number must be in the correct format 090xxxxxxx or 091xxxxxxx or (84)+90xxxxxxx or (84)+91xxxxxxx")
     private String employeePhone;
     @NotEmpty(message = "PLease input email")
     @Email(message = "Invalid email format")
@@ -172,7 +176,11 @@ public class EmployeeDto implements Validator {
         return flag;
     }
 
+    @Autowired
+    IEmployeeService employeeService;
+
     @Override
+
     public boolean supports(Class<?> clazz) {
         return false;
     }
@@ -180,8 +188,18 @@ public class EmployeeDto implements Validator {
     @Override
     public void validate(Object target, Errors errors) {
         EmployeeDto employeeDto = (EmployeeDto) target;
-        if (!checkDate(employeeDto.employeeBirthday)) {
-            errors.rejectValue("employeeBirthday", "birthDay", "Employee is under 18 years old");
+        if (employeeDto.getEmployeeBirthday() != null) {
+            if (!checkDate(employeeDto.employeeBirthday)) {
+                errors.rejectValue("employeeBirthday", "birthDay", "Employee is under 18 years old");
+            }
         }
+//        for (Employee employee : employeeService.findAll()) {
+//            if (employeeDto.user.getUserName() != null) {
+//                if (employeeDto.user.equals(employee.getUser())) {
+//                    errors.rejectValue("user", "user", "Username is duplicated");
+//                }
+//            }
+//        }
     }
+
 }

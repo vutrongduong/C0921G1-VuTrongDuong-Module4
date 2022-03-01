@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/footer.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/list.css">
+    <script src="/js/fontAnwesome.js"></script>
+</head>
+<body>
+<div id="list">
+    <div class="border border-3 row h-75 container-fluid">
+        <div class="col-lg-3 border border-3">
+            <a class="btn btn-danger float-lg-end mt-lg-3" href="/giaoDich/create">Thêm mới</a>
+            <img style="width: 300px" src="https://furamavietnam.com/wp-content/uploads/2020/03/tet-pop-up-01.png">
+        </div>
+        <div class="col-lg-9 text-center" id="table">
+            <h5 style="color: green" th:if="${mess}" th:text="${mess}"></h5>
+            <h5 style="color: red" th:if="${messDelete}" th:text="${messDelete}"></h5>
+                        <div class="row">
+                            <h3 class="col-lg-3" style="color:lightseagreen">Danh sách giao dịch nhà đất</h3>
+                            <form action="/giaoDich" class="col-lg-9 row">
+                                <select name="loaiDichVuID" class="col-lg-3 search-input">
+                                    <option disabled selected>Chọn loại bất động sản</option>
+                                    <th:block th:each="item :${loaiDichVus}">
+                                        <option th:text="${item.name}"
+                                                th:value="${item.id}"></option>
+                                    </th:block>
+                                </select>
+                                <div class="search-input col-lg-4">
+                                    <i class="fa-solid fa-magnifying-glass"></i>
+                                    <input type="text" name="tenKhachHang" placeholder="Tên khách hàng">
+                                </div>
+                                <button class="col-lg-1 btn btn-outline-success" type="submit">Search</button>
+                            </form>
+                        </div>
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">Mã giao dịch</th>
+                    <th scope="col">Tên khách hàng</th>
+                    <th scope="col">Ngày giao dịch</th>
+                    <th scope="col">Loại dịch vụ</th>
+                    <th scope="col">Đơn giá(VND/m2)</th>
+                    <th scope="col">Diện tích(m2)</th>
+                    <th scope="col">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="item : ${giaoDichs}">
+                    <td th:text="${item.giaoDichId}"></td>
+                    <td th:text="${item.khachHang.name}"></td>
+                    <td th:text="${#dates.format(item.ngayGiaoDich, 'dd/MM/yyyy')}"></td>
+                    <td th:text="${item.loaiDichVu.name}"></td>
+                    <td th:text="${item.donGia}"></td>
+                    <td th:text="${item.dienTich }"></td>
+
+                    <td>
+                        <button class="btn btn-info view" type="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-view-stacked" viewBox="0 0 16 16">
+                                <path d="M3 0h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V2a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H3zm0 8h10a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2zm0 1a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h10a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1H3z"/>
+                            </svg>
+                        </button>
+                        <input type="hidden" th:value="${item.giaoDichId}">
+                        <button class="btn btn-danger deleteShow">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                 class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                            </svg>
+                        </button>
+                        <input type="hidden" th:value="${item.giaoDichId}">
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    ...
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="/js/bootstrap.min.js"></script>
+<script src="/js/jquery-3.5.1.min.js"></script>
+</body>
+<script>
+    $(document).ready(function () {
+        $(".deleteShow").click(function () {
+            let id = $(this).next().val();
+            $.ajax({
+                type: "GET",
+                url: "giaoDich/delete/" + id,
+                dataType: "HTML",
+                success: function (data) {
+                    $(".modal-body").html(data);
+                    $("#exampleModal").modal("show");
+                }
+            })
+        })
+        $(".view").click(function () {
+            let id = $(this).next().val();
+            $.ajax({
+                type: "GET",
+                url: "giaoDich/view/" + id,
+                dataType: "HTML",
+                success: function (data) {
+                    $(".modal-body").html(data);
+                    $("#exampleModal").modal("show");
+                }
+            })
+        })
+    })
+
+</script>
+</html>

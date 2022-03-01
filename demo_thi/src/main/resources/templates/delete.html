@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/create.css">
+    <link rel="stylesheet" href="/css/header.css">
+    <link rel="stylesheet" href="/css/footer.css">
+</head>
+<body>
+<h1 style="color:lightseagreen">Xóa giao dịch</h1>
+<h2>Are you sure ?</h2>
+<div>
+    <div class="container-fluid">
+        <p>Mã giao dịch : <span th:text="${productDto.id}"></span></p>
+        <p>Tên khách hàng : <span th:text="${productDto.name}"></span></p>
+        Bạn có chắc chắn muốn xóa giao dịch này không ???
+    </div>
+    <div class="mt-lg-3">
+        <button class="btn btn-danger deleteAction" >Delete</button>
+        <input type="hidden" th:value="${productDto.id}">
+    </div>
+</div>
+
+<script src="/js/bootstrap.min.js"></script>
+<script>
+    $(document).ready(function () {
+        $(".deleteAction").click(function () {
+            let id = $(this).next().val();
+            $.ajax({
+                type: "POST",
+                url: "product/delete/" + id,
+                dataType: "HTML",
+                success: function (data) {
+                    $(".modal").modal("hide");
+                    $("#list").html(data);
+                }
+            })
+        })
+    })
+
+</script>
+</body>
+</html>

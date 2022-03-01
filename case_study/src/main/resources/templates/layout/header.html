@@ -23,16 +23,6 @@
                     <div sec:authorize="isAuthenticated()"> <!--Kiểm tra đã xác thực hay chưa.-->
                         <h5 style="color:lightseagreen">Hello : <span sec:authentication="principal.name"></span></h5>
                         <a class="btn btn-warning" th:href="@{/logout}">Logout</a>
-
-<!--                        &lt;!&ndash;data hiển thị của admin&ndash;&gt;-->
-<!--                        <div sec:authorize="hasRole('ADMIN')" style="color: red">-->
-<!--                            Đây là nội dung của role admin-->
-<!--                        </div>-->
-
-<!--                        &lt;!&ndash;data hiển thị của user&ndash;&gt;-->
-<!--                        <div sec:authorize="hasRole('USER')" style="color: green">-->
-<!--                            Đây là nội dung của role user-->
-<!--                        </div>-->
                     </div>
                 </div>
             </div>

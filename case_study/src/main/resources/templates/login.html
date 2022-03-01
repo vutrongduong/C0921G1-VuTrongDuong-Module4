@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -259,8 +259,9 @@
                 </svg>
                 <span class="hidden">Password</span></label>
             <input id="login__password" type="password" name="password" class="form__input" placeholder="Password"
-                   required>
+                   required></br>
         </div>
+        <h4 style="color: red" th:if="${param.error}">Error login</h4>
         <div class="form__field">
             <p style="color:black;">Remember me</p><input type="checkbox" name="remember_me" class="form__input">
         </div>

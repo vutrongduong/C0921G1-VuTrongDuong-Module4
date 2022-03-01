@@ -6,11 +6,12 @@
     <div th:replace="layout/header::header"></div>
     <div class="border border-3 row h-75 container-fluid">
         <div class="col-lg-3 border border-3">
-            <a class="nav-link " href="/employee/create">Add New Employee</a>
-            <a class="nav-link " href="#">Item 2</a>
-            <a class="nav-link " href="#">Item 3</a>
+            <a class="btn btn-danger float-lg-end mt-lg-3" href="/employee/create">Add New Employee</a>
+            <img style="width: 300px" src="https://furamavietnam.com/wp-content/uploads/2020/03/tet-pop-up-01.png">
         </div>
         <div class="col-lg-9 text-center" id="table">
+            <h5 style="color: green" th:if="${mess}" th:text="${mess}"></h5>
+            <h5 style="color: red" th:if="${messDelete}" th:text="${messDelete}"></h5>
             <h3 style="color:lightseagreen">Manage Employee</h3>
             <form action="/employee" class=" row">
                 <div class="search-input col-lg-4">
@@ -94,8 +95,8 @@
                   educationDegreeId=${educationDegreeId} )}"
                                th:if="${employees.hasPrevious()}" style="color:lightseagreen">Previous</a>
                         </li>
-                        <li class="page-item"><span th:text="${employees.number+1}"></span>/<span
-                                th:text="${employees.totalPages}"></span></li>
+                        <li class="page-item"><span th:text="${employees.number+1}" class="page-link" style="color:red "></span>
+                                </span></li>
                         <li class="page-item">
                             <a class="page-link" th:href="@{'/employee' (page=${employees.number + 1},
                  name = ${name},

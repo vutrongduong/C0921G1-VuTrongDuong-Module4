@@ -68,9 +68,7 @@ public class EmployeeController {
 
     @PostMapping("/create")
     public String add(@ModelAttribute @Validated EmployeeDto employeeDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
-        if (employeeDto.getEmployeeBirthday() != null) {
-            new EmployeeDto().validate(employeeDto, bindingResult);
-        }
+        new EmployeeDto().validate(employeeDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
             model.addAttribute("employeeDto", employeeDto);
             return "employee/create";
@@ -83,6 +81,7 @@ public class EmployeeController {
         user.setPassword(pass);
         userRepository.save(user);
         employee.setStatus(1);
+        redirectAttributes.addFlashAttribute("mess", "Successfully added new employee : " + employee.getEmployeeName());
         employeeService.add(employee);
 
         if (employee.getPosition().getPositionId() == 1) {
@@ -114,10 +113,13 @@ public class EmployeeController {
     }
 
     @PostMapping("/delete/{id}")
-    public String delete(@PathVariable Long id, Model model, @PageableDefault(size = 2) Pageable pageable) {
-        employeeService.delete(employeeService.findById(id).get());
+    public String delete(@PathVariable Long id, Model model, @PageableDefault(size = 2) Pageable pageable,RedirectAttributes redirectAttributes) {
+        Employee employee = employeeService.findById(id).get();
+        employee.setStatus(0);
+        employeeService.add(employee);
         model.addAttribute("employees", employeeService.findAll(pageable));
-        return "employee/list";
+        redirectAttributes.addFlashAttribute("messDelete", "Delete employee : " + employee.getEmployeeName() + " successful");
+        return "redirect:/employee";
     }
 
     @GetMapping("/update/{id}")
@@ -130,18 +132,19 @@ public class EmployeeController {
     }
 
     @PostMapping("/update")
-    public String update(@ModelAttribute @Validated EmployeeDto employeeDto, BindingResult bindingResult, RedirectAttributes redirectAttributes, Model model) {
-        if (employeeDto.getEmployeeBirthday() != null) {
-            new EmployeeDto().validate(employeeDto, bindingResult);
-        }
+    public String update(@ModelAttribute("employeeDto") @Validated EmployeeDto employeeDto, BindingResult bindingResult, Model model) {
+        new EmployeeDto().validate(employeeDto, bindingResult);
         if (bindingResult.hasFieldErrors()) {
             model.addAttribute("employeeDto", employeeDto);
             return "employee/update";
+        }else {
+            Employee employee = new Employee();
+            BeanUtils.copyProperties(employeeDto, employee);
+            model.addAttribute("mess", "Update employee : " + employee.getEmployeeName() + " successful");
+            employee.setStatus(1);
+            employeeService.add(employee);
+            return "redirect:/employee";
         }
-        Employee employee = new Employee();
-        BeanUtils.copyProperties(employeeDto, employee);
-        employeeService.add(employee);
-        return "redirect:/employee";
     }
 
     @ModelAttribute("positions")
