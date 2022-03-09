@@ -6,7 +6,7 @@ import org.springframework.validation.Validator;
 import vn.codegym.model.contract_detail.Contract;
 import vn.codegym.model.customer.CustomerType;
 
-import javax.validation.constraints.Email;
+import javax.validation.constraints.Email:
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
